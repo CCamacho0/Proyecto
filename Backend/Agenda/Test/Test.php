@@ -1,6 +1,6 @@
 <?php
 
 /* 
- * Solo ocupamos uno para hecr los test, al final esta vara se bota 
+ * Solo ocupamos uno para hacer los test, al final esta vara se bota 
  */
 
