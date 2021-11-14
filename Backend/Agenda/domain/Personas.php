@@ -11,19 +11,22 @@ class Personas extends BaseDomain implements \JsonSerializable {
     private $apellido2;
     private $fecNacimiento;
     private $sexo;
-    private $observaciones;
+    private $tipoUsuario;
+    private $nombreUsuario;
+    private $contrasena;
 
     //constructores
     public function __construct() {
         parent::__construct();
     }
 
-    public static function createNullTelefonos() {
+    public static function createNullPersonas() {
         $instance = new self();
         return $instance;
     }
 
-    public static function createTelefonos($PK_cedula, $nombre, $apellido1, $apellido2, $fecNacimiento, $sexo, $observaciones, $lastUser, $lastModification) {
+    public static function createTelefonos($PK_cedula, $nombre, $apellido1, $apellido2, $fecNacimiento, $sexo, $tipoUsuario,
+            $nombreUsuario, $contrasena, $lastUser, $lastModification) {
         $instance = new self();
         $instance->PK_cedula = $PK_cedula;
         $instance->nombre = $nombre;
@@ -31,7 +34,9 @@ class Personas extends BaseDomain implements \JsonSerializable {
         $instance->apellido2 = $apellido2;
         $instance->fecNacimiento = $fecNacimiento;
         $instance->sexo = $sexo;
-        $instance->observaciones = $observaciones;
+        $instance->tipoUsuario = $tipoUsuario;
+        $instance->nombreUsuario = $nombreUsuario;
+        $instance->contrasena = $contrasena;
         $instance->setLastUser($lastUser);
         $instance->setLastModification($lastModification);
         return $instance;
@@ -98,12 +103,32 @@ class Personas extends BaseDomain implements \JsonSerializable {
 
     //----------------------------------------------------------------------------------
 
-    public function getObservaciones() {
-        return $this->observaciones;
+    public function gettipoUsuario() {
+        return $this->tipoUsuario;
     }
 
-    public function setObservaciones($observaciones) {
-        $this->observaciones = $observaciones;
+    public function settipoUsuario($tipoUsuario) {
+        $this->tipoUsuario = $tipoUsuario;
+    }
+    
+        //----------------------------------------------------------------------------------
+
+    public function getnombreUsuario() {
+        return $this->nombreUsuario;
+    }
+
+    public function setnombreUsuario($nombreUsuario) {
+        $this->nombreUsuario = $nombreUsuario;
+    }
+    
+        //----------------------------------------------------------------------------------
+
+    public function getcontrasena() {
+        return $this->contrasena;
+    }
+
+    public function setcontrasena($contrasena) {
+        $this->contrasena = $contrasena;
     }
 
     //----------------------------------------------------------------------------------
