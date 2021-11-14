@@ -23,15 +23,18 @@ class PersonasDao {
 
 
         try {
-            $sql = sprintf("insert into Personas (PK_cedula, nombre, apellido1, apellido2, fecNacimiento, sexo, observaciones, LASTUSER, LASTMODIFICATION) 
-                                          values (%s,%s,%s,%s,%s,%s,%s,%s,CURDATE())",
+            $sql = sprintf("insert into Personas (PK_cedula, nombre, apellido1, apellido2, fecNacimiento, sexo, tipoUsuario, 
+                nombreUsuario, contrasena, LASTUSER, LASTMODIFICATION) 
+                                          values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,CURDATE())",
                     $this->labAdodb->Param("PK_cedula"),
                     $this->labAdodb->Param("nombre"),
                     $this->labAdodb->Param("apellido1"),
                     $this->labAdodb->Param("apellido2"),
                     $this->labAdodb->Param("fecNacimiento"),
                     $this->labAdodb->Param("sexo"),
-                    $this->labAdodb->Param("observaciones"),
+                    $this->labAdodb->Param("tipoUsuario"),
+                    $this->labAdodb->Param("nombreUsuario"),
+                    $this->labAdodb->Param("contrasena"),
                     $this->labAdodb->Param("LASTUSER"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
@@ -43,7 +46,9 @@ class PersonasDao {
             $valores["apellido2"] = $personas->getapellido2();
             $valores["fecNacimiento"] = $personas->getfecNacimiento();
             $valores["sexo"] = $personas->getsexo();
-            $valores["observaciones"] = $personas->getobservaciones();
+            $valores["tipoUsuario"] = $personas->gettipoUsuario();
+            $valores["nombreUsuario"] = $personas->getnombreUsuario();
+            $valores["contrasena"] = $personas->getcontrasena();
             $valores["LASTUSER"] = $personas->getLastUser();
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
@@ -89,7 +94,9 @@ class PersonasDao {
                                                 apellido2 = %s, 
                                                 fecNacimiento = %s, 
                                                 sexo = %s, 
-                                                observaciones = %s, 
+                                                tipoUsuario = %s, 
+                                                nombreUsuario = %s, 
+                                                contrasena = %s, 
                                                 LASTUSER = %s, 
                                                 LASTMODIFICATION = CURDATE() 
                             where PK_cedula = %s",
@@ -98,7 +105,9 @@ class PersonasDao {
                     $this->labAdodb->Param("apellido2"),
                     $this->labAdodb->Param("fecNacimiento"),
                     $this->labAdodb->Param("sexo"),
-                    $this->labAdodb->Param("observaciones"),
+                    $this->labAdodb->Param("tipoUsuario"),
+                    $this->labAdodb->Param("nombreUsuario"),
+                    $this->labAdodb->Param("contrasena"),
                     $this->labAdodb->Param("LASTUSER"),
                     $this->labAdodb->Param("PK_cedula"));
             $sqlParam = $this->labAdodb->Prepare($sql);
@@ -110,7 +119,9 @@ class PersonasDao {
             $valores["apellido2"] = $personas->getapellido2();
             $valores["fecNacimiento"] = $personas->getfecNacimiento();
             $valores["sexo"] = $personas->getsexo();
-            $valores["observaciones"] = $personas->getobservaciones();
+            $valores["tipoUsuario"] = $personas->gettipoUsuario();
+            $valores["nombreUsuario"] = $personas->getnombreUsuario();
+            $valores["contrasena"] = $personas->getcontrasena();
             $valores["LASTUSER"] = $personas->getLastUser();
             $valores["PK_cedula"] = $personas->getPK_cedula();
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
@@ -166,7 +177,9 @@ class PersonasDao {
                 $returnPersonas->setapellido2($resultSql->Fields("apellido2"));
                 $returnPersonas->setfecNacimiento($resultSql->Fields("fecNacimiento"));
                 $returnPersonas->setsexo($resultSql->Fields("sexo"));
-                $returnPersonas->setobservaciones($resultSql->Fields("observaciones"));
+                $returnPersonas->settipoUsuario($resultSql->Fields("tipoUsuario"));
+                $returnPersonas->setnombreUsuario($resultSql->Fields("nombreUsuario"));
+                $returnPersonas->setcontrasena($resultSql->Fields("contrasena"));
             }
         } catch (Exception $e) {
             throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase PersonasDao), error:' . $e->getMessage());
