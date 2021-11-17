@@ -14,6 +14,9 @@ class Personas extends BaseDomain implements \JsonSerializable {
     private $tipoUsuario;
     private $nombreUsuario;
     private $contrasena;
+    private $correo;
+    private $celular;
+    private $direccion;
 
     //constructores
     public function __construct() {
@@ -25,8 +28,8 @@ class Personas extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function createTelefonos($PK_cedula, $nombre, $apellido1, $apellido2, $fecNacimiento, $sexo, $tipoUsuario,
-            $nombreUsuario, $contrasena, $lastUser, $lastModification) {
+    public static function createPersonas($PK_cedula, $nombre, $apellido1, $apellido2, $fecNacimiento, $sexo, $tipoUsuario,
+            $nombreUsuario, $contrasena, $correo, $celular, $direccion, $lastUser, $lastModification) {
         $instance = new self();
         $instance->PK_cedula = $PK_cedula;
         $instance->nombre = $nombre;
@@ -37,6 +40,9 @@ class Personas extends BaseDomain implements \JsonSerializable {
         $instance->tipoUsuario = $tipoUsuario;
         $instance->nombreUsuario = $nombreUsuario;
         $instance->contrasena = $contrasena;
+        $instance->correo = $correo;
+        $instance->celular = $celular;
+        $instance->direccion = $direccion;
         $instance->setLastUser($lastUser);
         $instance->setLastModification($lastModification);
         return $instance;
@@ -133,6 +139,36 @@ class Personas extends BaseDomain implements \JsonSerializable {
 
     //----------------------------------------------------------------------------------
 
+        public function getCorreo() {
+        return $this->correo;
+    }
+
+    public function setCorreo($correo) {
+        $this->correo = $correo;
+    }
+
+    //----------------------------------------------------------------------------------
+    
+    public function getCelular() {
+        return $this->celular;
+    }
+
+    public function setCelular($celular) {
+        $this->celuar = $celular;
+    }
+
+    //----------------------------------------------------------------------------------
+    
+        public function getDireccion() {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion) {
+        $this->direccion = $direccion;
+    }
+
+    //----------------------------------------------------------------------------------
+    
     public function getlastUser() {
         return $this->lastUser;
     }
