@@ -2,16 +2,16 @@
 
 class BaseDomain {
 
-    //atriburos
+    //attributes
     private $lastUser;
     private $lastModification;
 
-    //construtor
+    //constructors
     public function __construct() {
         
     }
 
-    //propiedades
+    //properties
     public function getLastUser() {
         return $this->lastUser;
     }
@@ -20,7 +20,7 @@ class BaseDomain {
         $this->lastUser = $lastUser;
     }
 
-    //----------------------------------------------------------------------------------
+    /****************************************************************************/
 
     public function getLastModification() {
         return $this->lastModification;
@@ -30,8 +30,10 @@ class BaseDomain {
         $this->lastModification = $lastModification;
     }
 
-    //----------------------------------------------------------------------------------
+    /****************************************************************************/
     //Convertir el obj a JSON
+    /****************************************************************************/
+    
 
     public function jsonSerialize() {
         return get_object_vars($this);
@@ -41,4 +43,3 @@ class BaseDomain {
 
 //end of the class
 ?>
-
