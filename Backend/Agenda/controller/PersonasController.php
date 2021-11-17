@@ -21,7 +21,9 @@ if (filter_input(INPUT_POST, 'action') != null) {
             if ((filter_input(INPUT_POST, 'PK_cedula') != null) && (filter_input(INPUT_POST, 'nombre') != null) 
                     && (filter_input(INPUT_POST, 'apellido1') != null) && (filter_input(INPUT_POST, 'apellido2') != null) 
                     && (filter_input(INPUT_POST, 'fecNacimiento') != null) && (filter_input(INPUT_POST, 'sexo') != null) 
-                    && (filter_input(INPUT_POST, 'observaciones') != null)) {
+                    && (filter_input(INPUT_POST, 'tipoUsuario') != null) && (filter_input(INPUT_POST, 'nombreUsuario') != null)
+                    && (filter_input(INPUT_POST, 'contrasena') != null) && (filter_input(INPUT_POST, 'correo') != null)
+                    && (filter_input(INPUT_POST, 'celular') != null) && (filter_input(INPUT_POST, 'direccion') != null)) {
                 
                 $myPersonas->setPK_cedula(filter_input(INPUT_POST, 'PK_cedula'));
                 $myPersonas->setnombre(filter_input(INPUT_POST, 'nombre'));
@@ -29,8 +31,13 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 $myPersonas->setapellido2(filter_input(INPUT_POST, 'apellido2'));
                 $myPersonas->setfecNacimiento(filter_input(INPUT_POST, 'fecNacimiento'));
                 $myPersonas->setsexo(filter_input(INPUT_POST, 'sexo'));
-                $myPersonas->setobservaciones(filter_input(INPUT_POST, 'observaciones'));
-                $myPersonas->setLastUser('112540148');
+                $myPersonas->settipoUsuario(filter_input(INPUT_POST, 'tipoUsuario'));
+                $myPersonas->setnombreUsuario(filter_input(INPUT_POST, 'nombreUsuario'));
+                $myPersonas->setcontrasena(filter_input(INPUT_POST, 'contrasena'));
+                $myPersonas->setCorreo(filter_input(INPUT_POST, 'correo'));
+                $myPersonas->setCelular(filter_input(INPUT_POST, 'celular'));
+                $myPersonas->setDireccion(filter_input(INPUT_POST, 'direccion'));
+                $myPersonas->setLastUser(filter_input(INPUT_POST, 'nombreUsuario'));
                 
                 if ($action == "add_personas") {
                     $myPersonasBo->add($myPersonas);
