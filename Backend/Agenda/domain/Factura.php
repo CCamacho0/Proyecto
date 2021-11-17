@@ -16,12 +16,12 @@ class Factura extends BaseDomain implements \JsonSerializable {
         parent::__construct();
     }
 
-    public static function createNullTelefonos() {
+    public static function createNullFactura() {
         $instance = new self();
         return $instance;
     }
 
-    public static function createTelefonos($idFactura, $FK_cedula, $asiento, $FK_idgestionVuelo, $Detalle) {
+    public static function createFactura($idFactura, $FK_cedula, $asiento, $FK_idgestionVuelo, $Detalle) {
         $instance = new self();
         $instance->idFactura = $idFactura;
         $instance->Detalle = $Detalle;
