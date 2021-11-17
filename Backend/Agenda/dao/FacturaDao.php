@@ -23,10 +23,11 @@ class FacturaDao {
 
 
         try {
-            $sql = sprintf("insert into Factura (idFactura, Detalle, FK_cedula, FK_idgestionVuelo) 
-                                          values (%s,%s,%s,%s,CURDATE())",
+            $sql = sprintf("insert into Factura (idFactura, Detalle, asiento, FK_cedula, FK_idgestionVuelo) 
+                                          values (%s,%s,%s,%s,%s,CURDATE())",
                     $this->labAdodb->Param("idFactura"),
                     $this->labAdodb->Param("Detalle"),
+                    $this->labAdodb->Param("asiento"),
                     $this->labAdodb->Param("FK_cedula"),
                     $this->labAdodb->Param("FK_idgestionVuelo"));
             $sqlParam = $this->labAdodb->Prepare($sql);
@@ -35,6 +36,7 @@ class FacturaDao {
 
             $valores["idFactura"] = $factura->getidFactura();
             $valores["Detalle"] = $factura->getDetalle();
+            $valores["asiento"] = $factura->getAsiento();
             $valores["FK_cedula"] = $factura->getFK_cedula();
             $valores["FK_idgestionVuelo"] = $factura->getFK_idgestionVuelo();
 
@@ -76,11 +78,13 @@ class FacturaDao {
 
 
         try {
-            $sql = sprintf("update Factura set Detalle = %s, 
+            $sql = sprintf("update Factura set Detalle = %s,
+                                                asiento = %s,
                                                 FK_cedula = %s, 
                                                 FK_idgestionVuelo = %s,
                             where idFactura = %s",
                     $this->labAdodb->Param("Detalle"),
+                    $this->labAdodb->Param("asiento"),
                     $this->labAdodb->Param("FK_cedula"),
                     $this->labAdodb->Param("FK_idgestionVuelo"));
             $sqlParam = $this->labAdodb->Prepare($sql);
@@ -88,6 +92,7 @@ class FacturaDao {
             $valores = array();
             
             $valores["Detalle"] = $factura->getDetalle();
+            $valores["asiento"] = $factura->getAsiento();
             $valores["FK_cedula"] = $factura->getFK_cedula();
             $valores["FK_idgestionVuelo"] = $factura->getFK_idgestionVuelo();
             $valores["idFactura"] = $factura->getidFactura();
@@ -140,6 +145,7 @@ class FacturaDao {
                 $returnfactura = Factura::createNullFactura();
                 $returnfactura->setidFactura($resultSql->Fields("idFactura"));
                 $returnfactura->setDetalle($resultSql->Fields("Detalle"));
+                $returnfactura->setAsiento($resultSql->Fields("asiento"));
                 $returnfactura->setFK_cedula($resultSql->Fields("FK_cedula"));
                 $returnfactura->setFK_idgestionVuelo($resultSql->Fields("FK_idgestionVuelo"));
             }
