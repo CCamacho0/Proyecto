@@ -11,11 +11,11 @@ class FacturaBo {
         $this->facturaDao = new FacturaDao();
     }
 
-    public function getPersonasDao() {
+    public function getFacturaDao() {
         return $this->facturaDao;
     }
 
-    public function setPersonasDao(FacturaDao $facturaDao) {
+    public function setFacturaDao(FacturaDao $facturaDao) {
         $this->facturaDao = $facturaDao;
     }
 
