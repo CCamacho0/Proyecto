@@ -155,7 +155,7 @@ class gestionVueloDao{
     public function searchById(GestionVuelo $gestionVuelo) {
 
         
-        $returnDirecciones = null;
+        $returngestionVuelo = null;
         try {
             $sql = sprintf("select * from gestionVuelo where idgestionVuelo = %s",
                             $this->labAdodb->Param("idgestionVuelo"));
@@ -168,12 +168,12 @@ class gestionVueloDao{
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
             
             if ($resultSql->RecordCount() > 0) {
-                $returnGestionVuelo = GestionVuelo::createNullGestionVuelo();
-                $returnGestionVuelo->setidgestionVuelo($resultSql->Fields("idgestionVuelo"));
-                $returnGestionVuelo->setFecha($resultSql->Fields("Fecha"));
-                $returnGestionVuelo->setPrecio($resultSql->Fields("Precio"));
-                $returnGestionVuelo->setFK_idgestion_tipoavion($resultSql->Fields("FK_idgestion_tipoavion"));
-                $returnGestionVuelo->setFK_idgestion_rutas($resultSql->Fields("FK_idgestion_tipoavion"));
+                $returngestionVuelo = GestionVuelo::createNullGestionVuelo();
+                $returngestionVuelo->setidgestionVuelo($resultSql->Fields("idgestionVuelo"));
+                $returngestionVuelo->setFecha($resultSql->Fields("Fecha"));
+                $returngestionVuelo->setPrecio($resultSql->Fields("Precio"));
+                $returngestionVuelo->setFK_idgestion_tipoavion($resultSql->Fields("FK_idgestion_tipoavion"));
+                $returngestionVuelo->setFK_idgestion_rutas($resultSql->Fields("FK_idgestion_tipoavion"));
             }
         } catch (Exception $e) {
             throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase gestionVueloDao), error:'.$e->getMessage());
