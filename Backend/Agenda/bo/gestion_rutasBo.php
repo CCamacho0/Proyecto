@@ -19,55 +19,55 @@ class gestion_rutasBo{
         $this->gestion_rutasDao = $gestion_rutasDao;
     }
 
-    //agrega a una gestion de  a la base de datos
+    //agrega a una gestion de ruta a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function add(GestionVuelo $gestionVuelo) {
+    public function add(GestionRuta $gestion_rutas) {
         try {
-            if (!$this->gestion_rutasDao->exist($gestionVuelo)) {
-                $this->gestion_rutasDao->add($gestionVuelo);
+            if (!$this->gestion_rutasDao->exist($gestion_rutas)) {
+                $this->gestion_rutasDao->add($gestion_rutas);
             } else {
-                throw new Exception("La gestion de vuelo ya existe en la base de datos!!");
+                throw new Exception("La gestion de ruta ya existe en la base de datos!!");
             }
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    //modifica a una gestion de vuelo a la base de datos
+    //modifica a una gestion de ruta a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function update(GestionVuelo $gestionVuelo) {
+    public function update(GestionRuta $gestion_rutas) {
         try {
-            $this->gestion_rutasDao->update($gestionVuelo);
+            $this->gestion_rutasDao->update($gestion_rutas);
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    //eliminar a una gestion de vuelo de la base de datos
+    //eliminar a una gestion de ruta de la base de datos
     //----------------------------------------------------------------------------------
 
-    public function delete(GestionVuelo $gestionVuelo) {
+    public function delete(GestionRuta $gestion_rutas) {
         try {
-            $this->gestion_rutasDao->delete($gestionVuelo);
+            $this->gestion_rutasDao->delete($gestion_rutas);
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    //consulta a una gestion de vuelo a la base de datos
+    //consulta una gestion de ruta a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function searchById(GestionVuelo $gestionVuelo) {
+    public function searchById(GestionRutas $gestion_rutas) {
         try {
-            return $this->gestion_rutasDao->searchById($gestionVuelo);
+            return $this->gestion_rutasDao->searchById($gestion_rutas);
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    //consultar todas las gestiones de vuelo de la base de datos
+    //consultar todas las gestiones de ruta de la base de datos
     //----------------------------------------------------------------------------------
 
     public function getAll() {
@@ -80,7 +80,7 @@ class gestion_rutasBo{
 
 }
 
-//end of the class gestionVueloBo
+//end of the class gestion_rutasBo
 ?>
 
  
