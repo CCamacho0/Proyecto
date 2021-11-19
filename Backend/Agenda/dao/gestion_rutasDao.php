@@ -24,7 +24,7 @@ class gestion_rutasDao{
     //***********************************************************
     
     
-    public function add(GestionRutas $gestion_ruta){ 
+    public function add(GestionRutas $gestion_rutas){ 
         
         try {
             
@@ -42,11 +42,11 @@ class gestion_rutasDao{
 
             $valores = array();
 
-            $valores["idgestion_rutas"]                  =  $gestion_ruta->getidgestion_rutas();
-            $valores["dia_semana_hora"]                  =  $gestion_ruta->getdia_semana_hora();
-            $valores["ruta"]                             =  $gestion_ruta->getruta();
-            $valores["duracion"]                         =  $gestion_ruta->getduracion();   
-            $valores["LASTUSER"]                         =  $gestion_ruta->getLastUser();
+            $valores["idgestion_rutas"]                  =  $gestion_rutas->getidgestion_rutas();
+            $valores["dia_semana_hora"]                  =  $gestion_rutas->getdia_semana_hora();
+            $valores["ruta"]                             =  $gestion_rutas->getruta();
+            $valores["duracion"]                         =  $gestion_rutas->getduracion();   
+            $valores["LASTUSER"]                         =  $gestion_rutas->getLastUser();
             
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
@@ -133,11 +133,11 @@ class gestion_rutasDao{
 
             $valores = array();
 
-            $valores["idgestion_Vuelo"] = $gestion_rutas->getidgestion_Vuelo();
+            $valores["idgestion_rutas"] = $gestion_rutas->getidgestion_rutas();
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
-            throw new Exception('No se pudo eliminar el registro (Error generado en el metodo delete de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo eliminar el registro (Error generado en el metodo delete de la clase gestion_rutasDao), error:'.$e->getMessage());
         }
     }
 
@@ -146,33 +146,32 @@ class gestion_rutasDao{
     //busca una gestion de vuelo en la base de datos
     //***********************************************************
 
-    public function searchById(GestionVuelo $gestionVuelo) {
+    public function searchById(GestionRuta $gestion_rutas) {
 
         
-        $returngestionVuelo = null;
+        $returngestion_rutas = null;
         try {
-            $sql = sprintf("select * from gestionVuelo where idgestionVuelo = %s",
-                            $this->labAdodb->Param("idgestionVuelo"));
+            $sql = sprintf("select * from gestion_rutas where idgestion_rutas = %s",
+                            $this->labAdodb->Param("idgestion_rutas"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idgestionVuelo"] = $gestionVuelo->getidgestionVuelo();
+            $valores["idgestion_rutas"] = $gestion_rutas->getidgestion_rutas();
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
             
             if ($resultSql->RecordCount() > 0) {
-                $returngestionVuelo = GestionVuelo::createNullGestionVuelo();
-                $returngestionVuelo->setidgestionVuelo($resultSql->Fields("idgestionVuelo"));
-                $returngestionVuelo->setFecha($resultSql->Fields("Fecha"));
-                $returngestionVuelo->setPrecio($resultSql->Fields("Precio"));
-                $returngestionVuelo->setFK_idgestion_tipoavion($resultSql->Fields("FK_idgestion_tipoavion"));
-                $returngestionVuelo->setFK_idgestion_rutas($resultSql->Fields("FK_idgestion_tipoavion"));
+                $returngestion_rutas = GestionRuta::createNullGestionRuta();
+                $returngestion_rutas->setidgestion_rutas($resultSql->Fields("idgestion_rutas"));
+                $returngestion_rutas->setdia_semana_hora($resultSql->Fields("dia_semana_hora"));
+                $returngestion_rutas->setruta($resultSql->Fields("ruta"));
+                $returngestion_rutas->setduracion($resultSql->Fields("duracion"));
             }
         } catch (Exception $e) {
-            throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase gestion_rutasDao), error:'.$e->getMessage());
         }
-        return $returnDirecciones;
+        return $returngestion_rutas;
     }
     
     //***********************************************************
@@ -183,13 +182,13 @@ class gestion_rutasDao{
 
         
         try {
-            $sql = sprintf("select * from gestionVuelo");
+            $sql = sprintf("select * from gestion_rutas");
             $resultSql = $this->labAdodb->Execute($sql);
             return $resultSql;
         } catch (Exception $e) {
-            throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase gestion_rutasDao), error:'.$e->getMessage());
         }
     }
     
     
-}
+}//fin de la clase gestion_rutasDao
