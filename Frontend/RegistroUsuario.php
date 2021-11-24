@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Registro de Usuario</title>
+        <title>Mantenimiento Registro de Usuario</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap CSS -->
@@ -56,7 +56,7 @@ and open the template in the editor.
         
         <!-- Script propios del proyecto -->
         <script src="JScript/utils.js" type="text/javascript"></script>
-        <script type="text/javascript" src="JScript/Persibasfunciones.js"></script>
+        <script type="text/javascript" src="JScript/Personasfunciones.js"></script>
         
         
     </head>
@@ -78,15 +78,19 @@ and open the template in the editor.
         </div>
             <!-- Fin de Modal del BootsTrap para mostrar mensajes-->
         
-        <section class="vh-100" style="background-color:#51585e ;">
+  <section class="vh-100" style="background-color:#51585e ;">
   <div class="container h-100">
     <div class="row d-flex justify-content-lg-center align-items-center h-100">
       <div class="col-xl-9">
 
           <h1 class="text-white mb-2">Registro de Usuario</h1>
-
+          
+          
+          <!----Contenido de la Pagina---->
         <div class="card" style="border-radius: 15px;">
-          <div class="card-body">
+            <form role="form" onsubmit="return false;" id="formPersonas" action="../Backend/controller/PersonasController.php">
+                 <div class="card-body">
+              
 
             <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
@@ -94,9 +98,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Cedula</h6>
 
               </div>
-              <div class="col-md-4 pe-4">
+              <div class="col-md-4 pe-4" id="groupPK_cedula">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" class="form-control form-control-lg" id="txtPK_cedula" />
 
               </div>
             </div>
@@ -107,9 +111,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Nombre Completo</h6>
 
               </div>
-              <div class="col-md-4 pe-4">
+              <div class="col-md-4 pe-4" id="groupnombre">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" class="form-control form-control-lg" id="txtnombre"/>
 
               </div>
             </div>  
@@ -120,9 +124,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Primer Apellido</h6>
 
               </div>
-              <div class="col-md-4 pe-4">
+              <div class="col-md-4 pe-4" id="groupapellido1">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" class="form-control form-control-lg" id="txtapellido1" />
 
               </div>
             </div>  
@@ -133,9 +137,8 @@ and open the template in the editor.
                 <h6 class="mb-0">Segundo Apellido</h6>
 
               </div>
-              <div class="col-md-4 pe-4">
-
-                <input type="text" class="form-control form-control-lg" />
+              <div class="col-md-4 pe-4" id="groupapellido2">
+                <input type="text" class="form-control form-control-lg" id="txtapellido2" />
 
               </div>
             </div>  
@@ -146,9 +149,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Fecha de Nacimiento</h6>
 
               </div>
-              <div class="col-md-4 pe-4">
+              <div class="col-md-4 pe-4" id="groupfecNacimiento">
 
-                <input type="text" class="form-control form-control-lg" />
+                  <input type="text" class="form-control form-control-lg" id="txtfecNacimiento"/>
 
               </div>
             </div>  
@@ -159,9 +162,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Sexo</h6>
 
               </div>
-              <div class="col-md-4 pe-4">
+                <div class="col-md-4 pe-4" id="groupsexo">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" class="form-control form-control-lg" id="txtsexo" />
 
               </div>
             </div>
@@ -172,9 +175,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Nombre de Usuario</h6>
 
               </div>
-              <div class="col-md-4 pe-4">
+                <div class="col-md-4 pe-4" id="groupnombreUsuario">
 
-                <input type="text" class="form-control form-control-lg" />
+                  <input type="text" class="form-control form-control-lg" id="txtnombreUsuario"/>
 
               </div>
             </div>  
@@ -185,9 +188,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Contraseña</h6>
 
               </div>
-              <div class="col-md-5 pe-6">
+                <div class="col-md-5 pe-6" id="groupcontrasena">
 
-                  <input type="password" name="pass" placeholder="Utilice una contraseña fuerte" class="form-control form-control-lg"/> 
+                  <input type="password" name="pass" id="txtcontrasena" placeholder="Utilice una contraseña fuerte" class="form-control form-control-lg"/> 
 
               </div>
             </div>  
@@ -200,9 +203,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Correo Electrónico</h6>
 
               </div>
-              <div class="col-md-9 pe-5">
+                <div class="col-md-9 pe-5" id="groupcorreo">
 
-                <input type="email" class="form-control form-control-lg" placeholder="example@example.com" />
+                  <input type="email" class="form-control form-control-lg" id="txtcorreo" placeholder="example@example.com" />
 
               </div>
             </div>
@@ -215,9 +218,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Teléfono Celular</h6>
 
               </div>
-              <div class="col-md-9 pe-5">
+              <div class="col-md-9 pe-5" id="groupcelular">
 
-                <input type="email" class="form-control form-control-lg" placeholder="Digite únicamente los 8 dígitos de su teléfono celular." />
+                  <input type="number" class="form-control form-control-lg" id="txtcelular" placeholder="Digite únicamente los 8 dígitos de su teléfono celular." />
                   
               </div>
             </div>
@@ -229,9 +232,9 @@ and open the template in the editor.
                 <h6 class="mb-0">Dirección exacta de vivienda</h6>
 
               </div>
-              <div class="col-md-9 pe-5">
-
-                <textarea class="form-control" rows="3" placeholder="Escriba aquí su dirección."></textarea>
+              <div class="col-md-9 pe-5" id="groupobservaciones">
+                  
+                  <input type="text" class="form-control" rows="3" id="txtdireccion" placeholder="Escriba aquí su dirección."></textarea>
                     
               </div>
             </div>
@@ -241,8 +244,10 @@ and open the template in the editor.
                 <button type="submit" class="btn btn-primary btn-lg" id="guardar" style="background-color: #198754" >Guardar</button>
                 <button type="reset" class="btn btn-primary btn-lg" id="cancelar" style="background-color: red" >Cancelar</button>
             </div>
-              
           </div>
+          </form> 
+            
+            
             <br><br>
             <div class="row">
                 <div class="col-md-12">
