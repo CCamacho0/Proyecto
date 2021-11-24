@@ -232,13 +232,14 @@ and open the template in the editor.
               <div class="col-md-9 pe-5">
 
                 <textarea class="form-control" rows="3" placeholder="Escriba aquí su dirección."></textarea>
-
+                    
               </div>
             </div>
 
             <div class="px-5 py-4">
-                <button type="submit" class="btn btn-primary btn-lg" style="background-color: #198754" >Guardar</button>
-                 <button type="submit" class="btn btn-primary btn-lg" style="background-color: red" >Cancelar</button>
+                <input type="hidden" id="typeAction" value="add_personas" />
+                <button type="submit" class="btn btn-primary btn-lg" id="guardar" style="background-color: #198754" >Guardar</button>
+                <button type="reset" class="btn btn-primary btn-lg" id="cancelar" style="background-color: red" >Cancelar</button>
             </div>
               
           </div>
