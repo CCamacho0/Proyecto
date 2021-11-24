@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../utlis/adodb5/adodb.inc.php");
+require_once("../dao/adodb5/adodb.inc.php");
 require_once("../domain/Personas.php");
 
 class PersonasDao {
@@ -12,7 +12,7 @@ class PersonasDao {
         $this->labAdodb = newAdoConnection($driver);
         //$this->labAdodb->setCharset('utf8');
         //$this->labAdodb->setConnectionParameter('CharacterSet', 'WE8ISO8859P15');
-        $this->labAdodb->Connect("localhost", "root2", "Camacho2*", "mydb");
+        $this->labAdodb->Connect("localhost", "root", "MksSSJ16*", "mydb");
         $this->labAdodb->debug = true;
     }
 
@@ -23,8 +23,8 @@ class PersonasDao {
 
 
         try {
-            $sql = sprintf("insert into Personas (PK_cedula, nombre, apellido1, apellido2, fecNacimiento, sexo, tipoUsuario, 
-                nombreUsuario, contrasena, correo, celuar, direccion LASTUSER, LASTMODIFICATION) 
+            $sql = sprintf("insert into Personas (PK_cedula, nombre, apellido1, apellido2, fecNacimiento, sexo,tipoUsuario, 
+                nombreUsuario, contrasena, correo, celular, direccion ,LASTUSER, LASTMODIFICATION) 
                                           values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,CURDATE())",
                     $this->labAdodb->Param("PK_cedula"),
                     $this->labAdodb->Param("nombre"),
@@ -36,7 +36,7 @@ class PersonasDao {
                     $this->labAdodb->Param("nombreUsuario"),
                     $this->labAdodb->Param("contrasena"),
                     $this->labAdodb->Param("correo"),
-                    $this->labAdodb->Param("celuar"),
+                    $this->labAdodb->Param("celular"),
                     $this->labAdodb->Param("direccion"),
                     $this->labAdodb->Param("LASTUSER"));
             $sqlParam = $this->labAdodb->Prepare($sql);
@@ -51,10 +51,10 @@ class PersonasDao {
             $valores["sexo"] = $personas->getsexo();
             $valores["tipoUsuario"] = $personas->gettipoUsuario();
             $valores["nombreUsuario"] = $personas->getnombreUsuario();
-            $valores["contrasena"] = $personas->getCorreo();
-            $valores["correo"] = $personas->getCelular();
-            $valores["celuar"] = $personas->getDireccion();
-            $valores["direccion"] = $personas->getcontrasena();
+            $valores["contrasena"] = $personas->getcontrasena();
+            $valores["correo"] = $personas->getCorreo();
+            $valores["celular"] = $personas->getCelular();
+            $valores["direccion"] = $personas->getDireccion();
             $valores["LASTUSER"] = $personas->getLastUser();
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
@@ -117,8 +117,8 @@ class PersonasDao {
                     $this->labAdodb->Param("tipoUsuario"),
                     $this->labAdodb->Param("nombreUsuario"),
                     $this->labAdodb->Param("contrasena"),
-                    $this->labAdodb->Param("coreo"),
-                    $this->labAdodb->Param("celuar"),
+                    $this->labAdodb->Param("correo"),
+                    $this->labAdodb->Param("celular"),
                     $this->labAdodb->Param("direccion"),
                     $this->labAdodb->Param("LASTUSER"),
                     $this->labAdodb->Param("PK_cedula"));

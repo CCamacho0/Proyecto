@@ -78,20 +78,19 @@ and open the template in the editor.
         </div>
             <!-- Fin de Modal del BootsTrap para mostrar mensajes-->
         
-  <section class="vh-100" style="background-color:#51585e ;">
-  <div class="container h-100">
+  <section class="vh-100" style="background-color:#51585e ;">    
     <div class="row d-flex justify-content-lg-center align-items-center h-100">
       <div class="col-xl-9">
 
           <h1 class="text-white mb-2">Registro de Usuario</h1>
-          
-          
-          <!----Contenido de la Pagina---->
-        <div class="card" style="border-radius: 15px;">
-            <form role="form" onsubmit="return false;" id="formPersonas" action="../Backend/controller/PersonasController.php">
-                 <div class="card-body">
-              
 
+          
+        <div class="card" style="border-radius: 15px;">
+            <form role="form" onsubmit="return false;" id="formPersonas" action="../Backend/Agenda/controller/PersonasController.php">
+                <div class="card-body">
+                    
+              
+              
             <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
 
@@ -168,7 +167,19 @@ and open the template in the editor.
 
               </div>
             </div>
-              
+            
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">Tipo de Usuario</h6>
+
+              </div>
+                <div class="col-md-4 pe-4" id="grouptipoUsuario">
+
+                    <input type="text" class="form-control form-control-lg" id="txttipoUsuario" placeholder="Digite 0 para cliente, 1 para administrador"/>
+
+              </div>
+            </div>          
+                    
             <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
 
@@ -181,6 +192,9 @@ and open the template in the editor.
 
               </div>
             </div>  
+              
+            
+
             
             <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
@@ -220,7 +234,7 @@ and open the template in the editor.
               </div>
               <div class="col-md-9 pe-5" id="groupcelular">
 
-                  <input type="number" class="form-control form-control-lg" id="txtcelular" placeholder="Digite únicamente los 8 dígitos de su teléfono celular." />
+                  <input type="text" class="form-control form-control-lg" id="txtcelular" placeholder="Digite únicamente los 8 dígitos de su teléfono celular." />
                   
               </div>
             </div>
@@ -244,10 +258,10 @@ and open the template in the editor.
                 <button type="submit" class="btn btn-primary btn-lg" id="guardar" style="background-color: #198754" >Guardar</button>
                 <button type="reset" class="btn btn-primary btn-lg" id="cancelar" style="background-color: red" >Cancelar</button>
             </div>
+            
           </div>
-          </form> 
-            
-            
+          </form>
+              
             <br><br>
             <div class="row">
                 <div class="col-md-12">

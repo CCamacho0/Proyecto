@@ -21,7 +21,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
             if ((filter_input(INPUT_POST, 'PK_cedula') != null) && (filter_input(INPUT_POST, 'nombre') != null) 
                     && (filter_input(INPUT_POST, 'apellido1') != null) && (filter_input(INPUT_POST, 'apellido2') != null) 
                     && (filter_input(INPUT_POST, 'fecNacimiento') != null) && (filter_input(INPUT_POST, 'sexo') != null) 
-                    && (filter_input(INPUT_POST, 'tipoUsuario') != null) && (filter_input(INPUT_POST, 'nombreUsuario') != null)
+                    && (filter_input(INPUT_POST, 'tipoUsuario') != null) &&(filter_input(INPUT_POST, 'nombreUsuario') != null)
                     && (filter_input(INPUT_POST, 'contrasena') != null) && (filter_input(INPUT_POST, 'correo') != null)
                     && (filter_input(INPUT_POST, 'celular') != null) && (filter_input(INPUT_POST, 'direccion') != null)) {
                 
@@ -48,7 +48,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
                     echo('M~Registro Modificado Correctamente');
                 }
             } else {
-                echo('E-Los valorres no fueron enviados');
+                echo('E-Los valores no fueron enviados');
             }
         }
 
