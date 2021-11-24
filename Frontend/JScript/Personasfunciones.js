@@ -3,12 +3,6 @@
 //*******************************
 
 
-
-$( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-
-
 $(function () { //Creación de los controles
     //agrega los eventos las capas necesarias
     $("#guardar").click(function () {
@@ -298,4 +292,6 @@ function cargarTablas() {
 window.onresize = function () {
     $('#dt_personas').DataTable().columns.adjust().responsive.recalc();
 };
+
+
 
