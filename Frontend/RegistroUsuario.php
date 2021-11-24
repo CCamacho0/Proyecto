@@ -78,14 +78,14 @@ and open the template in the editor.
         </div>
             <!-- Fin de Modal del BootsTrap para mostrar mensajes-->
         
-  <section class="vh-100" style="background-color:#51585e ;">    
+  <section class="bg-dark">    
     <div class="row d-flex justify-content-lg-center align-items-center h-100">
       <div class="col-xl-9">
 
           <h1 class="text-white mb-2">Registro de Usuario</h1>
 
           
-        <div class="card" style="border-radius: 15px;">
+        <div class="card border-dark border-5">
             <form role="form" onsubmit="return false;" id="formPersonas" action="../Backend/Agenda/controller/PersonasController.php">
                 <div class="card-body">
                     
@@ -99,7 +99,7 @@ and open the template in the editor.
               </div>
               <div class="col-md-4 pe-4" id="groupPK_cedula">
 
-                <input type="text" class="form-control form-control-lg" id="txtPK_cedula" />
+                <input type="text" class="form-control form-control-lg border-dark" id="txtPK_cedula" />
 
               </div>
             </div>
@@ -112,7 +112,7 @@ and open the template in the editor.
               </div>
               <div class="col-md-4 pe-4" id="groupnombre">
 
-                <input type="text" class="form-control form-control-lg" id="txtnombre"/>
+                <input type="text" class="form-control form-control-lg border-dark" id="txtnombre"/>
 
               </div>
             </div>  
@@ -125,7 +125,7 @@ and open the template in the editor.
               </div>
               <div class="col-md-4 pe-4" id="groupapellido1">
 
-                <input type="text" class="form-control form-control-lg" id="txtapellido1" />
+                <input type="text" class="form-control form-control-lg border-dark" id="txtapellido1" />
 
               </div>
             </div>  
@@ -137,7 +137,7 @@ and open the template in the editor.
 
               </div>
               <div class="col-md-4 pe-4" id="groupapellido2">
-                <input type="text" class="form-control form-control-lg" id="txtapellido2" />
+                <input type="text" class="form-control form-control-lg border-dark" id="txtapellido2" />
 
               </div>
             </div>  
@@ -150,7 +150,7 @@ and open the template in the editor.
               </div>
               <div class="col-md-4 pe-4" id="groupfecNacimiento">
 
-                  <input type="text" class="form-control form-control-lg" id="txtfecNacimiento"/>
+                  <input type="text" class="form-control form-control-lg border-dark" id="txtfecNacimiento"/>
 
               </div>
             </div>  
@@ -163,7 +163,7 @@ and open the template in the editor.
               </div>
                 <div class="col-md-4 pe-4" id="groupsexo">
 
-                <input type="text" class="form-control form-control-lg" id="txtsexo" />
+                <input type="text" class="form-control form-control-lg border-dark" id="txtsexo" />
 
               </div>
             </div>
@@ -188,7 +188,7 @@ and open the template in the editor.
               </div>
                 <div class="col-md-4 pe-4" id="groupnombreUsuario">
 
-                  <input type="text" class="form-control form-control-lg" id="txtnombreUsuario"/>
+                  <input type="text" class="form-control form-control-lg border-dark" id="txtnombreUsuario"/>
 
               </div>
             </div>  
@@ -204,7 +204,7 @@ and open the template in the editor.
               </div>
                 <div class="col-md-5 pe-6" id="groupcontrasena">
 
-                  <input type="password" name="pass" id="txtcontrasena" placeholder="Utilice una contraseña fuerte" class="form-control form-control-lg"/> 
+                  <input type="password" name="pass" id="txtcontrasena" placeholder="Utilice una contraseña fuerte" class="form-control form-control-lg border-dark"/> 
 
               </div>
             </div>  
@@ -219,7 +219,7 @@ and open the template in the editor.
               </div>
                 <div class="col-md-9 pe-5" id="groupcorreo">
 
-                  <input type="email" class="form-control form-control-lg" id="txtcorreo" placeholder="example@example.com" />
+                  <input type="email" class="form-control form-control-lg border-dark" id="txtcorreo" placeholder="example@example.com" />
 
               </div>
             </div>
@@ -255,8 +255,8 @@ and open the template in the editor.
 
             <div class="px-5 py-4">
                 <input type="hidden" id="typeAction" value="add_personas" />
-                <button type="submit" class="btn btn-primary btn-lg" id="guardar" style="background-color: #198754" >Guardar</button>
-                <button type="reset" class="btn btn-primary btn-lg" id="cancelar" style="background-color: red" >Cancelar</button>
+                <button type="submit" class="btn btn-primary bg-dark btn-lg" id="guardar" style="background-color: #198754" >Guardar</button>
+                <button type="reset" class="btn btn-lg bg-light" id="cancelar" style="background-color: red" >Cancelar</button>
             </div>
             
           </div>
