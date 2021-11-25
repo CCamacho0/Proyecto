@@ -234,7 +234,7 @@ and open the template in the editor.
               </div>
               <div class="col-md-9 pe-5" id="groupcelular">
 
-                  <input type="text" class="form-control form-control-lg" id="txtcelular" placeholder="Digite únicamente los 8 dígitos de su teléfono celular." />
+                  <input type="text" class="form-control form-control-lg border-dark" id="txtcelular" placeholder="Digite únicamente los 8 dígitos de su teléfono celular." />
                   
               </div>
             </div>
@@ -248,7 +248,7 @@ and open the template in the editor.
               </div>
               <div class="col-md-9 pe-5" id="groupobservaciones">
                   
-                  <input type="text" class="form-control" rows="3" id="txtdireccion" placeholder="Escriba aquí su dirección."></textarea>
+                  <input type="text" class="form-control border-dark" rows="3" id="txtdireccion" placeholder="Escriba aquí su dirección."></textarea>
                     
               </div>
             </div>

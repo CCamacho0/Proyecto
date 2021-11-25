@@ -110,7 +110,7 @@ function validar() {
     }
     
     if ($("#txttipoUsuario").val() === "") {
-        validacion = true;
+        validacion = false;
     }
     
     if ($("#txtnombreUsuario").val() === "") {
@@ -247,7 +247,7 @@ function cargarTablas() {
                 ],
                 "columnDefs": [
                     {
-                        targets: 6,
+                        targets: 7,
                         className: "dt-center",
                         render: function (data, type, row, meta) {
                             var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="showPersonasByID(\''+row[0]+'\');">Cargar</button> ';
