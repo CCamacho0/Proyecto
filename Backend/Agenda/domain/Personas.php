@@ -48,7 +48,7 @@ class Personas extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    //propieades
+    //propiedades
     public function getPK_cedula() {
         return $this->PK_cedula;
     }
@@ -154,7 +154,7 @@ class Personas extends BaseDomain implements \JsonSerializable {
     }
 
     public function setCelular($celular) {
-        $this->celuar = $celular;
+        $this->celular = $celular;
     }
 
     //----------------------------------------------------------------------------------

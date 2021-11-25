@@ -218,9 +218,7 @@ function deletePersonasByID(PK_cedula) {
 
 
 function cargarTablas() {
-
-
-
+    
     var dataTablePersonas_const = function () {
         if ($("#dt_personas").length) {
             $("#dt_personas").DataTable({
@@ -257,7 +255,7 @@ function cargarTablas() {
                     }
 
                 ],
-                pageLength: 2,
+                pageLength: 5,
                 language: dt_lenguaje_espanol,
                 ajax: {
                     url: '../Backend/Agenda/controller/PersonasController.php',

@@ -13,7 +13,8 @@ class PersonasDao {
         //$this->labAdodb->setCharset('utf8');
         //$this->labAdodb->setConnectionParameter('CharacterSet', 'WE8ISO8859P15');
         $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
-        $this->labAdodb->debug = true;
+
+        $this->labAdodb->debug = false;
     }
 
     //agrega a una persona a la base de datos
@@ -67,11 +68,9 @@ class PersonasDao {
     //----------------------------------------------------------------------------------
 
     public function exist(Personas $personas) {
-
-
         $exist = false;
         try {
-            $sql = sprintf("select * from Personas where  PK_cedula = %s ",
+            $sql = sprintf("select * from mydb.Personas where  PK_cedula = %s ",
                     $this->labAdodb->Param("PK_cedula"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
@@ -87,7 +86,7 @@ class PersonasDao {
             throw new Exception('No se pudo obtener el registro (Error generado en el metodo exist de la clase PersonasDao), error:' . $e->getMessage());
         }
     }
-    
+
     //modifica una persona en la base de datos
     //----------------------------------------------------------------------------------
 
