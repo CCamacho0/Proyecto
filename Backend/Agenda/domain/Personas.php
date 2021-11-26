@@ -11,13 +11,13 @@ class Personas extends BaseDomain implements \JsonSerializable {
     private $apellido2;
     private $fecNacimiento;
     private $sexo;
-    private $tipoUsuario;
+    private $celular;
+    private $correo;
+    private $direccion;
     private $nombreUsuario;
     private $contrasena;
-    private $correo;
-    private $celular;
-    private $direccion;
-
+    private $tipoUsuario;
+    
     //constructores
     public function __construct() {
         parent::__construct();
@@ -28,8 +28,8 @@ class Personas extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function createPersonas($PK_cedula, $nombre, $apellido1, $apellido2, $fecNacimiento, $sexo, $tipoUsuario,
-            $nombreUsuario, $contrasena, $correo, $celular, $direccion, $lastUser, $lastModification) {
+    public static function createPersonas($PK_cedula, $nombre, $apellido1, $apellido2, $fecNacimiento, $sexo, $celular, $correo,
+            $direccion, $nombreUsuario, $contrasena,  $tipoUsuario, $lastUser, $lastModification) {
         $instance = new self();
         $instance->PK_cedula = $PK_cedula;
         $instance->nombre = $nombre;
@@ -37,12 +37,12 @@ class Personas extends BaseDomain implements \JsonSerializable {
         $instance->apellido2 = $apellido2;
         $instance->fecNacimiento = $fecNacimiento;
         $instance->sexo = $sexo;
-        $instance->tipoUsuario = $tipoUsuario;
+        $instance->celular = $celular;
+        $instance->correo = $correo;
+        $instance->direccion = $direccion;
         $instance->nombreUsuario = $nombreUsuario;
         $instance->contrasena = $contrasena;
-        $instance->correo = $correo;
-        $instance->celular = $celular;
-        $instance->direccion = $direccion;
+        $instance->tipoUsuario = $tipoUsuario;
         $instance->setLastUser($lastUser);
         $instance->setLastModification($lastModification);
         return $instance;

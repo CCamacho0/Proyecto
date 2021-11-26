@@ -74,7 +74,7 @@
 
         <div class="bg-dark">    
             <div class="row justify-content-center">
-                <div class="col-xl-7">
+                <div class="col-xl-10">
 
                     <h3 class="text-white mb-3"><br>Registro de Usuario</h3>
                     <div class="card border-dark border-5">

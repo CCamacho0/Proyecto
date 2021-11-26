@@ -48,12 +48,12 @@ function addOrUpdatePersonas() {
                 apellido2:      $("#txtapellido2").val(),
                 fecNacimiento:  $("#txtfecNacimiento").val(),
                 sexo:           $("#txtsexo").val(),
-                tipoUsuario:    $("#txttipoUsuario").val(),
+                celular:        $("#txtcelular").val(),
+                correo:         $("#txtcorreo").val(),
+                direccion:      $("#txtdireccion").val(),
                 nombreUsuario:  $("#txtnombreUsuario").val(),
                 contrasena:     $("#txtcontrasena").val(),
-                correo:         $("#txtcorreo").val(),
-                celular:        $("#txtcelular").val(),
-                direccion:      $("#txtdireccion").val()
+                tipoUsuario:    $("#txttipoUsuario").val()
                 
             },
             error: function () { //si existe un error en la respuesta del ajax
@@ -171,12 +171,12 @@ function showPersonasByID(PK_cedula) {
             $("#txtapellido2").val(objPersonasJSon.apellido2);
             $("#txtfecNacimiento").val(objPersonasJSon.fecNacimiento);
             $("#txtsexo").val(objPersonasJSon.sexo);
-            $("#txttipoUsuario").val(objPersonasJSon.tipoUsuario);
+            $("#txtcelular").val(objPersonasJSon.celular);
+            $("#txtcorreo").val(objPersonasJSon.correo);
+            $("#txtdireccion").val(objPersonasJSon.direccion);
             $("#txtnombreUsuario").val(objPersonasJSon.nombreUsuario);
             $("#txtcontrasena").val(objPersonasJSon.contrasena);
-            $("#txtcorreo").val(objPersonasJSon.correo);
-            $("#txtcelular").val(objPersonasJSon.celular);
-            $("#txtdireccion").val(objPersonasJSon.direccion);
+            $("#txttipoUsuario").val(objPersonasJSon.tipoUsuario);
             $("#typeAction").val("update_personas");
             
             swal("Confirmacion", "Los datos de la persona fueron cargados correctamente", "success");
