@@ -6,25 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <style type="text/css">
-            /*Styles.css*/
-        </style>
-        <link type ="text/css" href="CSS/styles.css" rel="stylesheet"/>
-
-        <script src="lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
-
-        <!-- common css. required for every page-->
         <link href="../bootstrap 5/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
         <link href="../bootstrap 5/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../bootstrap 5/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css"/>
-
+        <!-- Bootstrap Jscript -->
         <script src="../bootstrap 5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="../bootstrap 5/js/bootstrap.min.js" type="text/javascript"></script>
-
+        
+        <script src="lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <link href="lib/animate.css/animate.min.css" rel="stylesheet" type="text/css"/>    
 
-        <!-- Page scripts -->
-        <!-- Datatables -->
+        <!-- Datatables Jscript -->
         <script src="lib/dataTableFull/datatables/media/js/jquery.dataTables.js"></script>
         <script src="lib/dataTableFull/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <script src="lib/dataTableFull/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -36,8 +28,8 @@
         <script src="lib/dataTableFull/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
         <script src="lib/dataTableFull/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="lib/dataTableFull/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-
-
+        
+        <!-- Datatables CSS -->
         <link href="lib/dataTableFull/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="lib/dataTableFull/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="lib/dataTableFull/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
@@ -200,7 +192,7 @@
                         </form>
                         <br><br>
                         
-                        <div class="row">
+                        <div class="card-body">
                             <div class="col-md-12">
                                 <table id="dt_personas"  class="table  table-hover dt-responsive nowrap" cellspacing="0" width="99%">
                                     <thead>

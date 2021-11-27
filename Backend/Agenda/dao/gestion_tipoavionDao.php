@@ -16,7 +16,7 @@ class gestion_tipoavionDao{
         //$this->labAdodb->setCharset('utf8');
         //$this->labAdodb->setConnectionParameter('CharacterSet', 'WE8ISO8859P15');
         $this->labAdodb->Connect("localhost", "root2", "root2", "mydb");
-        $this->labAdodb->debug=true;
+        $this->labAdodb->debug=false;
     }
     
     //***********************************************************
