@@ -1,8 +1,7 @@
-
 $(function () { //Creación de los controles
     //agrega los eventos las capas necesarias
     $("#guardar").click(function () {
-        addOrUpdatePersonas();
+        addOrUpdateAviones();
     });
     //agrega los eventos las capas necesarias
     $("#cancelar").click(function () {
@@ -11,46 +10,35 @@ $(function () { //Creación de los controles
 
     $("#btMostarForm").click(function () {
         //muestra el formulario
-        clearFormPersonas();
-        $("#typeAction").val("add_personas");
+        clearFormAviones();
+        $("#typeAction").val("add_gestion_tipoavion");
         $("#myModalFormulario").modal();
     });
-        
+
 });
 
-//*********************************************************************
 //cuando el documento esta cargado se procede a cargar la información
-//*********************************************************************
-
 $(document).ready(function () {
     cargarTablas();
-    
+
 });
 
-//*********************************************************************
 //Agregar o modificar la información
-//*********************************************************************
-
-function addOrUpdatePersonas() {
+function addOrUpdateAviones() {
     //Se envia la información por ajax
     if (validar()) {
         $.ajax({
-            url: '../Backend/Agenda/controller/PersonasController.php',
+            url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
             data: {
-                action:         $("#typeAction").val(),
-                PK_cedula:      $("#txtPK_cedula").val(),
-                nombre:         $("#txtnombre").val(),
-                apellido1:      $("#txtapellido1").val(),
-                apellido2:      $("#txtapellido2").val(),
-                fecNacimiento:  $("#txtfecNacimiento").val(),
-                sexo:           $("#txtsexo").val(),
-                celular:        $("#txtcelular").val(),
-                correo:         $("#txtcorreo").val(),
-                direccion:      $("#txtdireccion").val(),
-                nombreUsuario:  $("#txtnombreUsuario").val(),
-                contrasena:     $("#txtcontrasena").val(),
-                tipoUsuario:    $("#txttipoUsuario").val()
-                
+                action: $("#typeAction").val(),
+                idgestion_tipoavion: $("#txtID_Avion").val(),
+                anno: $("#txtAnno").val(),
+                modelo: $("#txtModelo").val(),
+                marca: $("#txtMarca").val(),
+                cantidad_pasajeros: $("#txtCant_pasajeros").val(),
+                cantidad_filas: $("#txtCant_filas").val(),
+                cantidadasientos_fila: $("#Asientos_fila").val()
+
             },
             error: function () { //si existe un error en la respuesta del ajax
                 swal("Error", "Se presento un error al enviar la informacion", "error");
@@ -61,135 +49,99 @@ function addOrUpdatePersonas() {
                 var typeOfMessage = messageComplete.substring(0, 2);
                 if (typeOfMessage === "M~") { //si todo esta corecto
                     swal("Confirmacion", responseText, "success");
-                    clearFormPersonas();
-                    $("#dt_personas").DataTable().ajax.reload();
+                    clearFormAviones();
+                    $("#dt_GestionAviones").DataTable().ajax.reload();
                 } else {//existe un error
                     swal("Error", responseText, "error");
                 }
             },
             type: 'POST'
         });
-    }else{
+    } else {
         swal("Error de validación", "Los datos del formulario no fueron digitados, por favor verificar", "error");
     }
 }
 
-//Validación
+//Valida cada uno de los campos del formulario
 function validar() {
     var validacion = true;
-
     
-    //valida cada uno de los campos del formulario
-    //Nota: Solo si fueron digitados
-    if ($("#txtPK_cedula").val() === "") {
+    if ($("#txtID_Avion").val() === "") {
         validacion = false;
     }
-
-    if ($("#txtnombre").val() === "") {
+    if ($("#txtAnno").val() === "") {
         validacion = false;
     }
-
-    if ($("#txtapellido1").val() === "") {
+    if ($("#txtModelo").val() === "") {
         validacion = false;
     }
-
-    if ($("#txtapellido2").val() === "") {
+    if ($("#txtMarca").val() === "") {
         validacion = false;
     }
-
-    if ($("#txtfecNacimiento").val() === "") {
+    if ($("#txtCant_pasajeros").val() === "") {
         validacion = false;
     }
-
-    if ($("#txtsexo").val() === "") {
+    if ($("#txtCant_filas").val() === "") {
         validacion = false;
     }
-    
-    if ($("#txttipoUsuario").val() === "") {
+    if ($("#Asientos_fila").val() === "") {
         validacion = false;
     }
-    
-    if ($("#txtnombreUsuario").val() === "") {
-        validacion = false;
-    }
-    
-    if ($("#txtcontrasena").val() === "") {
-        validacion = false;
-    }
-    
-    if ($("#txtcorreo").val() === "") {
-        validacion = false;
-    }
-    
-    if ($("#txtcelular").val() === "") {
-        validacion = false;
-    }
-    
-    if ($("#txtdireccion").val() === "") {
-        validacion = false;
-    }
-
     return validacion;
 }
 
 //Limpiar los campos
-
-function clearFormPersonas() {
-    $('#formPersonas').trigger("reset");
+function clearFormAviones() {
+    $('#formAviones').trigger("reset");
 }
 
 //Botón cancelar, clearFormPersonas
 function cancelAction() {
     //clean all fields of the form
-    clearFormPersonas();
-    $("#typeAction").val("add_personas");
+    clearFormAviones();
+    $("#typeAction").val("add_gestion_tipoavion");
     $("#myModalFormulario").modal("hide");
 }
 
 //*****************************************************************
 
-function showPersonasByID(PK_cedula) {
+function showAvionesByID(idgestion_tipoavion) {
     //Se envia la información por ajax
     $.ajax({
-        url: '../Backend/Agenda/controller/PersonasController.php',
+        url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
         data: {
-            action: "show_personas",
-            PK_cedula: PK_cedula
+            action: "show_gestion_tipoavion",
+            idgestion_tipoavion: idgestion_tipoavion
         },
         error: function () { //si existe un error en la respuesta del ajax
             swal("Error", "Se presento un error al consultar la informacion", "error");
         },
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
-            var objPersonasJSon = JSON.parse(data);
-            $("#txtPK_cedula").val(objPersonasJSon.PK_cedula);
-            $("#txtnombre").val(objPersonasJSon.nombre);
-            $("#txtapellido1").val(objPersonasJSon.apellido1);
-            $("#txtapellido2").val(objPersonasJSon.apellido2);
-            $("#txtfecNacimiento").val(objPersonasJSon.fecNacimiento);
-            $("#txtsexo").val(objPersonasJSon.sexo);
-            $("#txtcelular").val(objPersonasJSon.celular);
-            $("#txtcorreo").val(objPersonasJSon.correo);
-            $("#txtdireccion").val(objPersonasJSon.direccion);
-            $("#txtnombreUsuario").val(objPersonasJSon.nombreUsuario);
-            $("#txtcontrasena").val(objPersonasJSon.contrasena);
-            $("#txttipoUsuario").val(objPersonasJSon.tipoUsuario);
-            $("#typeAction").val("update_personas");
-            
+            var objAvionesJSon = JSON.parse(data);
+            $("#txtID_Avion").val(objAvionesJSon.idgestion_tipoavion);
+            $("#txtAnno").val(objAvionesJSon.anno);
+            $("#txtModelo").val(objAvionesJSon.modelo);
+            $("#txtMarca").val(objAvionesJSon.marca);
+            $("#txtCant_pasajeros").val(objAvionesJSon.cantidad_pasajeros);
+            $("#txtCant_filas").val(objAvionesJSon.cantidad_filas);
+            $("#Asientos_fila").val(objAvionesJSon.cantidadasientos_fila);
+            $("#typeAction").val("update_gestion_tipoavion");
+
             swal("Confirmacion", "Los datos de la persona fueron cargados correctamente", "success");
         },
         type: 'POST'
     });
 }
 
-//Eliminar personas por ID
+//Eliminar Aviones por ID
 
-function deletePersonasByID(PK_cedula) {
+function deleteAvionesByID(idgestion_tipoAvion) {
     //Se envia la información por ajax
     $.ajax({
-        url: '../Backend/Agenda/controller/PersonasController.php',
+        url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
         data: {
-            action: "delete_personas",
-            PK_cedula: PK_cedula
+            action: "delete_gestion_tipoavion",
+            idgestion_tipoAvion: idgestion_tipoAvion
         },
         error: function () { //si existe un error en la respuesta del ajax
             swal("Error", "Se presento un error al eliminar la informacion", "error");
@@ -199,8 +151,8 @@ function deletePersonasByID(PK_cedula) {
             var typeOfMessage = data.trim().substring(0, 2);
             if (typeOfMessage === "M~") { //si todo esta corecto
                 swal("Confirmacion", responseText, "success");
-                clearFormPersonas();
-                $("#dt_personas").DataTable().ajax.reload();
+                clearFormAviones();
+                $("#dt_GestionAviones").DataTable().ajax.reload();
             } else {//existe un error
                 swal("Error", responseText, "error");
             }
@@ -209,15 +161,12 @@ function deletePersonasByID(PK_cedula) {
     });
 }
 
-
 //Metodo para cargar las tablas
-
-
 function cargarTablas() {
-    
-    var dataTablePersonas_const = function () {
-        if ($("#dt_personas").length) {
-            $("#dt_personas").DataTable({
+
+    var dataTableAviones_const = function () {
+        if ($("#dt_GestionAviones").length) {
+            $("#dt_GestionAviones").DataTable({
                 dom: "Bfrtip",
                 bFilter: false,
                 ordering: false,
@@ -241,29 +190,29 @@ function cargarTablas() {
                 ],
                 "columnDefs": [
                     {
-                        targets: 7,
+                        targets: 6,
                         className: "dt-center",
                         render: function (data, type, row, meta) {
-                            var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="showPersonasByID(\''+row[0]+'\');">Cargar</button> ';
-                            botones += '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="deletePersonasByID(\''+row[0]+'\');">Eliminar</button>';
+                            var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="show_AvionesByID(\'' + row[0] + '\');">Cargar</button> ';
+                            botones += '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="deleteAvionesByID(\'' + row[0] + '\');">Eliminar</button>';
                             return botones;
                         }
                     }
 
                 ],
-                pageLength: 5,
+                pageLength: 10,
                 language: dt_lenguaje_espanol,
                 ajax: {
-                    url: '../Backend/Agenda/controller/PersonasController.php',
+                    url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
                     type: "POST",
                     data: function (d) {
                         return $.extend({}, d, {
-                            action: "showAll_personas"
+                            action: "showAll_gestion_tipoavion"
                         });
                     }
                 },
                 drawCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                    $('#dt_personas').DataTable().columns.adjust().responsive.recalc();
+                    $('#dt_GestionAviones').DataTable().columns.adjust().responsive.recalc();
                 }
             });
         }
@@ -273,19 +222,16 @@ function cargarTablas() {
         "use strict";
         return {
             init: function () {
-                dataTablePersonas_const();
+                dataTableAviones_const();
                 $(".dataTables_filter input").addClass("form-control input-rounded ml-sm");
             }
         };
     }();
 
     TableManageButtons.init();
-
 }
 
-
 //Evento que reajusta la tabla en el tamaño de la pantalla
-
 window.onresize = function () {
-    $('#dt_personas').DataTable().columns.adjust().responsive.recalc();
+    $('#dt_GestionAviones').DataTable().columns.adjust().responsive.recalc();
 };

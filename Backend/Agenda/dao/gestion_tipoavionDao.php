@@ -33,7 +33,7 @@ class gestion_tipoavionDao{
                                         values (%s,%s,%s,%s,%s,%s,%s,%s,CURDATE())",
                     
                     $this->labAdodb->Param("idgestion_tipoavion"),
-                    $this->labAdodb->Param("año"),
+                    $this->labAdodb->Param("anno"),
                     $this->labAdodb->Param("modelo"),
                     $this->labAdodb->Param("marca"),
                     $this->labAdodb->Param("cantidad_pasajeros"),
@@ -46,7 +46,7 @@ class gestion_tipoavionDao{
             $valores = array();
 
             $valores["idgestion_tipoavion"]              =  $gestion_tipoavion->getidgestion_tipoavion();
-            $valores["año"]                              =  $gestion_tipoavion->getaño();
+            $valores["anno"]                              =  $gestion_tipoavion->getaño();
             $valores["modelo"]                           =  $gestion_tipoavion->getmodelo();
             $valores["marca"]                            =  $gestion_tipoavion->getmarca();
             $valores["cantidad_pasajeros"]               =  $gestion_tipoavion->getcantidad_pasajeros();
@@ -98,7 +98,7 @@ class gestion_tipoavionDao{
         
         try {
             $sql = sprintf("update gestion_tipoavion set 
-                                                año = %s, 
+                                                anno = %s, 
                                                 modelo = %s,
                                                 marca = %s,
                                                 cantidad_pasajeros = %s,
@@ -108,7 +108,7 @@ class gestion_tipoavionDao{
                                                 LASTMODIFICATION = CURDATE() 
 
                             where idgestion_tipoavion = %s",
-                    $this->labAdodb->Param("año"),
+                    $this->labAdodb->Param("anno"),
                     $this->labAdodb->Param("modelo"),
                     $this->labAdodb->Param("marca"),
                     $this->labAdodb->Param("cantidad_pasajeros"),
@@ -120,7 +120,7 @@ class gestion_tipoavionDao{
 
             $valores = array();
 
-            $valores["año"]                              = $gestion_tipoavion->getaño();
+            $valores["anno"]                              = $gestion_tipoavion->getanno();
             $valores["modelo"]                           = $gestion_tipoavion->getmodelo();
             $valores["marca"]                            = $gestion_tipoavion->getmarca();
             $valores["cantidad_pasajeros"]               = $gestion_tipoavion->getcantidad_pasajeros();
@@ -182,7 +182,7 @@ class gestion_tipoavionDao{
             if ($resultSql->RecordCount() > 0) {
                 $returngestion_tipoavion = GestionTipoAvion::createNullGestionTipoAvion();
                 $returngestion_tipoavion->setidgestion_tipoavion($resultSql->Fields("idgestion_tipoavion"));
-                $returngestion_tipoavion->setaño($resultSql->Fields("año"));
+                $returngestion_tipoavion->setanno($resultSql->Fields("anno"));
                 $returngestion_tipoavion->setmodelo($resultSql->Fields("modelo"));
                 $returngestion_tipoavion->setmarca($resultSql->Fields("marca"));
                 $returngestion_tipoavion->setcantidad_pasajeros($resultSql->Fields("cantidad_pasajeros"));

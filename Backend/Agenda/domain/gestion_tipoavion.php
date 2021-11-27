@@ -6,7 +6,7 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
 
     //atributos
     private $idgestion_tipoavion;
-    private $año;
+    private $anno;
     private $modelo;
     private $marca;
     private $cantidad_pasajeros;
@@ -24,12 +24,12 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function creategestion_tipoavion($idgestion_tipoavion, $año,$modelo,
+    public static function creategestion_tipoavion($idgestion_tipoavion, $anno,$modelo,
     $cantidad_pasajeros,$cantidad_filas,$cantidadasientos_fila,$lastUser, $lastModification) {
     
         $instance = new self();
         $instance->idgestion_tipoavion = $idgestion_tipoavion;
-        $instance->año = $año;
+        $instance->anno = $anno;
         $instance->modelo = $modelo;
         $instance->cantidad_pasajeros = $cantidad_pasajeros;
         $instance->cantidad_filas = $cantidad_filas;
@@ -50,12 +50,12 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
 
     //----------------------------------------------------------------------------------
 
-    public function getaño() {
-        return $this->año;
+    public function getanno() {
+        return $this->anno;
     }
 
-    public function setaño($año) {
-        $this->año = $año;
+    public function setanno($anno) {
+        $this->anno = $anno;
     }
 
     //----------------------------------------------------------------------------------
