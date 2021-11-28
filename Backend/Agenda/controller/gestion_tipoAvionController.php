@@ -18,10 +18,10 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "add_gestion_tipoavion" or $action === "update_gestion_tipoavion") {
             //se valida que los parametros hayan sido enviados por post
-            if ((filter_input(INPUT_POST, 'idgestion_tipoavion') != null) && (filter_input(INPUT_POST, 'anno') != null) 
-                && (filter_input(INPUT_POST, 'modelo') != null) && (filter_input(INPUT_POST, 'marca') != null) 
-                && (filter_input(INPUT_POST, 'cantidad_pasajeros') != null) && (filter_input(INPUT_POST, 'cantidad_filas') != null) 
-                && (filter_input(INPUT_POST, 'cantidadasientos_fila') != null)) {
+            if ((filter_input(INPUT_POST, 'idgestion_tipoavion') != null) && (filter_input(INPUT_POST, 'anno') != null)
+                    && (filter_input(INPUT_POST, 'modelo') != null) && (filter_input(INPUT_POST, 'marca') != null) && 
+                    (filter_input(INPUT_POST, 'cantidad_pasajeros') != null) && (filter_input(INPUT_POST, 'cantidad_filas') != null) 
+                    && (filter_input(INPUT_POST, 'cantidadasientos_fila') != null)) {
 
                 $mygestion_tipoavion->setidgestion_tipoavion(filter_input(INPUT_POST, 'idgestion_tipoavion'));
                 $mygestion_tipoavion->setanno(filter_input(INPUT_POST, 'anno'));

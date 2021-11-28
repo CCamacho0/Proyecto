@@ -1,10 +1,7 @@
 <?php
 
-require_once ("../../utlis/adodb5/adodb.inc.php");
+require_once ("../dao/adodb5/adodb.inc.php");
 require_once ("../domain/gestion_tipoavion.php");
-
-
-
 
 class gestion_tipoavionDao{
     
@@ -15,8 +12,8 @@ class gestion_tipoavionDao{
         $this->labAdodb = newAdoConnection($driver);
         //$this->labAdodb->setCharset('utf8');
         //$this->labAdodb->setConnectionParameter('CharacterSet', 'WE8ISO8859P15');
-        $this->labAdodb->Connect("localhost", "root2", "root2", "mydb");
-        $this->labAdodb->debug=false;
+        $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
+        $this->labAdodb->debug= false;
     }
     
     //***********************************************************

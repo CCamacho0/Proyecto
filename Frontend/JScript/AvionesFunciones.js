@@ -66,6 +66,9 @@ function addOrUpdateAviones() {
 function validar() {
     var validacion = true;
     
+    if ($("#typeAction").val() === "") {
+        validacion = false;
+    }
     if ($("#txtID_Avion").val() === "") {
         validacion = false;
     }
