@@ -31,10 +31,10 @@ function addOrUpdateRutas() {
             url: '../Backend/Agenda/controller/gestion_rutasController.php',
             data: {
                 action: $("#typeAction").val(),
-                idgestion_rutas: $("#txtIDRuta").val(),
-                dia_semana_hora: $("#txtFecha").val(),
+                idgestion_rutas: $("#txtID_Rutas").val(),
                 ruta: $("#txtRuta").val(),
-                duracion: $("#txtDuracion").val(),//creo que direccion se debe de obtener con una funcion, crear funcion para calcular distancia
+                duracion: $("#txtDuracion").val(),
+                dia_semana_hora: $("#fecha").val()
             },
             error: function () { //si existe un error en la respuesta del ajax
                 swal("Error", "Se presento un error al enviar la informacion", "error");
@@ -46,7 +46,7 @@ function addOrUpdateRutas() {
                 if (typeOfMessage === "M~") { //si todo esta corecto
                     swal("Confirmacion", responseText, "success");
                     clearFormRutas();
-                    $("#dt_Rutas").DataTable().ajax.reload();
+                    $("#dt_GestionRutas").DataTable().ajax.reload();
                 } else {//existe un error
                     swal("Error", responseText, "error");
                 }
@@ -61,20 +61,20 @@ function addOrUpdateRutas() {
 //Valida cada uno de los campos del formulario
 function validar() {
     var validacion = true;
-    
+
     if ($("#typeAction").val() === "") {
         validacion = false;
     }
-    if ($("#txtIDRuta").val() === "") {
-        validacion = false;
-    }
-    if ($("#txtFecha").val() === "") {
+    if ($("#txtID_Rutas").val() === "") {
         validacion = false;
     }
     if ($("#txtRuta").val() === "") {
         validacion = false;
     }
     if ($("#txtDuracion").val() === "") {
+        validacion = false;
+    }
+    if ($("#fecha").val() === "") {
         validacion = false;
     }
     return validacion;
@@ -95,7 +95,7 @@ function cancelAction() {
 
 //*****************************************************************
 
-function showRutasByID(idgestion_rutas) {
+function showRutasyID(idgestion_rutas) {
     //Se envia la información por ajax
     $.ajax({
         url: '../Backend/Agenda/controller/gestion_rutasController.php',
@@ -108,10 +108,10 @@ function showRutasByID(idgestion_rutas) {
         },
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
             var objRutasJSon = JSON.parse(data);
-            $("#txtIDRuta").val(objRutasJSon.idgestion_rutas);
-            $("#txtFecha").val(objRutasJSon.dia_semana_hora);
+            $("#txtID_Rutas").val(objRutasJSon.idgestion_rutas);
             $("#txtRuta").val(objRutasJSon.ruta);
             $("#txtDuracion").val(objRutasJSon.duracion);
+            $("#fecha").val(objRutasJSon.dia_semana_hora);
             $("#typeAction").val("update_gestion_rutas");
 
             swal("Confirmacion", "Los datos de la persona fueron cargados correctamente", "success");
@@ -139,7 +139,7 @@ function deleteRutasByID(idgestion_rutas) {
             if (typeOfMessage === "M~") { //si todo esta corecto
                 swal("Confirmacion", responseText, "success");
                 clearFormRutas();
-                $("#dt_Rutas").DataTable().ajax.reload();
+                $("#dt_GestionRutas").DataTable().ajax.reload();
             } else {//existe un error
                 swal("Error", responseText, "error");
             }
@@ -152,8 +152,8 @@ function deleteRutasByID(idgestion_rutas) {
 function cargarTablas() {
 
     var dataTableRutas_const = function () {
-        if ($("#dt_Rutas").length) {
-            $("#dt_Rutas").DataTable({
+        if ($("#dt_GestionRutas").length) {
+            $("#dt_GestionRutas").DataTable({
                 dom: "Bfrtip",
                 bFilter: false,
                 ordering: false,
@@ -177,7 +177,7 @@ function cargarTablas() {
                 ],
                 "columnDefs": [
                     {
-                        targets: 6,
+                        targets: 3,
                         className: "dt-center",
                         render: function (data, type, row, meta) {
                             var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="show_RutasByID(\'' + row[0] + '\');">Cargar</button> ';
@@ -199,7 +199,7 @@ function cargarTablas() {
                     }
                 },
                 drawCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                    $('#dt_Rutas').DataTable().columns.adjust().responsive.recalc();
+                    $('#dt_GestionRutas').DataTable().columns.adjust().responsive.recalc();
                 }
             });
         }
@@ -220,7 +220,5 @@ function cargarTablas() {
 
 //Evento que reajusta la tabla en el tamaño de la pantalla
 window.onresize = function () {
-    $('#dt_Rutas').DataTable().columns.adjust().responsive.recalc();
+    $('#dt_GestionRutas').DataTable().columns.adjust().responsive.recalc();
 };
-
-

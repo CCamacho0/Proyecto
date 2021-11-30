@@ -170,7 +170,6 @@ class PersonasDao {
 
     public function searchById(Personas $personas) {
 
-
         $returnPersonas = null;
         try {
             $sql = sprintf("select * from Personas where  PK_cedula = %s",

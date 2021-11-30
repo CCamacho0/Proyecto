@@ -18,7 +18,12 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "add_personas" or $action === "update_personas") {
             //se valida que los parametros hayan sido enviados por post
-            if ((filter_input(INPUT_POST, 'PK_cedula') != null) && (filter_input(INPUT_POST, 'nombre') != null) && (filter_input(INPUT_POST, 'apellido1') != null) && (filter_input(INPUT_POST, 'apellido2') != null) && (filter_input(INPUT_POST, 'fecNacimiento') != null) && (filter_input(INPUT_POST, 'sexo') != null) && (filter_input(INPUT_POST, 'celular') != null) && (filter_input(INPUT_POST, 'correo') != null) && (filter_input(INPUT_POST, 'direccion') != null) && (filter_input(INPUT_POST, 'nombreUsuario') != null) && (filter_input(INPUT_POST, 'contrasena') != null) && (filter_input(INPUT_POST, 'tipoUsuario') != null)) {
+            if ((filter_input(INPUT_POST, 'PK_cedula') != null) && (filter_input(INPUT_POST, 'nombre') != null) && (
+                    filter_input(INPUT_POST, 'apellido1') != null) && (filter_input(INPUT_POST, 'apellido2') != null) 
+                    && (filter_input(INPUT_POST, 'fecNacimiento') != null) && (filter_input(INPUT_POST, 'sexo') != null) 
+                    && (filter_input(INPUT_POST, 'celular') != null) && (filter_input(INPUT_POST, 'correo') != null) 
+                    && (filter_input(INPUT_POST, 'direccion') != null) && (filter_input(INPUT_POST, 'nombreUsuario') != null) 
+                    && (filter_input(INPUT_POST, 'contrasena') != null) && (filter_input(INPUT_POST, 'tipoUsuario') != null)) {
 
                 $myPersonas->setPK_cedula(filter_input(INPUT_POST, 'PK_cedula'));
                 $myPersonas->setnombre(filter_input(INPUT_POST, 'nombre'));

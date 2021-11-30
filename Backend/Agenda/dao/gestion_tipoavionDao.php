@@ -111,20 +111,20 @@ class gestion_tipoavionDao{
                     $this->labAdodb->Param("cantidad_pasajeros"),
                     $this->labAdodb->Param("cantidad_filas"),
                     $this->labAdodb->Param("cantidadasientos_fila"),
-                    $this->labAdodb->Param("LASTUSER"));
-                    
+                    $this->labAdodb->Param("LASTUSER"),
+                    $this->labAdodb->Param("idgestion_tipoavion"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["anno"]                              = $gestion_tipoavion->getanno();
+            $valores["anno"]                             = $gestion_tipoavion->getanno();
             $valores["modelo"]                           = $gestion_tipoavion->getmodelo();
             $valores["marca"]                            = $gestion_tipoavion->getmarca();
             $valores["cantidad_pasajeros"]               = $gestion_tipoavion->getcantidad_pasajeros();
             $valores["cantidad_filas"]                   = $gestion_tipoavion->getcantidad_filas();
             $valores["cantidadasientos_fila"]            = $gestion_tipoavion->getcantidadasientos_fila();
             $valores["LASTUSER"]                         = $gestion_tipoavion->getLastUser();
-            
+            $valores["idgestion_tipoavion"]              = $gestion_tipoavion->getidgestion_tipoavion();
             
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {

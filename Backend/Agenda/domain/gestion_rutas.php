@@ -6,11 +6,9 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
 
     //atributos
     private $idgestion_rutas;
-    private $dia_semana_hora;
     private $ruta;
     private $duracion;
-    
-    
+    private $dia_semana_hora;
     
     //constructores
     public function __construct() {

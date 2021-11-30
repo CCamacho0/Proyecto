@@ -10,7 +10,7 @@
         <link href="../../bootstrap 5/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../bootstrap 5/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../bootstrap 5/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css"/>
-        
+
         <!-- Bootstrap Jscript -->
         <script src="../../bootstrap 5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="../../bootstrap 5/js/bootstrap.min.js" type="text/javascript"></script>
@@ -41,63 +41,61 @@
         <!-- Mensaje de alerta -->
         <script src="../lib/sweetAlert2/dist/sweetalert2.all.min.js" type="text/javascript"></script>
         <link href="../lib/sweetAlert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
-        
+
         <!-- Script propios del proyecto -->
         <script src="../JScript/utils.js" type="text/javascript"></script>
         <script src="../JScript/AvionesFunciones.js" type="text/javascript"></script>
-        
+
     </head>
     <body>    
         <div>
             <div class="card-body">
                 <div class="card-group">
-                    <div class="card-body">
-                            <form class="card-body" role="form" onsubmit="return false;" id="formAviones" action="../../Backend/Agenda/controller/gestion_tipoAvionController.php">
-                                <h5 class="card-title">Informacion del Avion</h5>
-                                <p>Año:</p>
-                                <input type="text" id="txtAnno">
-                                <br><br>
-                                <p>Modelo:</p>
-                                <input type="text" id="txtModelo">
-                                <br><br>
-                                <p>Marca:</p>
-                                <input type="text" id="txtMarca">
-                                <br><br>
-                                <p>Cantidad de pasajeros:</p>
-                                <input type="text" id="txtCant_pasajeros">
-                                <br><br>
-                                <p>Cantidad de filas: </p>
-                                <input type="text" id="txtCant_filas">
-                                <br><br>
-                                <p>Asientos por filas: </p>
-                                <input type="text" id="Asientos_fila">
-                                <br><br>
-                                <p>Rutas Disponibles: </p>
-                                <input type="text">
-                                <br><br>
-                                <button type="submit" class="btn btn-primary bg-dark btn-lg" id="guardar">Guardar</button>
-                                <button type="reset" class="btn btn-lg bg-light" id="cancelar">Cancelar</button>           
-                            </form>
+                    <form class="card-body" role="form" onsubmit="return false;" id="formAviones" action="../../Backend/Agenda/controller/gestion_tipoAvionController.php">
+                        <h5 class="card-title">Informacion del Avion</h5>
+                        <p>Año:</p>
+                        <input type="text" id="txtAnno">
+                        <br><br>
+                        <p>Modelo:</p>
+                        <input type="text" id="txtModelo">
+                        <br><br>
+                        <p>Marca:</p>
+                        <input type="text" id="txtMarca">
+                        <br><br>
+                        <p>Cantidad de pasajeros:</p>
+                        <input type="text" id="txtCant_pasajeros">
+                        <br><br>
+                        <p>Cantidad de filas: </p>
+                        <input type="text" id="txtCant_filas">
+                        <br><br>
+                        <p>Asientos por filas: </p>
+                        <input type="text" id="Asientos_fila">
+                        <br><br>
+                        <p>Rutas Disponibles: </p>
+                        <input type="text">
+                        <br><br>
+                        <button type="submit" class="btn btn-primary bg-dark btn-lg" id="guardar">Guardar</button>
+                        <button type="reset" class="btn btn-lg bg-light" id="cancelar">Cancelar</button>           
+                    </form>
 
-                    </div>
-                        <div class="card-body">
-                            <div class="col-md-12">
-                                <h5 class="card-title">Lista de Aviones</h5>
-                                <table id="dt_GestionAviones"  class="table  table-hover dt-responsive nowrap"  width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Año</th>
-                                            <th scope="col">Modelo</th>
-                                            <th scope="col">Marca</th>
-                                            <th scope="col">Cantidad de pasajeros</th>
-                                            <th scope="col">Cantidad de filas</th>
-                                            <th scope="col">Asientos por fila</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>   
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <h5 class="card-title">Lista de Aviones</h5>
+                            <table id="dt_GestionAviones"  class="table  table-hover dt-responsive nowrap"  width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Año</th>
+                                        <th scope="col">Modelo</th>
+                                        <th scope="col">Marca</th>
+                                        <th scope="col">Cantidad de pasajeros</th>
+                                        <th scope="col">Cantidad de filas</th>
+                                        <th scope="col">Asientos por fila</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>   
                 </div>
             </div>
     </body>
