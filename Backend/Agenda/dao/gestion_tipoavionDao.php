@@ -21,11 +21,11 @@ class gestion_tipoavionDao{
     //***********************************************************
     
     
-    public function add(GestionAvion $gestion_tipoavion){ 
+    public function add(gestion_tipoavion $gestion_tipoavion){ 
         
         try {
             
-            $sql = sprintf("insert into gestion_tipoavion(idgestion_tipoavion,año,modelo,marca,
+            $sql = sprintf("insert into gestion_tipoavion(idgestion_tipoavion,anno, modelo,marca,
                 cantidad_pasajeros,cantidad_filas, cantidadasientos_fila,lastUser,lastModification)
                                         values (%s,%s,%s,%s,%s,%s,%s,%s,CURDATE())",
                     
@@ -43,7 +43,7 @@ class gestion_tipoavionDao{
             $valores = array();
 
             $valores["idgestion_tipoavion"]              =  $gestion_tipoavion->getidgestion_tipoavion();
-            $valores["anno"]                              =  $gestion_tipoavion->getaño();
+            $valores["anno"]                              =  $gestion_tipoavion->getanno();
             $valores["modelo"]                           =  $gestion_tipoavion->getmodelo();
             $valores["marca"]                            =  $gestion_tipoavion->getmarca();
             $valores["cantidad_pasajeros"]               =  $gestion_tipoavion->getcantidad_pasajeros();
@@ -63,7 +63,7 @@ class gestion_tipoavionDao{
     //verifica si un avion existe en la base de datos por ID
     //***********************************************************
     
-    public function exist(GestionTipoAvion $gestion_tipoavion) {
+    public function exist(gestion_tipoavion $gestion_tipoavion) {
 
         
         $exist = false;
@@ -90,7 +90,7 @@ class gestion_tipoavionDao{
     //Modifica un avion en la base de datos
     //***********************************************************
 
-    public function update(GestionTipoAvion $gestion_tipoavion) {
+    public function update(gestion_tipoavion $gestion_tipoavion) {
 
         
         try {
@@ -138,7 +138,7 @@ class gestion_tipoavionDao{
     //***********************************************************
     
     
-     public function delete(GestionTipoAvion $gestion_tipoavion) {
+     public function delete(gestion_tipoavion $gestion_tipoavion) {
 
         
         try {
@@ -161,7 +161,7 @@ class gestion_tipoavionDao{
     //busca una gestion de avión en la base de datos
     //***********************************************************
 
-    public function searchById(GestionTipoAvion $gestion_tipoavion) {
+    public function searchById(gestion_tipoavion $gestion_tipoavion) {
 
         
         $returngestion_tipoavion = null;

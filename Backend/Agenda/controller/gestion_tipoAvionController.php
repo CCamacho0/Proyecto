@@ -11,7 +11,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
     try {
         $mygestion_tipoavionBo = new gestion_tipoavionBo();
-        $mygestion_tipoavion = gestion_tipoavionBo::createNullgestion_tipoavionBo();
+        $mygestion_tipoavion = gestion_tipoavion::createNullgestion_tipoavion();
 
         //choose the action
         //----------------------------------------------------------------------------------
@@ -30,6 +30,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 $mygestion_tipoavion->setcantidad_pasajeros(filter_input(INPUT_POST, 'cantidad_pasajeros'));
                 $mygestion_tipoavion->setcantidad_filas(filter_input(INPUT_POST, 'cantidad_filas'));
                 $mygestion_tipoavion->setcantidadasientos_fila(filter_input(INPUT_POST, 'cantidadasientos_fila'));
+                $mygestion_tipoavion->setlastUser("Cama");
 
                 if ($action == "add_gestion_tipoavion") {
                     $mygestion_tipoavionBo->add($mygestion_tipoavion);

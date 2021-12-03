@@ -209,10 +209,7 @@ function deletePersonasByID(PK_cedula) {
     });
 }
 
-
 //Metodo para cargar las tablas
-
-
 function cargarTablas() {
     
     var dataTablePersonas_const = function () {
@@ -251,7 +248,7 @@ function cargarTablas() {
                     }
 
                 ],
-                pageLength: 5,
+                pageLength: 10,
                 language: dt_lenguaje_espanol,
                 ajax: {
                     url: '../Backend/Agenda/controller/PersonasController.php',

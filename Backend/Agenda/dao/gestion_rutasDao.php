@@ -21,12 +21,12 @@ class gestion_rutasDao {
     //***********************************************************
 
 
-    public function add(GestionRutas $gestion_rutas) {
+    public function add(gestion_rutas $gestion_rutas) {
 
         try {
 
-            $sql = sprintf("insert into gestionVuelo(idgestion_rutas, ruta, duracion, dia_semana_hora, lastUser, lastModification)
-                                        values (%s,%s,%s,%s, CURDATE())",
+            $sql = sprintf("insert into gestion_rutas(idgestion_rutas, ruta, duracion, dia_semana_hora, lastUser, lastModification)
+                                        values (%s,%s,%s,%s, %s, CURDATE())",
                     $this->labAdodb->Param("idgestion_rutas"),
                     $this->labAdodb->Param("ruta"),
                     $this->labAdodb->Param("duracion"),
@@ -52,7 +52,7 @@ class gestion_rutasDao {
     //verifica si una persona existe en la base de datos por ID
     //----------------------------------------------------------------------------------
 
-    public function exist(GestionRutas $gestion_rutas) {
+    public function exist(gestion_rutas $gestion_rutas) {
 
         $exist = false;
         try {
@@ -77,11 +77,11 @@ class gestion_rutasDao {
     //Modifica una ruta en la base de datos
     //***********************************************************
 
-    public function update(GestionRutas $gestion_rutas) {
+    public function update(gestion_rutas $gestion_rutas) {
 
 
         try {
-            $sql = sprintf("update gestionVuelo set ruta = %s,   
+            $sql = sprintf("update gestion_rutas set ruta = %s,   
                                                     duracion = %s,
                                                     dia_semana_hora = %s,
                                                     LASTUSER = %s, 
@@ -115,7 +115,7 @@ class gestion_rutasDao {
     //***********************************************************
 
 
-    public function delete(GestionRuta $gestion_rutas) {
+    public function delete(gestion_rutas $gestion_rutas) {
 
 
         try {
@@ -137,7 +137,7 @@ class gestion_rutasDao {
     //busca una gestion de vuelo en la base de datos
     //***********************************************************
 
-    public function searchById(GestionRuta $gestion_rutas) {
+    public function searchById(gestion_rutas $gestion_rutas) {
 
         $returngestion_rutas = null;
         try {

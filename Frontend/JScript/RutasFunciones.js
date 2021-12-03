@@ -23,18 +23,27 @@ $(document).ready(function () {
 
 });
 
+//Numero Random para el ID
+function aleatorio(minimo,maximo){
+    return Math.round(Math.random() * (maximo - minimo) + minimo);
+}
+
 //Agregar o modificar la información
 function addOrUpdateRutas() {
     //Se envia la información por ajax
+    var ruta = $("#txtOrigen").val() +"-"+$("#txtDestino").val();
+    var fecha = $("#fecha").val();
+    fecha = fecha.replace('T', ' ');
+    
     if (validar()) {
         $.ajax({
-            url: '../Backend/Agenda/controller/gestion_rutasController.php',
+            url: '../../Backend/Agenda/controller/gestion_rutasController.php',
             data: {
                 action: $("#typeAction").val(),
-                idgestion_rutas: $("#txtID_Rutas").val(),
-                ruta: $("#txtRuta").val(),
-                duracion: $("#txtDuracion").val(),
-                dia_semana_hora: $("#fecha").val()
+                idgestion_rutas: aleatorio(10000000, 99999999),
+                ruta: ruta,
+                duracion: $("#txtDuracion").val()+":00",
+                dia_semana_hora: fecha
             },
             error: function () { //si existe un error en la respuesta del ajax
                 swal("Error", "Se presento un error al enviar la informacion", "error");
@@ -62,9 +71,6 @@ function addOrUpdateRutas() {
 function validar() {
     var validacion = true;
 
-    if ($("#typeAction").val() === "") {
-        validacion = false;
-    }
     if ($("#txtID_Rutas").val() === "") {
         validacion = false;
     }
@@ -75,6 +81,12 @@ function validar() {
         validacion = false;
     }
     if ($("#fecha").val() === "") {
+        validacion = false;
+    }
+    if ($("#Destino").val() === "") {
+        validacion = false;
+    }
+    if ($("#Origen").val() === "") {
         validacion = false;
     }
     return validacion;
@@ -95,10 +107,10 @@ function cancelAction() {
 
 //*****************************************************************
 
-function showRutasyID(idgestion_rutas) {
+function showRutasByID(idgestion_rutas) {
     //Se envia la información por ajax
     $.ajax({
-        url: '../Backend/Agenda/controller/gestion_rutasController.php',
+        url: '../../Backend/Agenda/controller/gestion_rutasController.php',
         data: {
             action: "show_gestion_rutas",
             idgestion_rutas: idgestion_rutas
@@ -125,7 +137,7 @@ function showRutasyID(idgestion_rutas) {
 function deleteRutasByID(idgestion_rutas) {
     //Se envia la información por ajax
     $.ajax({
-        url: '../Backend/Agenda/controller/gestion_rutasController.php',
+        url: '../../Backend/Agenda/controller/gestion_rutasController.php',
         data: {
             action: "delete_gestion_rutas",
             idgestion_rutas: idgestion_rutas
@@ -180,7 +192,7 @@ function cargarTablas() {
                         targets: 3,
                         className: "dt-center",
                         render: function (data, type, row, meta) {
-                            var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="show_RutasByID(\'' + row[0] + '\');">Cargar</button> ';
+                            var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="showRutasByID(\'' + row[0] + '\');">Cargar</button> ';
                             botones += '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="deleteRutasByID(\'' + row[0] + '\');">Eliminar</button>';
                             return botones;
                         }
@@ -190,7 +202,7 @@ function cargarTablas() {
                 pageLength: 10,
                 language: dt_lenguaje_espanol,
                 ajax: {
-                    url: '../Backend/Agenda/controller/gestion_rutasController.php',
+                    url: '../../Backend/Agenda/controller/gestion_rutasController.php',
                     type: "POST",
                     data: function (d) {
                         return $.extend({}, d, {

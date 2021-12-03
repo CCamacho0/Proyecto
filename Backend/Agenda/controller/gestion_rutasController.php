@@ -25,6 +25,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 $mygestion_rutas->setruta(filter_input(INPUT_POST, 'ruta'));
                 $mygestion_rutas->setduracion(filter_input(INPUT_POST, 'duracion'));
                 $mygestion_rutas->setdia_semana_hora(filter_input(INPUT_POST, 'dia_semana_hora'));
+                $mygestion_rutas->setlastUser('Cama');
                 
                 if ($action == "add_gestion_rutas") {
                     $mygestion_rutasBo->add($mygestion_rutas);

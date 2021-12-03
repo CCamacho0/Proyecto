@@ -23,15 +23,20 @@ $(document).ready(function () {
 
 });
 
+//Numero Random para el ID
+function aleatorio(minimo,maximo){
+    return Math.round(Math.random() * (maximo - minimo) + minimo);
+}
+
 //Agregar o modificar la información
 function addOrUpdateAviones() {
     //Se envia la información por ajax
     if (validar()) {
         $.ajax({
-            url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
+            url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
             data: {
                 action: $("#typeAction").val(),
-                idgestion_tipoavion: $("#txtID_Avion").val(),
+                idgestion_tipoavion: aleatorio(10000000, 99999999),
                 anno: $("#txtAnno").val(),
                 modelo: $("#txtModelo").val(),
                 marca: $("#txtMarca").val(),
@@ -66,12 +71,6 @@ function addOrUpdateAviones() {
 function validar() {
     var validacion = true;
     
-    if ($("#typeAction").val() === "") {
-        validacion = false;
-    }
-    if ($("#txtID_Avion").val() === "") {
-        validacion = false;
-    }
     if ($("#txtAnno").val() === "") {
         validacion = false;
     }
@@ -111,7 +110,7 @@ function cancelAction() {
 function showAvionesByID(idgestion_tipoavion) {
     //Se envia la información por ajax
     $.ajax({
-        url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
+        url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
         data: {
             action: "show_gestion_tipoavion",
             idgestion_tipoavion: idgestion_tipoavion
@@ -141,7 +140,7 @@ function showAvionesByID(idgestion_tipoavion) {
 function deleteAvionesByID(idgestion_tipoAvion) {
     //Se envia la información por ajax
     $.ajax({
-        url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
+        url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
         data: {
             action: "delete_gestion_tipoavion",
             idgestion_tipoAvion: idgestion_tipoAvion
@@ -206,7 +205,7 @@ function cargarTablas() {
                 pageLength: 10,
                 language: dt_lenguaje_espanol,
                 ajax: {
-                    url: '../Backend/Agenda/controller/gestion_tipoAvionController.php',
+                    url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
                     type: "POST",
                     data: function (d) {
                         return $.extend({}, d, {

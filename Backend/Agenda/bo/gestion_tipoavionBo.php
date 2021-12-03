@@ -8,21 +8,21 @@ class gestion_tipoavionBo{
     private $gestion_tipoavionDao;
 
     public function __construct() {
-        $this->gestion_tipoavionDao = new GestionTipoAvionDao();
+        $this->gestion_tipoavionDao = new gestion_tipoavionDao();
     }
 
     public function getgestion_tipoavionDao(){
         return $this->gestion_tipoavionDao;
     }
 
-    public function setgestion_tipoavionDao(GestionTipoAvionDao $gestion_tipoavionDao) {
+    public function setgestion_tipoavionDao(gestion_tipoavionDao $gestion_tipoavionDao) {
         $this->gestion_tipoavionDao = $gestion_tipoavionDao;
     }
 
     //agrega a un avion a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function add(GestionTipoAvion $gestion_tipoavion) {
+    public function add(gestion_tipoavion $gestion_tipoavion) {
         try {
             if (!$this->gestion_tipoavionDao->exist($gestion_tipoavion)) {
                 $this->gestion_tipoavionDao->add($gestion_tipoavion);
@@ -37,7 +37,7 @@ class gestion_tipoavionBo{
     //modifica a un avion en la base de datos
     //----------------------------------------------------------------------------------
 
-    public function update(GestionTipoAvion $gestion_tipoavion) {
+    public function update(gestion_tipoavion $gestion_tipoavion) {
         try {
             $this->gestion_tipoavionDao->update($gestion_tipoavion);
         } catch (Exception $e) {
@@ -48,7 +48,7 @@ class gestion_tipoavionBo{
     //elimina a un avion de la base de datos
     //----------------------------------------------------------------------------------
 
-    public function delete(GestionTipoAvion $gestion_tipoavion) {
+    public function delete(gestion_tipoavion $gestion_tipoavion) {
         try {
             $this->gestion_tipoavionDao->delete($gestion_tipoavion);
         } catch (Exception $e) {
@@ -59,7 +59,7 @@ class gestion_tipoavionBo{
     //consulta un avion a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function searchById(GestionTipoAvion $gestion_tipoavion) {
+    public function searchById(gestion_tipoavion $gestion_tipoavion) {
         try {
             return $this->gestion_tipoavionDao->searchById($gestion_tipoavion);
         } catch (Exception $e) {

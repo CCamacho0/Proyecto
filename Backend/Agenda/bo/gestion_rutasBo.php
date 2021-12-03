@@ -8,21 +8,21 @@ class gestion_rutasBo{
     private $gestion_rutasDao;
 
     public function __construct() {
-        $this->gestion_rutasDao = new GestionRutasDao();
+        $this->gestion_rutasDao = new gestion_rutasDao();
     }
 
     public function getgestion_rutasDao(){
         return $this->gestion_rutasDao;
     }
 
-    public function setgestion_rutasDao(GestionRutasDao $gestion_rutasDao) {
+    public function setgestion_rutasDao(gestion_rutasDao $gestion_rutasDao) {
         $this->gestion_rutasDao = $gestion_rutasDao;
     }
 
     //agrega a una gestion de ruta a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function add(GestionRuta $gestion_rutas) {
+    public function add(gestion_rutas $gestion_rutas) {
         try {
             if (!$this->gestion_rutasDao->exist($gestion_rutas)) {
                 $this->gestion_rutasDao->add($gestion_rutas);
@@ -37,7 +37,7 @@ class gestion_rutasBo{
     //modifica a una gestion de ruta a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function update(GestionRuta $gestion_rutas) {
+    public function update(gestion_rutas $gestion_rutas) {
         try {
             $this->gestion_rutasDao->update($gestion_rutas);
         } catch (Exception $e) {
@@ -48,7 +48,7 @@ class gestion_rutasBo{
     //eliminar a una gestion de ruta de la base de datos
     //----------------------------------------------------------------------------------
 
-    public function delete(GestionRuta $gestion_rutas) {
+    public function delete(gestion_rutas $gestion_rutas) {
         try {
             $this->gestion_rutasDao->delete($gestion_rutas);
         } catch (Exception $e) {
@@ -59,7 +59,7 @@ class gestion_rutasBo{
     //consulta una gestion de ruta a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function searchById(GestionRutas $gestion_rutas) {
+    public function searchById(gestion_rutas $gestion_rutas) {
         try {
             return $this->gestion_rutasDao->searchById($gestion_rutas);
         } catch (Exception $e) {
