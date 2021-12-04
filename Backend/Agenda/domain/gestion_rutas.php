@@ -5,10 +5,11 @@ require_once("baseDomain.php");
 class gestion_rutas extends BaseDomain implements \JsonSerializable {
 
     //atributos
-    private $idgestion_rutas;
+    private $PK_IdRutas;
     private $ruta;
     private $duracion;
-    private $dia_semana_hora;
+    private $FechaSalida;
+    private $Precio;
     
     //constructores
     public function __construct() {
@@ -20,36 +21,37 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function creategestion_rutas($idgestion_rutas, $dia_semana_hora,$ruta,
-    $duracion,$lastUser, $lastModification) {
-    
+    public static function creategestion_rutas($PK_IdRutas, $FechaSalida,$ruta,
+    $duracion, $precio,$lastUser, $lastModification) {
+     
         $instance = new self();
-        $instance->idgestion_rutas = $idgestion_rutas;
-        $instance->dia_semana_hora = $dia_semana_hora;
+        $instance->PK_IdRutas = $PK_IdRutas;
+        $instance->FechaSalida = $FechaSalida;
         $instance->ruta = $ruta;
         $instance->duracion = $duracion;
+        $instance->Precio = $precio;
         $instance->setLastUser($lastUser);
         $instance->setLastModification($lastModification);
         return $instance;
     }
 
     //propiedades
-    public function getidgestion_rutas() {
-        return $this->idgestion_rutas;
+    public function getPK_IdRutas() {
+        return $this->PK_IdRutas;
     }
 
-    public function setidgestion_rutas($idgestion_rutas) {
-        $this->idgestion_rutas = $idgestion_rutas;
+    public function setPK_IdRutas($PK_IdRutas) {
+        $this->PK_IdRutas = $PK_IdRutas;
     }
 
     //----------------------------------------------------------------------------------
 
-    public function getdia_semana_hora() {
-        return $this->dia_semana_hora;
+    public function getFechaSalida() {
+        return $this->FechaSalida;
     }
 
-    public function setdia_semana_hora($dia_semana_hora) {
-        $this->dia_semana_hora = $dia_semana_hora;
+    public function setFechaSalida($FechaSalida) {
+        $this->FechaSalida = $FechaSalida;
     }
 
     //----------------------------------------------------------------------------------
@@ -74,7 +76,15 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
 
     //----------------------------------------------------------------------------------
 
-    
+      public function getPrecio() {
+        return $this->Precio;
+    }
+
+    public function setPrecio($precio) {
+        $this->Precio = $precio;
+    }
+
+    //----------------------------------------------------------------------------------  
     public function getlastUser() {
         return $this->lastUser;
     }

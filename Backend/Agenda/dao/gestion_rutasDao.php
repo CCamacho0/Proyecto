@@ -15,32 +15,29 @@ class gestion_rutasDao {
         $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
         $this->labAdodb->debug = false;
     }
-
-    //***********************************************************
-    //agrega a una ruta a la base de datos
-    //***********************************************************
-
+    //agrega a una persona a la base de datos
+    //----------------------------------------------------------------------------------
 
     public function add(gestion_rutas $gestion_rutas) {
 
         try {
-
-            $sql = sprintf("insert into gestion_rutas(idgestion_rutas, ruta, duracion, dia_semana_hora, lastUser, lastModification)
-                                        values (%s,%s,%s,%s, %s, CURDATE())",
-                    $this->labAdodb->Param("idgestion_rutas"),
+            $sql = sprintf("insert into gestion_rutas(PK_IdRutas, ruta, duracion, FechaSalida, Precio, lastUser, lastModification)
+                                        values (%s, %s, %s, %s, %s, %s, CURDATE())",
+                    $this->labAdodb->Param("PK_IdRutas"),
                     $this->labAdodb->Param("ruta"),
                     $this->labAdodb->Param("duracion"),
-                    $this->labAdodb->Param("dia_semana_hora"),
-                    $this->labAdodb->Param("LASTUSER"));
-
+                    $this->labAdodb->Param("FechaSalida"),
+                    $this->labAdodb->Param("Precio"),
+                    $this->labAdodb->Param("lastUser"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idgestion_rutas"] = $gestion_rutas->getidgestion_rutas();
+            $valores["PK_IdRutas"] = $gestion_rutas->getPK_IdRutas();
             $valores["ruta"] = $gestion_rutas->getruta();
             $valores["duracion"] = $gestion_rutas->getduracion();
-            $valores["dia_semana_hora"] = $gestion_rutas->getdia_semana_hora();
+            $valores["FechaSalida"] = $gestion_rutas->getFechaSalida();
+            $valores["Precio"] = $gestion_rutas->getPrecio();
             $valores["LASTUSER"] = $gestion_rutas->getLastUser();
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
@@ -56,12 +53,12 @@ class gestion_rutasDao {
 
         $exist = false;
         try {
-            $sql = sprintf("select * from gestion_rutas where idgestion_rutas = %s ",
-                    $this->labAdodb->Param("idgestion_rutas"));
+            $sql = sprintf("select * from gestion_rutas where PK_IdRutas = %s ",
+                    $this->labAdodb->Param("PK_IdRutas"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
-            $valores["idgestion_rutas"] = $gestion_rutas->getidgestion_rutas();
+            $valores["PK_IdRutas"] = $gestion_rutas->getPK_IdRutas();
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
             if ($resultSql->RecordCount() > 0) {
@@ -83,26 +80,29 @@ class gestion_rutasDao {
         try {
             $sql = sprintf("update gestion_rutas set ruta = %s,   
                                                     duracion = %s,
-                                                    dia_semana_hora = %s,
+                                                    FechaSalida = %s,
+                                                    Precio = %s,
                                                     LASTUSER = %s, 
                                                     LASTMODIFICATION = CURDATE(),
                                                     
-                            where idgestion_rutas = %s",
+                            where PK_IdRutas = %s",
                     $this->labAdodb->Param("ruta"),
                     $this->labAdodb->Param("duracion"),
-                    $this->labAdodb->Param("dia_semana_hora"),
+                    $this->labAdodb->Param("FechaSalida"),
+                    $this->labAdodb->Param("Precio"),
                     $this->labAdodb->Param("LASTUSER"),
-                    $this->labAdodb->Param("idgestion_rutas"));
+                    $this->labAdodb->Param("PK_IdRutas"));
 
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["dia_semana_hora"] = $gestion_rutas->getdia_semana_hora();
+            $valores["FechaSalida"] = $gestion_rutas->getFechaSalida();
             $valores["ruta"] = $gestion_rutas->getruta();
             $valores["duracion"] = $gestion_rutas->getduracion();
+            $valores["Precio"] = $gestion_rutas->getPrecio();
             $valores["LASTUSER"] = $gestion_rutas->getLastUser();
-            $valores["idgestion_rutas"] = $gestion_rutas->getidgestion_rutas();
+            $valores["PK_IdRutas"] = $gestion_rutas->getPK_IdRutas();
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
@@ -119,13 +119,13 @@ class gestion_rutasDao {
 
 
         try {
-            $sql = sprintf("delete from gestion_rutas where idgestion_rutas = %s",
-                    $this->labAdodb->Param("idgestion_rutas"));
+            $sql = sprintf("delete from gestion_rutas where PK_IdRutas = %s",
+                    $this->labAdodb->Param("PK_IdRutas"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idgestion_rutas"] = $gestion_rutas->getidgestion_rutas();
+            $valores["PK_IdRutas"] = $gestion_rutas->getPK_IdRutas();
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
@@ -141,22 +141,23 @@ class gestion_rutasDao {
 
         $returngestion_rutas = null;
         try {
-            $sql = sprintf("select * from gestion_rutas where idgestion_rutas = %s",
-                    $this->labAdodb->Param("idgestion_rutas"));
+            $sql = sprintf("select * from gestion_rutas where PK_IdRutas = %s",
+                    $this->labAdodb->Param("PK_IdRutas"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idgestion_rutas"] = $gestion_rutas->getidgestion_rutas();
+            $valores["PK_IdRutas"] = $gestion_rutas->getPK_IdRutas();
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
 
             if ($resultSql->RecordCount() > 0) {
                 $returngestion_rutas = gestion_rutas::createNullgestion_rutas();
-                $returngestion_rutas->setidgestion_rutas($resultSql->Fields("idgestion_rutas"));
+                $returngestion_rutas->setPK_IdRutas($resultSql->Fields("PK_IdRutas"));
                 $returngestion_rutas->setruta($resultSql->Fields("ruta"));
                 $returngestion_rutas->setduracion($resultSql->Fields("duracion"));
-                $returngestion_rutas->setdia_semana_hora($resultSql->Fields("dia_semana_hora"));
+                $returngestion_rutas->setFechaSalida($resultSql->Fields("FechaSalida"));
+                $returngestion_rutas->setPrecio($resultSql->Fields("Precio"));
             }
         } catch (Exception $e) {
             throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase gestion_rutasDao), error:' . $e->getMessage());

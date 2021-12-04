@@ -5,7 +5,7 @@ require_once("baseDomain.php");
 class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
 
     //atributos
-    private $idgestion_tipoavion;
+    private $PK_tipoAvion;
     private $anno;
     private $modelo;
     private $marca;
@@ -24,11 +24,11 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function creategestion_tipoavion($idgestion_tipoavion, $anno,$modelo,
+    public static function creategestion_tipoavion($PK_tipoAvion, $anno,$modelo,
     $cantidad_pasajeros,$cantidad_filas,$cantidadasientos_fila,$lastUser, $lastModification) {
     
         $instance = new self();
-        $instance->idgestion_tipoavion = $idgestion_tipoavion;
+        $instance->PK_tipoAvion = $PK_tipoAvion;
         $instance->anno = $anno;
         $instance->modelo = $modelo;
         $instance->cantidad_pasajeros = $cantidad_pasajeros;
@@ -40,12 +40,12 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
     }
 
     //propiedades
-    public function getidgestion_tipoavion() {
-        return $this->idgestion_tipoavion;
+    public function getPK_tipoAvion() {
+        return $this->PK_tipoAvion;
     }
 
-    public function setidgestion_tipoavion($idgestion_tipoavion) {
-        $this->idgestion_tipoavion = $idgestion_tipoavion;
+    public function setPK_tipoAvion($PK_tipoAvion) {
+        $this->PK_tipoAvion = $PK_tipoAvion;
     }
 
     //----------------------------------------------------------------------------------

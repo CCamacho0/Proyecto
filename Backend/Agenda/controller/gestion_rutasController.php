@@ -18,13 +18,15 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "add_gestion_rutas" or $action === "update_gestion_rutas") {
             //se valida que los parametros hayan sido enviados por post
-            if ((filter_input(INPUT_POST, 'idgestion_rutas') != null) && (filter_input(INPUT_POST, 'dia_semana_hora') != null) 
-                && (filter_input(INPUT_POST, 'ruta') != null) && (filter_input(INPUT_POST, 'duracion') != null)) {
+            if ((filter_input(INPUT_POST, 'PK_IdRutas') != null) && (filter_input(INPUT_POST, 'FechaSalida') != null) 
+                && (filter_input(INPUT_POST, 'ruta') != null) && (filter_input(INPUT_POST, 'duracion') != null) 
+                && (filter_input(INPUT_POST, 'Precio') != null)) {
 
-                $mygestion_rutas->setidgestion_rutas(filter_input(INPUT_POST, 'idgestion_rutas'));
+                $mygestion_rutas->setPK_IdRutas(filter_input(INPUT_POST, 'PK_IdRutas'));
                 $mygestion_rutas->setruta(filter_input(INPUT_POST, 'ruta'));
                 $mygestion_rutas->setduracion(filter_input(INPUT_POST, 'duracion'));
-                $mygestion_rutas->setdia_semana_hora(filter_input(INPUT_POST, 'dia_semana_hora'));
+                $mygestion_rutas->setFechaSalida(filter_input(INPUT_POST, 'FechaSalida'));
+                $mygestion_rutas->setPrecio(filter_input(INPUT_POST, 'Precio'));
                 $mygestion_rutas->setlastUser('Cama');
                 
                 if ($action == "add_gestion_rutas") {
@@ -56,8 +58,8 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "show_gestion_rutas") {//accion de mostrar cliente por ID
             //se valida que los parametros hayan sido enviados por post
-            if (filter_input(INPUT_POST, 'idgestion_rutas') != null) {
-                $mygestion_rutas->setidgestion_rutas(filter_input(INPUT_POST, 'idgestion_rutas'));
+            if (filter_input(INPUT_POST, 'PK_IdRutas') != null) {
+                $mygestion_rutas->setPK_IdRutas(filter_input(INPUT_POST, 'PK_IdRutas'));
                 $mygestion_rutas = $mygestion_rutasBo->searchById($mygestion_rutas);
                 if ($mygestion_rutas != null) {
                     echo json_encode(($mygestion_rutas));
@@ -71,8 +73,8 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "delete_gestion_rutas") {//accion de eliminar cliente por ID
             //se valida que los parametros hayan sido enviados por post
-            if (filter_input(INPUT_POST, 'idgestion_rutas') != null) {
-                $mygestion_rutas->setidgestion_rutas(filter_input(INPUT_POST, 'idgestion_rutas'));
+            if (filter_input(INPUT_POST, 'PK_IdRutas') != null) {
+                $mygestion_rutas->setPK_IdRutas(filter_input(INPUT_POST, 'PK_IdRutas'));
                 $mygestion_rutasBo->delete($mygestion_rutas);
                 echo('M~Registro Fue Eliminado Correctamente');
             }

@@ -14,7 +14,6 @@ $(function () { //Creación de los controles
         $("#typeAction").val("add_gestion_tipoavion");
         $("#myModalFormulario").modal();
     });
-
 });
 
 //cuando el documento esta cargado se procede a cargar la información
@@ -43,7 +42,6 @@ function addOrUpdateAviones() {
                 cantidad_pasajeros: $("#txtCant_pasajeros").val(),
                 cantidad_filas: $("#txtCant_filas").val(),
                 cantidadasientos_fila: $("#Asientos_fila").val()
-
             },
             error: function () { //si existe un error en la respuesta del ajax
                 swal("Error", "Se presento un error al enviar la informacion", "error");
@@ -106,14 +104,13 @@ function cancelAction() {
 }
 
 //*****************************************************************
-
-function showAvionesByID(idgestion_tipoavion) {
+function showAvionesByID(PK_tipoAvion) {
     //Se envia la información por ajax
     $.ajax({
         url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
         data: {
             action: "show_gestion_tipoavion",
-            idgestion_tipoavion: idgestion_tipoavion
+            PK_tipoAvion: PK_tipoAvion
         },
         error: function () { //si existe un error en la respuesta del ajax
             swal("Error", "Se presento un error al consultar la informacion", "error");
@@ -128,7 +125,6 @@ function showAvionesByID(idgestion_tipoavion) {
             $("#txtCant_filas").val(objAvionesJSon.cantidad_filas);
             $("#Asientos_fila").val(objAvionesJSon.cantidadasientos_fila);
             $("#typeAction").val("update_gestion_tipoavion");
-
             swal("Confirmacion", "Los datos del avion fueron cargados correctamente", "success");
         },
         type: 'POST'
@@ -136,14 +132,13 @@ function showAvionesByID(idgestion_tipoavion) {
 }
 
 //Eliminar Aviones por ID
-
-function deleteAvionesByID(idgestion_tipoAvion) {
+function deleteAvionesByID(PK_tipoAvion) {
     //Se envia la información por ajax
     $.ajax({
         url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
         data: {
             action: "delete_gestion_tipoavion",
-            idgestion_tipoAvion: idgestion_tipoAvion
+            PK_tipoAvion: PK_tipoAvion
         },
         error: function () { //si existe un error en la respuesta del ajax
             swal("Error", "Se presento un error al eliminar la informacion", "error");

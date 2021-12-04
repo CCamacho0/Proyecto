@@ -15,9 +15,7 @@ class gestion_tipoavionDao{
         $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
         $this->labAdodb->debug= false;
     }
-    
-    //***********************************************************
-    //agrega a un tipo de avion a la base de datos
+    //agrega un Avion la base de datos
     //***********************************************************
     
     
@@ -25,11 +23,11 @@ class gestion_tipoavionDao{
         
         try {
             
-            $sql = sprintf("insert into gestion_tipoavion(idgestion_tipoavion, anno, modelo,marca,
+            $sql = sprintf("insert into gestion_tipoavion(PK_tipoAvion, anno, modelo,marca,
                 cantidad_pasajeros,cantidad_filas, cantidadasientos_fila,lastUser,lastModification)
                                         values (%s,%s,%s,%s,%s,%s,%s,%s,CURDATE())",
                     
-                    $this->labAdodb->Param("idgestion_tipoavion"),
+                    $this->labAdodb->Param("PK_tipoAvion"),
                     $this->labAdodb->Param("anno"),
                     $this->labAdodb->Param("modelo"),
                     $this->labAdodb->Param("marca"),
@@ -42,7 +40,7 @@ class gestion_tipoavionDao{
 
             $valores = array();
 
-            $valores["idgestion_tipoavion"]              =  $gestion_tipoavion->getidgestion_tipoavion();
+            $valores["PK_tipoAvion"]              =  $gestion_tipoavion->getPK_tipoAvion();
             $valores["anno"]                              =  $gestion_tipoavion->getanno();
             $valores["modelo"]                           =  $gestion_tipoavion->getmodelo();
             $valores["marca"]                            =  $gestion_tipoavion->getmarca();
@@ -58,8 +56,6 @@ class gestion_tipoavionDao{
             throw new Exception('No se pudo insertar el registro (Error generado en el metodo add de la clase gestion_tipoavionDao), error:'.$e->getMessage());
         }
     }
-    
-    //***********************************************************
     //verifica si un avion existe en la base de datos por ID
     //***********************************************************
     
@@ -68,12 +64,12 @@ class gestion_tipoavionDao{
         
         $exist = false;
         try {
-            $sql = sprintf("select * from gestion_tipoavion where idgestion_tipoavion= %s ",
-                            $this->labAdodb->Param("idgestion_tipoavion"));
+            $sql = sprintf("select * from gestion_tipoavion where PK_tipoAvion= %s ",
+                            $this->labAdodb->Param("PK_tipoAvion"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
-            $valores["idgestion_tipoavion"] = $gestion_tipoavion->getidgestion_tipoavion();
+            $valores["PK_tipoAvion"] = $gestion_tipoavion->getPK_tipoAvion();
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
             if ($resultSql->RecordCount() > 0) {
@@ -84,9 +80,6 @@ class gestion_tipoavionDao{
             throw new Exception('No se pudo obtener el registro (Error generado en el metodo exist de la clase gestion_tipoavionDao), error:'.$e->getMessage());
         }
     }
-    
-    
-    //***********************************************************
     //Modifica un avion en la base de datos
     //***********************************************************
 
@@ -104,7 +97,7 @@ class gestion_tipoavionDao{
                                                 LASTUSER = %s, 
                                                 LASTMODIFICATION = CURDATE() 
 
-                            where idgestion_tipoavion = %s",
+                            where PK_tipoAvion = %s",
                     $this->labAdodb->Param("anno"),
                     $this->labAdodb->Param("modelo"),
                     $this->labAdodb->Param("marca"),
@@ -112,7 +105,7 @@ class gestion_tipoavionDao{
                     $this->labAdodb->Param("cantidad_filas"),
                     $this->labAdodb->Param("cantidadasientos_fila"),
                     $this->labAdodb->Param("LASTUSER"),
-                    $this->labAdodb->Param("idgestion_tipoavion"));
+                    $this->labAdodb->Param("PK_tipoAvion"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
@@ -124,16 +117,13 @@ class gestion_tipoavionDao{
             $valores["cantidad_filas"]                   = $gestion_tipoavion->getcantidad_filas();
             $valores["cantidadasientos_fila"]            = $gestion_tipoavion->getcantidadasientos_fila();
             $valores["LASTUSER"]                         = $gestion_tipoavion->getLastUser();
-            $valores["idgestion_tipoavion"]              = $gestion_tipoavion->getidgestion_tipoavion();
+            $valores["PK_tipoAvion"]              = $gestion_tipoavion->getPK_tipoAvion();
             
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
             throw new Exception('No se pudo actualizar el registro (Error generado en el metodo update de la clase gestion_tipoavionDao), error:'.$e->getMessage());
         }
     }
-    
-    
-    //***********************************************************
     //elimina una gestion de avión en la base de datos
     //***********************************************************
     
@@ -142,22 +132,19 @@ class gestion_tipoavionDao{
 
         
         try {
-            $sql = sprintf("delete from gestion_tipoavion where idgestion_tipoavion = %s",
+            $sql = sprintf("delete from gestion_tipoavion where PK_tipoAvion = %s",
                             $this->labAdodb->Param("idgestion_tipoavion"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idgestion_tipoavion"] = $gestion_tipoavion->getidgestion_tipoavion();
+            $valores["PK_tipoAvion"] = $gestion_tipoavion->getPK_tipoAvion();
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
             throw new Exception('No se pudo eliminar el registro (Error generado en el metodo delete de la clase gestion_tipoavionDao), error:'.$e->getMessage());
         }
     }
-
-    
-    //***********************************************************
     //busca una gestion de avión en la base de datos
     //***********************************************************
 
@@ -166,19 +153,19 @@ class gestion_tipoavionDao{
         
         $returngestion_tipoavion = null;
         try {
-            $sql = sprintf("select * from gestion_tipoavion where idgestion_tipoavion = %s",
-                            $this->labAdodb->Param("idgestion_tipoavion"));
+            $sql = sprintf("select * from gestion_tipoavion where PK_tipoAvion = %s",
+                            $this->labAdodb->Param("PK_tipoAvion"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idgestion_tipoavion"] = $gestion_tipoavion->getidgestion_tipoavion();
+            $valores["PK_tipoAvion"] = $gestion_tipoavion->getPK_tipoAvion();
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
             
             if ($resultSql->RecordCount() > 0) {
                 $returngestion_tipoavion = gestion_tipoavion::createNullgestion_tipoavion();
-                $returngestion_tipoavion->setidgestion_tipoavion($resultSql->Fields("idgestion_tipoavion"));
+                $returngestion_tipoavion->setPK_tipoAvion($resultSql->Fields("PK_tipoAvion"));
                 $returngestion_tipoavion->setanno($resultSql->Fields("anno"));
                 $returngestion_tipoavion->setmodelo($resultSql->Fields("modelo"));
                 $returngestion_tipoavion->setmarca($resultSql->Fields("marca"));
@@ -191,14 +178,11 @@ class gestion_tipoavionDao{
         }
         return $returngestion_tipoavion;
     }
-    
-    //***********************************************************
     //obtiene la información de los aviones en la base de datos
     //***********************************************************
     
     public function getAll() {
 
-        
         try {
             $sql = sprintf("select * from gestion_tipoavion");
             $resultSql = $this->labAdodb->Execute($sql);

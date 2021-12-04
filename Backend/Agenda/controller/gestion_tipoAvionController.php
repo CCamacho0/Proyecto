@@ -18,12 +18,12 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "add_gestion_tipoavion" or $action === "update_gestion_tipoavion") {
             //se valida que los parametros hayan sido enviados por post
-            if ((filter_input(INPUT_POST, 'idgestion_tipoavion') != null) && (filter_input(INPUT_POST, 'anno') != null)
+            if ((filter_input(INPUT_POST, 'PK_tipoAvion') != null) && (filter_input(INPUT_POST, 'anno') != null)
                     && (filter_input(INPUT_POST, 'modelo') != null) && (filter_input(INPUT_POST, 'marca') != null) && 
                     (filter_input(INPUT_POST, 'cantidad_pasajeros') != null) && (filter_input(INPUT_POST, 'cantidad_filas') != null) 
                     && (filter_input(INPUT_POST, 'cantidadasientos_fila') != null)) {
 
-                $mygestion_tipoavion->setidgestion_tipoavion(filter_input(INPUT_POST, 'idgestion_tipoavion'));
+                $mygestion_tipoavion->setPK_tipoAvion(filter_input(INPUT_POST, 'PK_tipoAvion'));
                 $mygestion_tipoavion->setanno(filter_input(INPUT_POST, 'anno'));
                 $mygestion_tipoavion->setmodelo(filter_input(INPUT_POST, 'modelo'));
                 $mygestion_tipoavion->setmarca(filter_input(INPUT_POST, 'marca'));
@@ -61,8 +61,8 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "show_gestion_tipoavion") {//accion de mostrar cliente por ID
             //se valida que los parametros hayan sido enviados por post
-            if (filter_input(INPUT_POST, 'idgestion_tipoavion') != null) {
-                $mygestion_tipoavion->setidgestion_tipoavion(filter_input(INPUT_POST, 'idgestion_tipoavion'));
+            if (filter_input(INPUT_POST, 'PK_tipoAvion') != null) {
+                $mygestion_tipoavion->setPK_tipoAvion(filter_input(INPUT_POST, 'PK_tipoAvion'));
                 $mygestion_tipoavion = $mygestion_tipoavionBo->searchById($mygestion_tipoavion);
                 if ($mygestion_tipoavion != null) {
                     echo json_encode(($mygestion_tipoavion));
@@ -75,8 +75,8 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "delete_gestion_tipoavion") {//accion de eliminar cliente por ID
             //se valida que los parametros hayan sido enviados por post
-            if (filter_input(INPUT_POST, 'idgestion_tipoAvion') != null) {
-                $mygestion_tipoavion->setidgestion_tipoAvion(filter_input(INPUT_POST, 'idgestion_tipoAvion'));
+            if (filter_input(INPUT_POST, 'PK_tipoAvion') != null) {
+                $mygestion_tipoavion->setPK_tipoAvion(filter_input(INPUT_POST, 'PK_tipoAvion'));
                 $mygestion_tipoavionBo->delete($mygestion_tipoavion);
                 echo('M~Registro Fue Eliminado Correctamente');
             }

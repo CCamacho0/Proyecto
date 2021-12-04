@@ -27,7 +27,7 @@ class gestion_rutasBo{
             if (!$this->gestion_rutasDao->exist($gestion_rutas)) {
                 $this->gestion_rutasDao->add($gestion_rutas);
             } else {
-                throw new Exception("La gestion de ruta ya existe en la base de datos!!");
+                throw new Exception("La Ruta ya existe en la base de datos!!");
             }
         } catch (Exception $e) {
             throw $e;

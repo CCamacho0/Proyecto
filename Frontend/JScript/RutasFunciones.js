@@ -42,7 +42,8 @@ function addOrUpdateRutas() {
                 idgestion_rutas: aleatorio(10000000, 99999999),
                 ruta: ruta,
                 duracion: $("#duracion").val() + ":00",
-                dia_semana_hora: fecha
+                dia_semana_hora: fecha,
+                Precio: $("#precio").val()
             },
             error: function () { //si existe un error en la respuesta del ajax
                 swal("Error", "Se presento un error al enviar la informacion", "error");
@@ -100,20 +101,19 @@ function cancelAction() {
 
 //*****************************************************************
 
-function showRutasByID(idgestion_rutas) {
+function showRutasByID(PK_IdRutas) {
     //Se envia la información por ajax
     $.ajax({
         url: '../../Backend/Agenda/controller/gestion_rutasController.php',
         data: {
             action: "show_gestion_rutas",
-            idgestion_rutas: idgestion_rutas
+            PK_IdRutas: PK_IdRutas
         },
         error: function () { //si existe un error en la respuesta del ajax
             swal("Error", "Se presento un error al consultar la informacion", "error");
         },
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
             var objRutasJSon = JSON.parse(data);
-            $("#txtID_Rutas").val(objRutasJSon.idgestion_rutas);
 
             var Cadena = objRutasJSon.ruta;
             var CadenaDiv = Cadena.split("-");
@@ -122,9 +122,10 @@ function showRutasByID(idgestion_rutas) {
 
             $("#duracion").val(objRutasJSon.duracion);
 
-            var fecha = objRutasJSon.dia_semana_hora;
+            var fecha = objRutasJSon.FechaSalida;
             fecha = fecha.replace(' ', 'T');
             $("#fecha").val(fecha);
+            $("#precio").val(Precio);
             $("#typeAction").val("update_gestion_rutas");
 
             swal("Confirmacion", "Los datos de la persona fueron cargados correctamente", "success");
@@ -135,13 +136,13 @@ function showRutasByID(idgestion_rutas) {
 
 //Eliminar Aviones por ID
 
-function deleteRutasByID(idgestion_rutas) {
+function deleteRutasByID(PK_IdRutas) {
     //Se envia la información por ajax
     $.ajax({
         url: '../../Backend/Agenda/controller/gestion_rutasController.php',
         data: {
             action: "delete_gestion_rutas",
-            idgestion_rutas: idgestion_rutas
+            PK_IdRutas: PK_IdRutas
         },
         error: function () { //si existe un error en la respuesta del ajax
             swal("Error", "Se presento un error al eliminar la informacion", "error");
