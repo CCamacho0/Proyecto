@@ -24,25 +24,24 @@ $(document).ready(function () {
 });
 
 //Numero Random para el ID
-function aleatorio(minimo,maximo){
+function aleatorio(minimo, maximo) {
     return Math.round(Math.random() * (maximo - minimo) + minimo);
 }
 
 //Agregar o modificar la información
 function addOrUpdateRutas() {
     //Se envia la información por ajax
-    var ruta = $("#txtOrigen").val() +"-"+$("#txtDestino").val();
-    var fecha = $("#fecha").val();
-    fecha = fecha.replace('T', ' ');
-    
     if (validar()) {
+        var ruta = $("#origin-input").val() + "-" + $("#destination-input").val();
+        var fecha = $("#fecha").val();
+        fecha = fecha.replace('T', ' ');
         $.ajax({
             url: '../../Backend/Agenda/controller/gestion_rutasController.php',
             data: {
                 action: $("#typeAction").val(),
                 idgestion_rutas: aleatorio(10000000, 99999999),
                 ruta: ruta,
-                duracion: $("#txtDuracion").val()+":00",
+                duracion: $("#duracion").val() + ":00",
                 dia_semana_hora: fecha
             },
             error: function () { //si existe un error en la respuesta del ajax
@@ -71,22 +70,16 @@ function addOrUpdateRutas() {
 function validar() {
     var validacion = true;
 
-    if ($("#txtID_Rutas").val() === "") {
+    if ($("#origin-input").val() === "") {
         validacion = false;
     }
-    if ($("#txtRuta").val() === "") {
+    if ($("#destination-input").val() === "") {
         validacion = false;
     }
-    if ($("#txtDuracion").val() === "") {
+    if ($("#duracion").val() === "") {
         validacion = false;
     }
     if ($("#fecha").val() === "") {
-        validacion = false;
-    }
-    if ($("#Destino").val() === "") {
-        validacion = false;
-    }
-    if ($("#Origen").val() === "") {
         validacion = false;
     }
     return validacion;
@@ -121,9 +114,17 @@ function showRutasByID(idgestion_rutas) {
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
             var objRutasJSon = JSON.parse(data);
             $("#txtID_Rutas").val(objRutasJSon.idgestion_rutas);
-            $("#txtRuta").val(objRutasJSon.ruta);
-            $("#txtDuracion").val(objRutasJSon.duracion);
-            $("#fecha").val(objRutasJSon.dia_semana_hora);
+
+            var Cadena = objRutasJSon.ruta;
+            var CadenaDiv = Cadena.split("-");
+            $("#origin-input").val(CadenaDiv[0]);
+            $("#destination-input").val(CadenaDiv[1]);
+
+            $("#duracion").val(objRutasJSon.duracion);
+
+            var fecha = objRutasJSon.dia_semana_hora;
+            fecha = fecha.replace(' ', 'T');
+            $("#fecha").val(fecha);
             $("#typeAction").val("update_gestion_rutas");
 
             swal("Confirmacion", "Los datos de la persona fueron cargados correctamente", "success");

@@ -67,11 +67,10 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 if ($mygestion_tipoavion != null) {
                     echo json_encode(($mygestion_tipoavion));
                 } else {
-                    echo('E~NO Existe un cliente con el ID especificado');
+                    echo('E~NO Existe un avion con el ID especificado');
                 }
             }
         }
-
         //----------------------------------------------------------------------------------
 
         if ($action === "delete_gestion_tipoavion") {//accion de eliminar cliente por ID
@@ -82,7 +81,6 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 echo('M~Registro Fue Eliminado Correctamente');
             }
         }
-
         //se captura cualquier error generado
         //----------------------------------------------------------------------------------
     } catch (Exception $e) { //exception generated in the business object..

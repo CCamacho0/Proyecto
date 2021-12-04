@@ -120,7 +120,7 @@ function showAvionesByID(idgestion_tipoavion) {
         },
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
             var objAvionesJSon = JSON.parse(data);
-            $("#txtID_Avion").val(objAvionesJSon.idgestion_tipoavion);
+            
             $("#txtAnno").val(objAvionesJSon.anno);
             $("#txtModelo").val(objAvionesJSon.modelo);
             $("#txtMarca").val(objAvionesJSon.marca);
@@ -129,7 +129,7 @@ function showAvionesByID(idgestion_tipoavion) {
             $("#Asientos_fila").val(objAvionesJSon.cantidadasientos_fila);
             $("#typeAction").val("update_gestion_tipoavion");
 
-            swal("Confirmacion", "Los datos de la persona fueron cargados correctamente", "success");
+            swal("Confirmacion", "Los datos del avion fueron cargados correctamente", "success");
         },
         type: 'POST'
     });
@@ -195,7 +195,7 @@ function cargarTablas() {
                         targets: 6,
                         className: "dt-center",
                         render: function (data, type, row, meta) {
-                            var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="show_AvionesByID(\'' + row[0] + '\');">Cargar</button> ';
+                            var botones = '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="showAvionesByID(\'' + row[0] + '\');">Cargar</button> ';
                             botones += '<button type="button" class="btn btn-default btn-xs" aria-label="Left Align" onclick="deleteAvionesByID(\'' + row[0] + '\');">Eliminar</button>';
                             return botones;
                         }

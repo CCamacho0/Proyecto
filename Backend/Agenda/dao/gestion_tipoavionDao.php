@@ -25,7 +25,7 @@ class gestion_tipoavionDao{
         
         try {
             
-            $sql = sprintf("insert into gestion_tipoavion(idgestion_tipoavion,anno, modelo,marca,
+            $sql = sprintf("insert into gestion_tipoavion(idgestion_tipoavion, anno, modelo,marca,
                 cantidad_pasajeros,cantidad_filas, cantidadasientos_fila,lastUser,lastModification)
                                         values (%s,%s,%s,%s,%s,%s,%s,%s,CURDATE())",
                     
@@ -177,7 +177,7 @@ class gestion_tipoavionDao{
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
             
             if ($resultSql->RecordCount() > 0) {
-                $returngestion_tipoavion = GestionTipoAvion::createNullGestionTipoAvion();
+                $returngestion_tipoavion = gestion_tipoavion::createNullgestion_tipoavion();
                 $returngestion_tipoavion->setidgestion_tipoavion($resultSql->Fields("idgestion_tipoavion"));
                 $returngestion_tipoavion->setanno($resultSql->Fields("anno"));
                 $returngestion_tipoavion->setmodelo($resultSql->Fields("modelo"));
@@ -189,7 +189,7 @@ class gestion_tipoavionDao{
         } catch (Exception $e) {
             throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase gestion_tipoavionDao), error:'.$e->getMessage());
         }
-        return $returnDirecciones;
+        return $returngestion_tipoavion;
     }
     
     //***********************************************************
