@@ -26,7 +26,7 @@ class AutocompleteDirectionsHandler {
 
         const originInput = document.getElementById("origin-input");
         const destinationInput = document.getElementById("destination-input");
-        
+
         const originAutocomplete = new google.maps.places.Autocomplete(originInput);
 
         // Specify just the place data fields that you need.
@@ -38,7 +38,7 @@ class AutocompleteDirectionsHandler {
 
         // Specify just the place data fields that you need.
         destinationAutocomplete.setFields(["place_id"]);
- 
+
         this.setupPlaceChangedListener(originAutocomplete, "ORIG");
         this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
@@ -84,25 +84,40 @@ class AutocompleteDirectionsHandler {
                 },
                 (response, status) => {
             if (status === "OK") {
-                
+
                 var route = response.routes[0];
-                var duration =0;
-                var horas=0;
-                var minutos=0;
-                
-                route.legs.forEach(function (leg){
+                var duration = 0;
+                var horas = 0;
+                var minutos = 0;
+                var Precio = 0;
+
+                route.legs.forEach(function (leg) {
                     duration += leg.duration.value;
                 });
                 me.directionsRenderer.setDirections(response);
-                
-                duration = duration/60;
-                duration = duration/60;
-                horas= duration;
+
+                duration = duration / 15;
+                Precio = duration * 0.01;
+                Precio = Precio.toFixed(2);
+
+                duration = duration / 60;
+                duration = duration / 60;
+                horas = duration;
+
                 horas = Math.floor(duration);
-                minutos=  duration-horas;
-                minutos = minutos*60;
+                minutos = duration - horas;
+                minutos = minutos * 60;
                 minutos = Math.floor(minutos);
-                document.getElementById("duracion").value = horas+":"+minutos;
+
+                if (horas < 10 && minutos < 10) {
+                    document.getElementById("duracion").value = "0" + horas + ":0" + minutos;
+                } else if (horas < 10) {
+                    document.getElementById("duracion").value = "0" + horas + ":" + minutos;
+                } else {
+                    document.getElementById("duracion").value = horas + ":" + minutos;
+                }
+                document.getElementById("precio").value = Precio;
+
             } else {
                 window.alert("Directions request failed due to " + status);
             }

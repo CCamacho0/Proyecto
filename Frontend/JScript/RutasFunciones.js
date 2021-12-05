@@ -39,11 +39,12 @@ function addOrUpdateRutas() {
             url: '../../Backend/Agenda/controller/gestion_rutasController.php',
             data: {
                 action: $("#typeAction").val(),
-                idgestion_rutas: aleatorio(10000000, 99999999),
+                PK_IdRutas: aleatorio(10000000, 99999999),
                 ruta: ruta,
                 duracion: $("#duracion").val() + ":00",
-                dia_semana_hora: fecha,
-                Precio: $("#precio").val()
+                FechaSalida: fecha,
+                Precio: $("#precio").val(),
+                FK_tipoAvion: $("#Avion").val()
             },
             error: function () { //si existe un error en la respuesta del ajax
                 swal("Error", "Se presento un error al enviar la informacion", "error");
@@ -81,6 +82,12 @@ function validar() {
         validacion = false;
     }
     if ($("#fecha").val() === "") {
+        validacion = false;
+    }
+    if ($("#precio").val() === "") {
+        validacion = false;
+    }
+    if ($("#Avion").val() === "") {
         validacion = false;
     }
     return validacion;
@@ -126,6 +133,7 @@ function showRutasByID(PK_IdRutas) {
             fecha = fecha.replace(' ', 'T');
             $("#fecha").val(fecha);
             $("#precio").val(Precio);
+            $("#Avion").val(FK_tipoAvion);
             $("#typeAction").val("update_gestion_rutas");
 
             swal("Confirmacion", "Los datos de la persona fueron cargados correctamente", "success");

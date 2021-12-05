@@ -20,13 +20,14 @@ if (filter_input(INPUT_POST, 'action') != null) {
             //se valida que los parametros hayan sido enviados por post
             if ((filter_input(INPUT_POST, 'PK_IdRutas') != null) && (filter_input(INPUT_POST, 'FechaSalida') != null) 
                 && (filter_input(INPUT_POST, 'ruta') != null) && (filter_input(INPUT_POST, 'duracion') != null) 
-                && (filter_input(INPUT_POST, 'Precio') != null)) {
+                && (filter_input(INPUT_POST, 'Precio') != null) && (filter_input(INPUT_POST, 'FK_tipoAvion') != null)) {
 
                 $mygestion_rutas->setPK_IdRutas(filter_input(INPUT_POST, 'PK_IdRutas'));
                 $mygestion_rutas->setruta(filter_input(INPUT_POST, 'ruta'));
                 $mygestion_rutas->setduracion(filter_input(INPUT_POST, 'duracion'));
                 $mygestion_rutas->setFechaSalida(filter_input(INPUT_POST, 'FechaSalida'));
                 $mygestion_rutas->setPrecio(filter_input(INPUT_POST, 'Precio'));
+                $mygestion_rutas->setFK_tipoAvion(filter_input(INPUT_POST, 'FK_tipoAvion'));
                 $mygestion_rutas->setlastUser('Cama');
                 
                 if ($action == "add_gestion_rutas") {

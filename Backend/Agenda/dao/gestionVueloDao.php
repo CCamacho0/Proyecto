@@ -15,7 +15,7 @@ class gestionVueloDao{
         $this->labAdodb = newAdoConnection($driver);
         //$this->labAdodb->setCharset('utf8');
         //$this->labAdodb->setConnectionParameter('CharacterSet', 'WE8ISO8859P15');
-        $this->labAdodb->Connect("localhost", "root2", "root2", "mydb");
+        $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
         $this->labAdodb->debug=true;
     }
     

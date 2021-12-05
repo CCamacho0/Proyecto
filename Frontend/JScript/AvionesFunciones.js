@@ -35,7 +35,7 @@ function addOrUpdateAviones() {
             url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
             data: {
                 action: $("#typeAction").val(),
-                idgestion_tipoavion: aleatorio(10000000, 99999999),
+                PK_tipoAvion: aleatorio(10000000, 99999999),
                 anno: $("#txtAnno").val(),
                 modelo: $("#txtModelo").val(),
                 marca: $("#txtMarca").val(),

@@ -70,11 +70,24 @@
                             <p>Precio: <input type="text" id="precio" readonly="readonly"></p>
                             <br>
                             
-                            <p>Avion: <select name="Avion"></select></p>
+                            <p>Avion: <select name="Avion" id="Avion" style="width: 80%">;
+                                    
+                                    <?php 
+                                        include '../../Backend/Agenda/dao/connexion.php"';
+                                        $consulta=" SELECT * FROM gestion_tipoavion";
+                                        $ejecutar = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
+                                    ?>
+                                    <?php foreach ($ejecutar as $opciones): ?>
+
+                                    <option value="<?php echo $opciones['PK_tipoAvion']?>"><?php echo $opciones['PK_tipoAvion']?></option>
+                                    <?php endforeach ?>
+                                </select></p>
+
+
                             <input type="hidden" id="typeAction" value="add_gestion_rutas" />
                             <button type="submit" class="btn btn-primary bg-dark" id="guardar">Guardar</button>
                             <button type="reset" class="btn bg-light" id="cancelar">Cancelar</button>
-                            
+
                             <br><br><br><br><br><br><br><br>
                         </form>
                     </div>
@@ -117,3 +130,4 @@
         </div>
     </body>
 </html>
+

@@ -10,7 +10,8 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
     private $duracion;
     private $FechaSalida;
     private $Precio;
-    
+    private $FK_tipoAvion;
+
     //constructores
     public function __construct() {
         parent::__construct();
@@ -21,15 +22,16 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function creategestion_rutas($PK_IdRutas, $FechaSalida,$ruta,
-    $duracion, $precio,$lastUser, $lastModification) {
-     
+    public static function creategestion_rutas($PK_IdRutas, $FechaSalida, $ruta,
+            $duracion, $precio, $lastUser, $FK_tipoAvion, $lastModification) {
+
         $instance = new self();
         $instance->PK_IdRutas = $PK_IdRutas;
         $instance->FechaSalida = $FechaSalida;
         $instance->ruta = $ruta;
         $instance->duracion = $duracion;
         $instance->Precio = $precio;
+        $instance->FK_tipoAvion = $FK_tipoAvion;
         $instance->setLastUser($lastUser);
         $instance->setLastModification($lastModification);
         return $instance;
@@ -45,7 +47,6 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
     }
 
     //----------------------------------------------------------------------------------
-
     public function getFechaSalida() {
         return $this->FechaSalida;
     }
@@ -55,7 +56,6 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
     }
 
     //----------------------------------------------------------------------------------
-
     public function getruta() {
         return $this->ruta;
     }
@@ -65,7 +65,6 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
     }
 
     //----------------------------------------------------------------------------------
-
     public function getduracion() {
         return $this->duracion;
     }
@@ -75,8 +74,7 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
     }
 
     //----------------------------------------------------------------------------------
-
-      public function getPrecio() {
+    public function getPrecio() {
         return $this->Precio;
     }
 
@@ -84,7 +82,16 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
         $this->Precio = $precio;
     }
 
-    //----------------------------------------------------------------------------------  
+    //---------------------------------------------------------------------------------- 
+    public function getFK_tipoAvion() {
+        return $this->FK_tipoAvion;
+    }
+
+    public function setFK_tipoAvion($FK_tipoAvion) {
+        $this->FK_tipoAvion = $FK_tipoAvion;
+    }
+
+    //---------------------------------------------------------------------------------- 
     public function getlastUser() {
         return $this->lastUser;
     }
@@ -95,7 +102,6 @@ class gestion_rutas extends BaseDomain implements \JsonSerializable {
 
     //----------------------------------------------------------------------------------
     //Convertir el obj a JSON
-
     public function jsonSerialize() {
         return get_object_vars($this);
     }

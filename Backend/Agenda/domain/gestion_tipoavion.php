@@ -12,8 +12,7 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
     private $cantidad_pasajeros;
     private $cantidad_filas;
     private $cantidadasientos_fila;
-    
-    
+
     //constructores
     public function __construct() {
         parent::__construct();
@@ -24,9 +23,9 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function creategestion_tipoavion($PK_tipoAvion, $anno,$modelo,
-    $cantidad_pasajeros,$cantidad_filas,$cantidadasientos_fila,$lastUser, $lastModification) {
-    
+    public static function creategestion_tipoavion($PK_tipoAvion, $anno, $modelo,
+            $cantidad_pasajeros, $cantidad_filas, $cantidadasientos_fila, $lastUser, $lastModification) {
+
         $instance = new self();
         $instance->PK_tipoAvion = $PK_tipoAvion;
         $instance->anno = $anno;
@@ -77,7 +76,7 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
     public function setmarca($marca) {
         $this->marca = $marca;
     }
-    
+
     //----------------------------------------------------------------------------------
 
     public function getcantidad_pasajeros() {
@@ -89,7 +88,7 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
     }
 
     //----------------------------------------------------------------------------------
-    
+
     public function getcantidad_filas() {
         return $this->cantidad_filas;
     }
@@ -99,7 +98,7 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
     }
 
     //----------------------------------------------------------------------------------
-    
+
     public function getcantidadasientos_fila() {
         return $this->cantidadasientos_fila;
     }
@@ -109,7 +108,7 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
     }
 
     //----------------------------------------------------------------------------------
-    
+
     public function getlastUser() {
         return $this->lastUser;
     }
@@ -125,4 +124,6 @@ class gestion_tipoavion extends BaseDomain implements \JsonSerializable {
         return get_object_vars($this);
     }
 
-}//fin de la clase gestion_tipoavion
+}
+
+//fin de la clase gestion_tipoavion
