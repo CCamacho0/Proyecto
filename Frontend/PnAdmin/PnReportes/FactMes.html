@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Highcharts Scrpits -->
+        <script src="../../lib/code/highcharts.js" type="text/javascript"></script>
+        <script src="../../lib/code/modules/exporting.js" type="text/javascript"></script>
+        <script src="../../lib/code/modules/export-data.js" type="text/javascript"></script>
+        <script src="../../lib/code/modules/accessibility.js" type="text/javascript"></script>
+        <!-- Highcharts CSS -->
+        <link href="../../CSS/CSS_graficos.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
-        <div>TODO write content 1</div>
+    <body style="overflow: hidden">
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+        </figure>
+
+        <script type="text/javascript">
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Facurado por Mes'
+                },
+
+                xAxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    //Hacer fucion que cambie segun la facha actual la secuecia de los meses 
+                },
+
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                        name: 'Facturado',
+                        data: [700.0, 600.9, 900.5, 1400.5, 1800.4, 2100.5, 2500.2, 2600.5, 2300.3, 1800.3, 1300.9, 900.6]
+                        //Crear una funcion que permita desde la fecha actual hasta doce meses atras ver lo Facturado
+                        //Meter una funcion que recorra la base de datos para sacar el total de cada mes 
+                    }]
+            });
+
+        </script>
     </body>
 </html>

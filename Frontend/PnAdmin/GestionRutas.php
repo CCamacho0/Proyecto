@@ -53,7 +53,7 @@
         <script src="../JScript/MapsJs.js" type="text/javascript"></script>
     </head>
 
-    <body>
+    <body >
         <div>
 
             <div class="card-body">
