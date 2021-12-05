@@ -25,13 +25,13 @@
                 <div align="right" class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav ms-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="RegistroUsuario.php">Iniciar Sesión</a>
+                            <a class="nav-link" href="PnUsuario/inicio_sesion.php" target="Ventanas">Iniciar Sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="PnUsuario/HistoricoCompras.html">Histórico de Compras</a>
+                            <a class="nav-link" href="RegistroUsuario.php">Registrarse</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="PnUsuario/InfoUsuario.html">Información de Usuario</a>
+                            <a class="nav-link" href="PnUsuario/InfoUsuario.html" target="Ventanas">Información de Usuario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="PnAdmin/Administrador.html">Administrador</a><!-- Poner visible si es admin, sino ocultar -->
@@ -39,7 +39,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="MenuPrincipal.html">Cerrar Sesión</a><!-- Poner visible cuando hay una secion activa, sino ocultar -->
                         </li>
-                        
                     </ul>
                 </div>
             </div>
@@ -73,8 +72,8 @@
             </a>
         </div>
         <!-- Pantallas -->
-        <div class="card border-0 " style="height: 690px;">
-            <iframe name="Ventanas" src="PnUsuario/Reservar.html" class="card-body"></iframe>
+        <div class="card border-0 ">
+            <iframe name="Ventanas" src="PnUsuario/Reservar.html" style="height: 800px; width: 1200px;"></iframe>
         </div>
     </body>
 </html>

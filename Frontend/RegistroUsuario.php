@@ -12,7 +12,7 @@
         <!-- Bootstrap Jscript -->
         <script src="../bootstrap 5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="../bootstrap 5/js/bootstrap.min.js" type="text/javascript"></script>
-        
+
         <script src="lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <link href="lib/animate.css/animate.min.css" rel="stylesheet" type="text/css"/>    
 
@@ -28,7 +28,7 @@
         <script src="lib/dataTableFull/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
         <script src="lib/dataTableFull/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="lib/dataTableFull/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-        
+
         <!-- Datatables CSS -->
         <link href="lib/dataTableFull/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="lib/dataTableFull/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
@@ -70,7 +70,7 @@
 
                     <h3 class="text-white mb-3"><br>Registro de Usuario</h3>
                     <div class="card border-dark border-5">
-                        
+
                         <form role="form" onsubmit="return false;" id="formPersonas" action="../Backend/Agenda/controller/PersonasController.php">
                             <div class="card-body">
 
@@ -146,7 +146,7 @@
                                         <input type="text" class="form-control form-control-lg border-dark" id="txtnombreUsuario"/>
                                     </div>
                                 </div> 
-                                
+
                                 <div class="row align-items-center pt-4 pb-3">
                                     <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Contraseña</h6>
@@ -155,7 +155,7 @@
                                         <input type="password" name="pass" id="txtcontrasena" placeholder="Utilice una contraseña fuerte" class="form-control form-control-lg border-dark"/> 
                                     </div>
                                 </div>  
-                                
+
                                 <div class="row align-items-center py-3">
                                     <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Correo Electrónico</h6>
@@ -164,7 +164,7 @@
                                         <input type="email" class="form-control form-control-lg border-dark" id="txtcorreo" placeholder="example@example.com" />
                                     </div>
                                 </div>
-                                
+
                                 <div class="row align-items-center py-3">
                                     <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Teléfono Celular</h6>
@@ -173,7 +173,7 @@
                                         <input type="text" class="form-control form-control-lg border-dark" id="txtcelular" placeholder="Digite únicamente los 8 dígitos de su teléfono celular." />
                                     </div>
                                 </div>
-                                
+
                                 <div class="row align-items-center py-3">
                                     <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Dirección exacta de vivienda</h6>
@@ -181,7 +181,7 @@
                                     <div class="col-md-9 pe-5" id="groupobservaciones">
                                         <input type="text" class="form-control border-dark" rows="3" id="txtdireccion" placeholder="Escriba aquí su dirección.">
                                     </div>
-                                    
+
                                 </div>
                                 <div class="px-5 py-4">
                                     <input type="hidden" id="typeAction" value="add_personas" />
@@ -190,26 +190,6 @@
                                 </div>
                             </div>
                         </form>
-                        <br><br>
-                        
-                        <div class="card-body">
-                            <div class="col-md-12">
-                                <table id="dt_personas"  class="table  table-hover dt-responsive nowrap" cellspacing="0" width="99%">
-                                    <thead>
-                                        <tr>
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido1</th>
-                                            <th>Apellido2</th>
-                                            <th>Fec. Nacimiento</th>
-                                            <th>Sexo</th>
-                                            <th>Celular</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
