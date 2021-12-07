@@ -17,34 +17,48 @@
 
         <!-- Bootstrap core CSS -->
         <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="../JScript/Reservarfunciones.js" type="text/javascript"></script>
+
 
     </head>
     <body>
 
-        <form class="container">
+        <form class="container" action="" method="POST"  enctype="multipart/form-data">
             <h3 class="card-title">Vuelos Disponibles</h3>
             <hr class="my-4">
             <div class="row">
-                <div class="col-xs-6">
-                    <label><input type="radio" id="id_soloida" name= "consultareserva" value="Soloida" checked> Solo ida</label>
-                    <label><input type="radio" id="id_idavuelta" name= "consultareserva" value="IdaVuelta"> Ida y Vuelta</label>
+                <div class="col-xs-6" id="opciones">
+                    <label><b>Por favor, escoja la opción que desea.</b></label>
+                    <br>
+                    <label><input type="radio" id="id_soloida" name= "consultareserva" value="Soloida" onchange="mostrarDatos(this.value);"> Solo ida</label>
+                    <label><input type="radio" id="id_idavuelta" name= "consultareserva" value="IdaVuelta" onchange="mostrarDatos(this.value);">  Ida y Vuelta</label>
                 </div>
                 <br>
                 <br>
-                <div class="col-md-4">    
+                <div class="col-md-4" id="boton_buscarSalida" style="display:none;">    
                     <label><b>Salida</b></label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend col-md-0">
-                            <button class="btn btn-primary" type="button" id="boton_buscar">Buscar</button>
+                            <button class="btn btn-primary" type="button">Buscar</button>
                         </div>
                         <input type="text" class="form-control" placeholder="Costa Rica-Nicaragua">
                     </div>
                 </div>
 
-                <div class="col-md-4">    
+                <div class="col-md-4" id="boton_buscarLlegada" style="display:none;">    
+                    <label><b>Llegada</b></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend col-md-0">
+                            <button class="btn btn-primary" type="button">Buscar</button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Costa Rica-Nicaragua">
+                    </div>
+                </div>
+
+                <div class="col-md-4" id="numero_pasajeros" style="display:none;">    
                     <label><b>Numero de Pasajeros</b></label>
                     <div class="input-group mb-3">
-                        <select class="form-select" id="numero_pasajeros" required>
+                        <select class="form-select" required>
                             <option value="">Elija la cantidad de pasajeros</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -62,20 +76,31 @@
 
             </div>
 
-            <div class="col-md-4">    
-                <label><b>Fecha de Salida</b></label>
-                <div class="input-group mb-3">
-                    <input type="date" id="fecha_salida" name="fecha-salida"
-                           value="2021-12-14"
-                           min="2019-12-14" max="2025-12-31">
+            <div class="row">
+                <div class="col-md-4" id="fecha_salida" style="display:none;">    
+                    <label><b>Fecha de Salida</b></label>
+                    <div class="input-group mb-3">
+                        <input type="date" name="fecha-salida"
+                               value="2021-12-14"
+                               min="2019-12-14" max="2025-12-31">
+                    </div>
+                </div>
+
+                <div class="col-md-4" id="fecha_llegada" style="display:none;">    
+                    <label><b>Fecha de Llegada</b></label>
+                    <div class="input-group mb-3">
+                        <input type="date" name="fecha-salida"
+                               value="2021-12-14"
+                               min="2019-12-14" max="2025-12-31">
+                    </div>
                 </div>
             </div>
-
             <br>
 
 
-
-            <button type="submit" class="btn btn-primary">Buscar vuelos</button>
+            <div id="boton_buscarvuelo" style="display:none;">
+                <button type="submit" class="btn btn-primary">Buscar vuelos</button>
+            </div>
         </form>
 
 
@@ -100,25 +125,66 @@
         <hr class="my-4">
         <h5>Seleccione un método de pago</h5>                    
 
-        <div class="my-3">
-            <div class="form-check">
-                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                <label class="form-check-label" for="credit">Credit card</label>
-            </div>
-            <div class="form-check">
-                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                <label class="form-check-label" for="debit">Debit card</label>
-            </div>
-        </div>
 
-        <<<<<<< Updated upstream
+
+
         <div class="row gy-3">
-            <div class="col-md-6">
-                <p class="form-label">Name on card</p>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
+            <hr class="my-4">
+
+            <h4 class="mb-3">Payment</h4>
+
+            <div class="my-3">
+
+                <div class="form-check">
+                    <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                    <label class="form-check-label" for="credit">Credit card</label>
+                </div>
+                <div class="form-check">
+                    <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                    <label class="form-check-label" for="debit">Debit card</label>
+                </div>
+                <div class="form-check">
+                    <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                    <label class="form-check-label" for="paypal">PayPal</label>
+                </div>
             </div>
-            =======
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <label for="cc-name" class="form-label">Name on card</label>
+                    <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                    <small class="text-muted">Full name as displayed on card</small>
+                    <div class="invalid-feedback">
+                        Name on card is required
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="cc-number" class="form-label">Credit card number</label>
+                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                    <div class="invalid-feedback">
+                        Credit card number is required
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <p class="form-label">Credit card number</p>
+                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                </div>
+
+                <div class="col-md-3">
+                    <p class="form-label"><b>Fecha de Vencimiento</b></p>
+                    <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                </div>
+
+                <div class="col-md-3">
+                    <p class="form-label"><b>CVV</b></p>
+                    <input type="text" class="form-control" id="id_cvv" required>
+                </div>
+            </div>
+
+
+
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Billing address</h4>
                 <form class="needs-validation" novalidate>
@@ -192,59 +258,6 @@
                         <label class="form-check-label" for="save-info">Save this information for next time</label>
                     </div>
 
-                    <hr class="my-4">
-
-                    <h4 class="mb-3">Payment</h4>
-
-                    <div class="my-3">
-                        <div class="form-check">
-                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                            <label class="form-check-label" for="credit">Credit card</label>
-                        </div>
-                        <div class="form-check">
-                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                            <label class="form-check-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="form-check">
-                            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                            <label class="form-check-label" for="paypal">PayPal</label>
-                        </div>
-                    </div>
-
-                    <div class="row gy-3">
-                        <div class="col-md-6">
-                            <label for="cc-name" class="form-label">Name on card</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                            <small class="text-muted">Full name as displayed on card</small>
-                            <div class="invalid-feedback">
-                                Name on card is required
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="cc-number" class="form-label">Credit card number</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Credit card number is required
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <p class="form-label">Credit card number</p>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                        </div>
-
-                        <div class="col-md-3">
-                            <p class="form-label"><b>Fecha de Vencimiento</b></p>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                        </div>
-
-                        <div class="col-md-3">
-                            <p class="form-label"><b>CVV</b></p>
-                            <input type="text" class="form-control" id="id_cvv" required>
-                        </div>
-                    </div>
 
                     <hr class="my-4">
 
