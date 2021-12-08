@@ -66,7 +66,7 @@
                             <p>Fecha Salida: <input type="datetime-local" id="fecha"></p>
                             <br>
                             <p>Fecha Llegada: <input type="text" id="fechaEntrada" readonly="readonly"> 
-                                <input type="button" class="btn btn-primary bg-dark" value="Cargar" onclick="calFecha()" /></p>
+                                <button type="button" class="btn btn-primary bg-dark" id="Cargar">Cargar</button></p>
                             <br>
                             <p >Duracion: <input type="text" id="duracion" readonly="readonly"/></p>
                             <br>

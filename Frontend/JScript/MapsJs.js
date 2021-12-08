@@ -96,7 +96,7 @@ class AutocompleteDirectionsHandler {
                 });
                 me.directionsRenderer.setDirections(response);
 
-                duration = duration / 15;
+                duration = duration / 8;
                 Precio = duration * 0.01;
                 Precio = Precio.toFixed(2);
 

@@ -15,6 +15,10 @@ $(function () { //Creación de los controles
         $("#myModalFormulario").modal();
     });
 
+    $("#Cargar").click(function () {
+        calFecha();
+    });
+
 });
 
 //cuando el documento esta cargado se procede a cargar la información
@@ -37,12 +41,16 @@ function Fecha() {
 function calFecha() {
     var FechaS = new Date(Fecha());
     var duracion = $("#duracion").val();
-    duracion.split(":");
-
-    FechaS.setHours(FechaS.getHours() + duracion[0]);
-    FechaS.setMinutes(FechaS.getMinutes() + duracion[1])
-    FechaS = FechaS.toISOString();
-    $("#fechaEntrada").val(FechaS);
+    duracion =duracion.split(":");
+    duracion[0] = duracion[0]-6;
+    FechaS.setHours(FechaS.getHours()+duracion[0]);
+    FechaS.setMinutes(FechaS.getMinutes()+parseInt(duracion[1]));
+    
+    FechaS = FechaS.toJSON();
+    FechaS = FechaS.split("T");
+    var Horas = FechaS[1].split(":");
+    var FechaE = FechaS[0]+" "+Horas[0]+":"+Horas[1];
+    $("#fechaEntrada").val(FechaE);
 }
 
 //Agregar o modificar la información
@@ -107,6 +115,10 @@ function validar() {
     if ($("#Avion").val() === "") {
         validacion = false;
     }
+    
+    if ($("#fechaEntrada").val() === "") {
+        validacion = false;
+    }
     return validacion;
 }
 
@@ -149,6 +161,7 @@ function showRutasByID(PK_IdRutas) {
             var fecha = objRutasJSon.FechaSalida;
             fecha = fecha.replace(' ', 'T');
             $("#fecha").val(fecha);
+            $("#fechaEntrada").val(FechaEntrada);
             $("#precio").val(Precio);
             $("#Avion").val(FK_tipoAvion);
             $("#typeAction").val("update_gestion_rutas");

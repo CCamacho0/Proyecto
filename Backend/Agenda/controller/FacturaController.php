@@ -79,6 +79,16 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 echo('M~Registro Fue Eliminado Correctamente');
             }
         }
+        
+        if ($action === "showFacturaMes") {//accion de consultar todos los registros
+            $resultDB = $myFacturaBo->FacturadoMes();
+            $json = json_encode($resultDB->GetArray());
+            $resultado = '{"data": ' . $json . '}';
+            if ($resultDB->RecordCount() === 0) {
+                $resultado = '{"data": []}';
+            }
+            echo $resultado;
+        }
 
         //se captura cualquier error generado
         //----------------------------------------------------------------------------------

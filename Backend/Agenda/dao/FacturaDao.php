@@ -175,4 +175,18 @@ class FacturaDao {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase FacturaDao), error:' . $e->getMessage());
         }
     }
+    
+    public function FacturadoMes() {
+
+        try {
+            $sql = sprintf("SELECT F.FechaCompra, gR.Precio
+                            FROM mydb.Factura F
+                            JOIN mydb.gestionVuelo gV ON F.FK_idgestionVuelo = gV.idgestionVuelo
+                            JOIN mydb.gestion_rutas gR ON gV.PK_IdRutas = gR.PK_IdRutas ");
+            $resultSql = $this->labAdodb->Execute($sql);
+            return $resultSql;
+        } catch (Exception $e) {
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase FacturaDao), error:' . $e->getMessage());
+        }
+    }
 }

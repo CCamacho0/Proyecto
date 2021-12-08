@@ -78,6 +78,14 @@ class FacturaBo {
         }
     }
 
+    public function FacturadoMes() {
+        try {
+            return $this->facturaDao->FacturadoMes();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
 }
 
 //end of the class FacturaBo

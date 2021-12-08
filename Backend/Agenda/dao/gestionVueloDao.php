@@ -172,6 +172,24 @@ class gestionVueloDao {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo ListaClientes de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
+    
+    public function RutasPop() {
+        try {
+            $sql = sprintf("SELECT gR.PK_IdRutas, gR.ruta, SUM(gR.Precio) Total
+                            FROM mydb.gestionVuelo gV
+                            JOIN mydb.Factura F ON gV.idgestionVuelo = F.FK_idgestionVuelo
+                            JOIN mydb.gestion_rutas gR ON gV.PK_IdRutas = gR.PK_IdRutas
+                            WHERE F.idFactura IS NOT null
+                            GROUP BY gR.PK_IdRutas, gR.ruta
+                            ORDER BY Total DESC
+                            LIMIT 5");
+
+            $resultSql = $this->labAdodb->Execute($sql);
+            return $resultSql;
+        } catch (Exception $e) {
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo RutasPop de la clase gestionVueloDao), error:' . $e->getMessage());
+        }
+    }
 
     public function getAll() {
 

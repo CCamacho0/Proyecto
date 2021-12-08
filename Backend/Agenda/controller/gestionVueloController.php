@@ -78,7 +78,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
     } catch (Exception $e) { //exception generated in the business object..
         echo("E~F" . $e->getMessage());
     }
-
+    //----------------------------------------------------------------------------------
     if ($action === "ShowLista") {
         $resultDB = $mygestionVueloBo->ListaClientes();
         $json = json_encode($resultDB->GetArray());
@@ -88,6 +88,17 @@ if (filter_input(INPUT_POST, 'action') != null) {
         }
         echo $resultado;
     }
+     //----------------------------------------------------------------------------------
+    if ($action === "ShowRutasPop") {
+        $resultDB = $mygestionVueloBo->RutasPop();
+        $json = json_encode($resultDB->GetArray());
+        $resultado = '{"data": ' . $json . '}';
+        if ($resultDB->RecordCount() === 0) {
+            $resultado = '{"data": []}';
+        }
+        echo $resultado;
+    }
+    
 } else {
     echo('M~Parametros no enviados desde el formulario'); //se codifica un mensaje para enviar
 }

@@ -85,6 +85,14 @@ class gestionVueloBo {
             throw $e;
         }
     }
+    
+        public function RutasPop() {
+        try {
+            return $this->gestionVueloDao->RutasPop();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 //end of the class gestionVueloBo
