@@ -21,7 +21,10 @@ p {
 /* la caja la vamos a centrar */
 div {
   text-align: center;
+  
 }
+
+
 
 /* para poder ver bien el resultado en la tabla vamos a darle tambien algo de formato a la misma */
 
@@ -49,4 +52,18 @@ td {
 textarea{
     
     resize: none;
+}
+
+
+.centrado{
+
+    text-align: center;
+}
+.centrado>div {
+
+    display:inline-block;
+}
+
+.centrado form{
+    text-align:right;
 }
