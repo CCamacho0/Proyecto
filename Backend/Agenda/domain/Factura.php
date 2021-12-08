@@ -7,6 +7,7 @@ class Factura extends BaseDomain implements \JsonSerializable {
     //atributos
     private $idFactura;
     private $Detalle;
+    private $FechaCompra;
     private $asiento;
     private $FK_cedula;
     private $FK_idgestionVuelo;
@@ -21,10 +22,11 @@ class Factura extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function createFactura($idFactura, $FK_cedula, $asiento, $FK_idgestionVuelo, $Detalle) {
+    public static function createFactura($idFactura, $FK_cedula, $asiento, $FK_idgestionVuelo, $Detalle, $FechaCompra) {
         $instance = new self();
         $instance->idFactura = $idFactura;
         $instance->Detalle = $Detalle;
+        $instance->FechaCompra = $FechaCompra;
         $instance->asiento = $asiento;
         $instance->FK_cedula = $FK_cedula;
         $instance->FK_idgestionVuelo = $FK_idgestionVuelo;
@@ -78,6 +80,16 @@ class Factura extends BaseDomain implements \JsonSerializable {
 
     public function setAsiento($asiento) {
         $this->asiento = $asiento;
+    }
+
+    //----------------------------------------------------------------------------------
+    
+    public function getFechaCompra() {
+        return $this->FechaCompra;
+    }
+
+    public function setFechaCompra($FechaCompra) {
+        $this->FechaCompra = $FechaCompra;
     }
 
     //----------------------------------------------------------------------------------

@@ -6,10 +6,8 @@ class gestionVuelo extends BaseDomain implements \JsonSerializable {
 
     //atributos
     private $idgestionVuelo;
-    private $Fecha;
-    private $Precio;
-    private $FK_idgestion_tipoavion;
-    private $FK_idgestion_rutas;
+    private $FK_tipoAvion;
+    private $FK_IdRutas;
 
     //constructores
     public function __construct() {
@@ -21,15 +19,13 @@ class gestionVuelo extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function creategestionVuelo($idgestionVuelo, $Fecha,$Precio,
-    $FK_idgestion_tipoavion,$FK_idgestion_rutas,$lastUser, $lastModification) {
-    
+    public static function creategestionVuelo($idgestionVuelo,
+            $FK_tipoAvion, $FK_IdRutas, $lastUser, $lastModification) {
+
         $instance = new self();
         $instance->idgestionVuelo = $idgestionVuelo;
-        $instance->Fecha = $Fecha;
-        $instance->Precio = $Precio;
-        $instance->FK_idgestion_tipoavion = $FK_idgestion_tipoavion;
-        $instance->FK_idgestion_rutas = $FK_idgestion_rutas;
+        $instance->FK_tipoAvion = $FK_tipoAvion;
+        $instance->FK_IdRutas = $FK_IdRutas;
         $instance->setLastUser($lastUser);
         $instance->setLastModification($lastModification);
         return $instance;
@@ -46,46 +42,26 @@ class gestionVuelo extends BaseDomain implements \JsonSerializable {
 
     //----------------------------------------------------------------------------------
 
-    public function getFecha() {
-        return $this->Fecha;
+    public function getFK_tipoAvion() {
+        return $this->FK_tipoAvion;
     }
 
-    public function setFecha($Fecha) {
-        $this->Fecha = $Fecha;
-    }
-
-    //----------------------------------------------------------------------------------
-
-    public function getPrecio() {
-        return $this->Precio;
-    }
-
-    public function setPrecio($Precio) {
-        $this->Precio = $Precio;
+    public function setFK_tipoAvion($FK_idgestion_tipoavion) {
+        $this->FK_tipoAvion = $FK_idgestion_tipoavion;
     }
 
     //----------------------------------------------------------------------------------
 
-    public function getFK_idgestion_tipoavion() {
-        return $this->FK_idgestion_tipoavion;
+    public function getFK_IdRutas() {
+        return $this->FK_IdRutas;
     }
 
-    public function setFK_idgestion_tipoavion($FK_idgestion_tipoavion) {
-        $this->FK_idgestion_tipoavion = $FK_idgestion_tipoavion;
-    }
-
-    //----------------------------------------------------------------------------------
-
-    public function getFK_idgestion_rutas() {
-        return $this->FK_idgestion_rutas;
-    }
-
-    public function setFK_idgestion_rutas($FK_idgestion_rutas) {
-        $this->FK_idgestion_rutas = $FK_idgestion_rutas;
+    public function setFK_IdRutas($FK_idgestion_rutas) {
+        $this->FK_IdRutas = $FK_idgestion_rutas;
     }
 
     //----------------------------------------------------------------------------------
-    
+
     public function getlastUser() {
         return $this->lastUser;
     }
@@ -102,4 +78,3 @@ class gestionVuelo extends BaseDomain implements \JsonSerializable {
     }
 
 }
-

@@ -21,12 +21,13 @@ class gestion_rutasDao {
     public function add(gestion_rutas $gestion_rutas) {
 
         try {
-            $sql = sprintf("insert into gestion_rutas(PK_IdRutas, ruta, duracion, FechaSalida, Precio, FK_tipoAvion, lastUser, lastModification)
-                                        values (%s, %s, %s, %s, %s, %s, %s, CURDATE())",
+            $sql = sprintf("insert into gestion_rutas(PK_IdRutas, ruta, duracion, FechaSalida, FechaEntrada, Precio, FK_tipoAvion, lastUser, lastModification)
+                                        values (%s, %s, %s, %s, %s, %s, %s, %s, CURDATE())",
                     $this->labAdodb->Param("PK_IdRutas"),
                     $this->labAdodb->Param("ruta"),
                     $this->labAdodb->Param("duracion"),
                     $this->labAdodb->Param("FechaSalida"),
+                    $this->labAdodb->Param("FechaEntrada"),
                     $this->labAdodb->Param("Precio"),
                     $this->labAdodb->Param("FK_tipoAvion"),
                     $this->labAdodb->Param("lastUser"));
@@ -38,6 +39,7 @@ class gestion_rutasDao {
             $valores["ruta"] = $gestion_rutas->getruta();
             $valores["duracion"] = $gestion_rutas->getduracion();
             $valores["FechaSalida"] = $gestion_rutas->getFechaSalida();
+            $valores["FechaEntrada"] = $gestion_rutas->getFechaEntrada();
             $valores["Precio"] = $gestion_rutas->getPrecio();
             $valores["FK_tipoAvion"] = $gestion_rutas->getFK_tipoAvion();
             $valores["LASTUSER"] = $gestion_rutas->getLastUser();
@@ -83,6 +85,7 @@ class gestion_rutasDao {
             $sql = sprintf("update gestion_rutas set ruta = %s,   
                                                     duracion = %s,
                                                     FechaSalida = %s,
+                                                    FechaEntrada = %s,
                                                     Precio = %s,
                                                     FK_tipoAvion = %s,
                                                     LASTUSER = %s, 
@@ -92,6 +95,7 @@ class gestion_rutasDao {
                     $this->labAdodb->Param("ruta"),
                     $this->labAdodb->Param("duracion"),
                     $this->labAdodb->Param("FechaSalida"),
+                    $this->labAdodb->Param("FechaEntrada"),
                     $this->labAdodb->Param("Precio"),
                     $this->labAdodb->Param("FK_tipoAvion"),
                     $this->labAdodb->Param("LASTUSER"),
@@ -102,6 +106,7 @@ class gestion_rutasDao {
             $valores = array();
 
             $valores["FechaSalida"] = $gestion_rutas->getFechaSalida();
+            $valores["FechaEntrada"] = $gestion_rutas->getFechaEntrada();
             $valores["ruta"] = $gestion_rutas->getruta();
             $valores["duracion"] = $gestion_rutas->getduracion();
             $valores["Precio"] = $gestion_rutas->getPrecio();
@@ -162,6 +167,7 @@ class gestion_rutasDao {
                 $returngestion_rutas->setruta($resultSql->Fields("ruta"));
                 $returngestion_rutas->setduracion($resultSql->Fields("duracion"));
                 $returngestion_rutas->setFechaSalida($resultSql->Fields("FechaSalida"));
+                $returngestion_rutas->setFechaEntrada($resultSql->Fields("FechaEntrada"));
                 $returngestion_rutas->setPrecio($resultSql->Fields("Precio"));
                 $returngestion_rutas->setFK_tipoAvion($resultSql->Fields("FK_tipoAvion"));
             }

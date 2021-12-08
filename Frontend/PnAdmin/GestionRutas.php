@@ -63,7 +63,10 @@
 
                             <h5 class="card-title">Ajustes de la Ruta</h5>
                             <br>
-                            <p>Fecha: <input type="datetime-local" id="fecha"></p>
+                            <p>Fecha Salida: <input type="datetime-local" id="fecha"></p>
+                            <br>
+                            <p>Fecha Llegada: <input type="text" id="fechaEntrada" readonly="readonly"> 
+                                <input type="button" class="btn btn-primary bg-dark" value="Cargar" onclick="calFecha()" /></p>
                             <br>
                             <p >Duracion: <input type="text" id="duracion" readonly="readonly"/></p>
                             <br>
@@ -73,7 +76,7 @@
                             <p>Avion: <select name="Avion" id="Avion" style="width: 80%">;
                                     
                                     <?php 
-                                        include '../../Backend/Agenda/dao/connexion.php"';
+                                        include "../../Backend/Agenda/dao/connexion.php";
                                         $consulta=" SELECT * FROM gestion_tipoavion";
                                         $ejecutar = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
                                     ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../utlis/adodb5/adodb.inc.php");
+require_once("../dao/adodb5/adodb.inc.php");
 require_once("../domain/Factura.php");
 
 class FacturaDao {
@@ -23,10 +23,11 @@ class FacturaDao {
 
 
         try {
-            $sql = sprintf("insert into Factura (idFactura, Detalle, asiento, FK_cedula, FK_idgestionVuelo) 
-                                          values (%s,%s,%s,%s,%s,CURDATE())",
+            $sql = sprintf("insert into Factura (idFactura, Detalle, FechaCompra, asiento, FK_cedula, FK_idgestionVuelo) 
+                                          values (%s, %s, %s, %s, %s, %s)",
                     $this->labAdodb->Param("idFactura"),
                     $this->labAdodb->Param("Detalle"),
+                    $this->labAdodb->Param("FechaCompra"),
                     $this->labAdodb->Param("asiento"),
                     $this->labAdodb->Param("FK_cedula"),
                     $this->labAdodb->Param("FK_idgestionVuelo"));
@@ -36,6 +37,7 @@ class FacturaDao {
 
             $valores["idFactura"] = $factura->getidFactura();
             $valores["Detalle"] = $factura->getDetalle();
+            $valores["FechaCompra"] = $factura->getFechaCompra();
             $valores["asiento"] = $factura->getAsiento();
             $valores["FK_cedula"] = $factura->getFK_cedula();
             $valores["FK_idgestionVuelo"] = $factura->getFK_idgestionVuelo();
@@ -79,19 +81,23 @@ class FacturaDao {
 
         try {
             $sql = sprintf("update Factura set Detalle = %s,
+                                                FechaCompra = %s,
                                                 asiento = %s,
                                                 FK_cedula = %s, 
                                                 FK_idgestionVuelo = %s,
                             where idFactura = %s",
                     $this->labAdodb->Param("Detalle"),
+                    $this->labAdodb->Param("FechaCompra"),
                     $this->labAdodb->Param("asiento"),
                     $this->labAdodb->Param("FK_cedula"),
-                    $this->labAdodb->Param("FK_idgestionVuelo"));
+                    $this->labAdodb->Param("FK_idgestionVuelo"),
+                    $this->labAdodb->Param("idFactura"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
-            
+
             $valores["Detalle"] = $factura->getDetalle();
+            $valores["FechaCompra"] = $factura->getFechaCompra();
             $valores["asiento"] = $factura->getAsiento();
             $valores["FK_cedula"] = $factura->getFK_cedula();
             $valores["FK_idgestionVuelo"] = $factura->getFK_idgestionVuelo();
@@ -145,6 +151,7 @@ class FacturaDao {
                 $returnfactura = Factura::createNullFactura();
                 $returnfactura->setidFactura($resultSql->Fields("idFactura"));
                 $returnfactura->setDetalle($resultSql->Fields("Detalle"));
+                $returnfactura->setFechaCompra($resultSql->Fields("FechaCompra"));
                 $returnfactura->setAsiento($resultSql->Fields("asiento"));
                 $returnfactura->setFK_cedula($resultSql->Fields("FK_cedula"));
                 $returnfactura->setFK_idgestionVuelo($resultSql->Fields("FK_idgestionVuelo"));
@@ -168,6 +175,4 @@ class FacturaDao {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase FacturaDao), error:' . $e->getMessage());
         }
     }
-
 }
-

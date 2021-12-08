@@ -3,15 +3,15 @@
 require_once("../domain/gestionVuelo.php");
 require_once("../dao/gestionVueloDao.php");
 
-class gestionVueloBo{
+class gestionVueloBo {
 
     private $gestionVueloDao;
 
     public function __construct() {
-        $this->gestionVueloDao = new GestionVueloDao();
+        $this->gestionVueloDao = new gestionVueloDao();
     }
 
-    public function getgestionVueloDao(){
+    public function getgestionVueloDao() {
         return $this->gestionVueloDao;
     }
 
@@ -78,6 +78,13 @@ class gestionVueloBo{
         }
     }
 
+    public function ListaClientes() {
+        try {
+            return $this->gestionVueloDao->ListaClientes();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 //end of the class gestionVueloBo

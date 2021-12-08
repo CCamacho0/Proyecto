@@ -28,13 +28,29 @@ function aleatorio(minimo, maximo) {
     return Math.round(Math.random() * (maximo - minimo) + minimo);
 }
 
+function Fecha() {
+    var fecha = $("#fecha").val();
+    fecha = fecha.replace('T', ' ');
+    return fecha;
+}
+
+function calFecha() {
+    var FechaS = new Date(Fecha());
+    var duracion = $("#duracion").val();
+    duracion.split(":");
+
+    FechaS.setHours(FechaS.getHours() + duracion[0]);
+    FechaS.setMinutes(FechaS.getMinutes() + duracion[1])
+    FechaS = FechaS.toISOString();
+    $("#fechaEntrada").val(FechaS);
+}
+
 //Agregar o modificar la información
 function addOrUpdateRutas() {
     //Se envia la información por ajax
     if (validar()) {
         var ruta = $("#origin-input").val() + "-" + $("#destination-input").val();
-        var fecha = $("#fecha").val();
-        fecha = fecha.replace('T', ' ');
+
         $.ajax({
             url: '../../Backend/Agenda/controller/gestion_rutasController.php',
             data: {
@@ -42,7 +58,8 @@ function addOrUpdateRutas() {
                 PK_IdRutas: aleatorio(10000000, 99999999),
                 ruta: ruta,
                 duracion: $("#duracion").val() + ":00",
-                FechaSalida: fecha,
+                FechaSalida: Fecha(),
+                FechaEntrada: $("#fechaEntrada").val(),
                 Precio: $("#precio").val(),
                 FK_tipoAvion: $("#Avion").val()
             },

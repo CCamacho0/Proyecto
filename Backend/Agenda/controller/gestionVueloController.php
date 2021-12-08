@@ -10,7 +10,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
     $action = filter_input(INPUT_POST, 'action');
 
     try {
-        $mygestionVueloBo = new gestionVuelo();
+        $mygestionVueloBo = new gestionVueloBo();
         $mygestionVuelo = gestionVuelo::createNullgestionVuelo();
 
         //choose the action
@@ -18,15 +18,11 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "add_gestionVuelo" or $action === "update_gestionVuelo") {
             //se valida que los parametros hayan sido enviados por post
-            if ((filter_input(INPUT_POST, 'idgestionVuelo') != null) && (filter_input(INPUT_POST, 'Fecha') != null) 
-                && (filter_input(INPUT_POST, 'Precio') != null)&& (filter_input(INPUT_POST, 'FK_idgestion_tipoavion') != null)
-                    && (filter_input(INPUT_POST, 'FK_idgestion_rutas') != null)) {
+            if ((filter_input(INPUT_POST, 'idgestionVuelo') != null) && (filter_input(INPUT_POST, 'FK_tipoAvion') != null) && (filter_input(INPUT_POST, 'FK_IdRutas') != null)) {
 
                 $mygestionVuelo->setidgestionVuelo(filter_input(INPUT_POST, 'idgestionVuelo'));
-                $mygestionVuelo->setFecha(filter_input(INPUT_POST, 'Fecha'));
-                $mygestionVuelo->setPrecio(filter_input(INPUT_POST, 'Precio'));
-                $mygestionVuelo->setFK_idgestion_tipoavion(filter_input(INPUT_POST, 'FK_idgestion_tipoavion'));
-                $mygestionVuelo->setFK_idgestion_rutas(filter_input(INPUT_POST, 'FK_idgestion_rutas'));
+                $mygestionVuelo->setFK_tipoAvion(filter_input(INPUT_POST, 'FK_tipoAvion'));
+                $mygestionVuelo->setFK_IdRutas(filter_input(INPUT_POST, 'FK_IdRutas'));
 
                 if ($action == "add_gestionVuelo") {
                     $mygestionVueloBo->add($mygestionVuelo);
@@ -67,7 +63,6 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 }
             }
         }
-
         //----------------------------------------------------------------------------------
 
         if ($action === "delete_idgestionVuelo") {//accion de eliminar cliente por ID
@@ -78,11 +73,20 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 echo('M~Registro Fue Eliminado Correctamente');
             }
         }
-
         //se captura cualquier error generado
         //----------------------------------------------------------------------------------
     } catch (Exception $e) { //exception generated in the business object..
-        echo("E~" . $e->getMessage());
+        echo("E~F" . $e->getMessage());
+    }
+
+    if ($action === "ShowLista") {
+        $resultDB = $mygestionVueloBo->ListaClientes();
+        $json = json_encode($resultDB->GetArray());
+        $resultado = '{"data": ' . $json . '}';
+        if ($resultDB->RecordCount() === 0) {
+            $resultado = '{"data": []}';
+        }
+        echo $resultado;
     }
 } else {
     echo('M~Parametros no enviados desde el formulario'); //se codifica un mensaje para enviar

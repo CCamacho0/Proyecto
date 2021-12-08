@@ -1,74 +1,63 @@
 <?php
 
-require_once ("../../utlis/adodb5/adodb.inc.php");
+require_once ("../dao/adodb5/adodb.inc.php");
 require_once ("../domain/gestionVuelo.php");
 
+class gestionVueloDao {
 
-
-
-class gestionVueloDao{
-    
     private $labAdodb;
-    
+
     public function __construct() {
         $driver = 'mysqli';
         $this->labAdodb = newAdoConnection($driver);
         //$this->labAdodb->setCharset('utf8');
         //$this->labAdodb->setConnectionParameter('CharacterSet', 'WE8ISO8859P15');
         $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
-        $this->labAdodb->debug=true;
+        $this->labAdodb->debug = false;
     }
-    
+
     //***********************************************************
     //agrega a una gestion de vuelo a la base de datos
     //***********************************************************
-    
-    
-    public function add(GestionVuelo $gestionVuelo){ 
-        
+
+
+    public function add(gestionVuelo $gestionVuelo) {
+
         try {
-            
-            $sql = sprintf("insert into gestionVuelo(idgestionVuelo,Fecha,Precio,lastUser,lastModification,FK_idgestion_tipoavion, FK_idgestion_rutas)
-                                        values (%s,%s,%s,%s,CURDATE(),%s,%s,)",
-                    
+
+            $sql = sprintf("insert into gestionVuelo(idgestionVuelo, FK_tipoAvion, FK_IdRutas, lastUser, lastModification)
+                                        values (%s, %s, %s, %s, CURDATE())",
                     $this->labAdodb->Param("idgestionVuelo"),
-                    $this->labAdodb->Param("Fecha"),
-                    $this->labAdodb->Param("Precio"),
-                    $this->labAdodb->Param("LASTUSER"),
-                    $this->labAdodb->Param("FK_idgestion_tipoavion"),
-                    $this->labAdodb->Param("FK_idgestion_rutas"));
-                    
-                    
+                    $this->labAdodb->Param("FK_tipoAvion"),
+                    $this->labAdodb->Param("FK_IdRutas"),
+                    $this->labAdodb->Param("LASTUSER"));
+
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idgestionVuelo"]                   =  $gestionVuelo->getidgestionVuelo();
-            $valores["Fecha"]                            =  $gestionVuelo->getFecha();
-            $valores["Precio"]                           =  $gestionVuelo->getPrecio();
-            $valores["LASTUSER"]                         =  $gestionVuelo->getLastUser();
-            $valores["FK_idgestion_tipoavion"]           =  $gestionVuelo->getFK_idgestion_tipoavion();
-            $valores["FK_idgestion_rutas"]               =  $gestionVuelo->getFK_idgestion_rutas();
-            
-            
-            
+            $valores["idgestionVuelo"] = $gestionVuelo->getidgestionVuelo();
+            $valores["LASTUSER"] = $gestionVuelo->getLastUser();
+            $valores["FK_tipoAvion"] = $gestionVuelo->getFK_tipoAvion();
+            $valores["FK_IdRutas"] = $gestionVuelo->getFK_IdRutas();
+
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
-            throw new Exception('No se pudo insertar el registro (Error generado en el metodo add de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo insertar el registro (Error generado en el metodo add de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
-    
+
     //***********************************************************
     //verifica si una gestion de vuelo existe en la base de datos por ID
     //***********************************************************
-    
-    public function exist(GestionVuelo $gestionVuelo) {
 
-        
+    public function exist(gestionVuelo $gestionVuelo) {
+
+
         $exist = false;
         try {
             $sql = sprintf("select * from gestionVuelo where idgestionVuelo = %s ",
-                            $this->labAdodb->Param("idgestionVuelo"));
+                    $this->labAdodb->Param("idgestionVuelo"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
@@ -76,65 +65,57 @@ class gestionVueloDao{
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
             if ($resultSql->RecordCount() > 0) {
-                $exist = true;
+                $exist = false;
             }
             return $exist;
         } catch (Exception $e) {
-            throw new Exception('No se pudo obtener el registro (Error generado en el metodo exist de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo obtener el registro (Error generado en el metodo exist de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
-    
-    
+
     //***********************************************************
     //Modifica una gestion de vuelo en la base de datos
     //***********************************************************
 
-    public function update(GestionVuelo $gestionVuelo) {
+    public function update(gestionVuelo $gestionVuelo) {
 
-        
+
         try {
-            $sql = sprintf("update gestionVuelo set Fecha = %s, 
-                                                Precio = %s,   
-                                                LASTUSER = %s, 
+            $sql = sprintf("update gestionVuelo set LASTUSER = %s, 
                                                 LASTMODIFICATION = CURDATE() 
-                                                FK_idgestion_tipoavion = %s,
-                                                FK_idgestion_rutas = %s,
+                                                FK_tipoAvion = %s,
+                                                FK_IdRutas = %s,
 
                             where idgestionVuelo = %s",
-                    $this->labAdodb->Param("Fecha"),
-                    $this->labAdodb->Param("Precio"),
                     $this->labAdodb->Param("LASTUSER"),
-                    $this->labAdodb->Param("FK_idgestion_tipoavion"),
-                    $this->labAdodb->Param("FK_idgestion_rutas"));
-            
+                    $this->labAdodb->Param("FK_tipoAvion"),
+                    $this->labAdodb->Param("FK_IdRutas"));
+
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["Fecha"]                                 = $gestionVuelo->getnomLugar();
-            $valores["Precio"]                                = $gestionVuelo->getdireccion();
-            $valores["LASTUSER"]                              = $gestionVuelo->getLastUser();
-            $valores["FK_idgestion_tipoavion"]                = $gestionVuelo->getFK_idgestion_tipoavion();
-            $valores["FK_idgestion_rutas"]                    = $gestionVuelo->getFK_idgestion_rutas();
-            
+            $valores["LASTUSER"] = $gestionVuelo->getLastUser();
+            $valores["FK_tipoAvion"] = $gestionVuelo->getFK_tipoAvion();
+            $valores["FK_IdRutas"] = $gestionVuelo->getFK_IdRutas();
+
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
-            throw new Exception('No se pudo actualizar el registro (Error generado en el metodo update de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo actualizar el registro (Error generado en el metodo update de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
-    
-    
+
     //***********************************************************
     //elimina una gestion de avión en la base de datos
     //***********************************************************
-    
-    
-     public function delete(GestionVuelo $gestionVuelo) {
 
-        
+
+    public function delete(gestionVuelo $gestionVuelo) {
+
+
         try {
             $sql = sprintf("delete from gestionVuelo where idgestion_Vuelo = %s",
-                            $this->labAdodb->Param("idgestion_Vuelo"));
+                    $this->labAdodb->Param("idgestion_Vuelo"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
@@ -143,22 +124,21 @@ class gestionVueloDao{
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
-            throw new Exception('No se pudo eliminar el registro (Error generado en el metodo delete de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo eliminar el registro (Error generado en el metodo delete de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
 
-    
     //***********************************************************
     //busca una gestion de vuelo en la base de datos
     //***********************************************************
 
-    public function searchById(GestionVuelo $gestionVuelo) {
+    public function searchById(gestionVuelo $gestionVuelo) {
 
-        
+
         $returngestionVuelo = null;
         try {
             $sql = sprintf("select * from gestionVuelo where idgestionVuelo = %s",
-                            $this->labAdodb->Param("idgestionVuelo"));
+                    $this->labAdodb->Param("idgestionVuelo"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
@@ -166,37 +146,42 @@ class gestionVueloDao{
             $valores["idgestionVuelo"] = $gestionVuelo->getidgestionVuelo();
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
-            
+
             if ($resultSql->RecordCount() > 0) {
-                $returngestionVuelo = GestionVuelo::createNullGestionVuelo();
+                $returngestionVuelo = gestionVuelo::createNullgestionVuelo();
                 $returngestionVuelo->setidgestionVuelo($resultSql->Fields("idgestionVuelo"));
-                $returngestionVuelo->setFecha($resultSql->Fields("Fecha"));
-                $returngestionVuelo->setPrecio($resultSql->Fields("Precio"));
-                $returngestionVuelo->setFK_idgestion_tipoavion($resultSql->Fields("FK_idgestion_tipoavion"));
-                $returngestionVuelo->setFK_idgestion_rutas($resultSql->Fields("FK_idgestion_tipoavion"));
+                $returngestionVuelo->setFK_tipoAvion($resultSql->Fields("FK_tipoAvion"));
+                $returngestionVuelo->setFK_IdRutas($resultSql->Fields("FK_IdRutas"));
             }
         } catch (Exception $e) {
-            throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase gestionVueloDao), error:' . $e->getMessage());
         }
         return $returnDirecciones;
     }
-    
-    //***********************************************************
-    //obtiene la información de las gestiones de vuelo en la base de datos
-    //***********************************************************
-    
+
+    public function ListaClientes() {
+        try {
+            $sql = sprintf("SELECT P.PK_cedula, P.nombre, P.apellido1, P.apellido2, Gv.FK_tipoAvion
+                            FROM Factura F
+                            JOIN Personas P ON F.FK_cedula = P.PK_cedula
+                            JOIN gestionVuelo Gv ON F.FK_idgestionVuelo = Gv.idgestionVuelo");
+
+            $resultSql = $this->labAdodb->Execute($sql);
+            return $resultSql;
+        } catch (Exception $e) {
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo ListaClientes de la clase gestionVueloDao), error:' . $e->getMessage());
+        }
+    }
+
     public function getAll() {
 
-        
         try {
             $sql = sprintf("select * from gestionVuelo");
             $resultSql = $this->labAdodb->Execute($sql);
             return $resultSql;
         } catch (Exception $e) {
-            throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase gestionVueloDao), error:'.$e->getMessage());
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
-    
-    
-}
 
+}
