@@ -23,6 +23,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 $mygestionVuelo->setidgestionVuelo(filter_input(INPUT_POST, 'idgestionVuelo'));
                 $mygestionVuelo->setFK_tipoAvion(filter_input(INPUT_POST, 'FK_tipoAvion'));
                 $mygestionVuelo->setFK_IdRutas(filter_input(INPUT_POST, 'FK_IdRutas'));
+                $mygestionVuelo->setlastUser('Cama');
 
                 if ($action == "add_gestionVuelo") {
                     $mygestionVueloBo->add($mygestionVuelo);

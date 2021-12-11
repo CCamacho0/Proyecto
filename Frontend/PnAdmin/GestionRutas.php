@@ -59,7 +59,7 @@
             <div class="card-body">
                 <div class="card-group">
                     <div>
-                        <form class="card-body" role="form" onsubmit="return false;" id="formRutas" action="../../Backend/Agenda/controller/gestion_rutasController.php">
+                        <form class="card-body" role="form" onsubmit="return false;" action="../../Backend/Agenda/controller/gestion_rutasController.php">
 
                             <h5 class="card-title">Ajustes de la Ruta</h5>
                             <br>
@@ -72,26 +72,30 @@
                             <br>
                             <p>Precio: <input type="text" id="precio" readonly="readonly"></p>
                             <br>
+                            <p>Descuento: <input type="text" id="Descuento" style="width: 15%"> %<br>
+                            <small class="text-muted">Si no hay un valor no aplica</small></p>
                             
+                            
+                            <br>
                             <p>Avion: <select name="Avion" id="Avion" style="width: 80%">;
-                                    
-                                    <?php 
-                                        include "../../Backend/Agenda/dao/connexion.php";
-                                        $consulta=" SELECT * FROM gestion_tipoavion";
-                                        $ejecutar = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
+
+                                    <?php
+                                    include "../../Backend/Agenda/dao/connexion.php";
+                                    $consulta = " SELECT * FROM gestion_tipoavion";
+                                    $ejecutar = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
                                     ?>
                                     <?php foreach ($ejecutar as $opciones): ?>
 
-                                    <option value="<?php echo $opciones['PK_tipoAvion']?>"><?php echo $opciones['PK_tipoAvion']?></option>
+                                        <option value="<?php echo $opciones['PK_tipoAvion'] ?>"><?php echo $opciones['PK_tipoAvion'] ?></option>
                                     <?php endforeach ?>
                                 </select></p>
-
+                                <br>
 
                             <input type="hidden" id="typeAction" value="add_gestion_rutas" />
                             <button type="submit" class="btn btn-primary bg-dark" id="guardar">Guardar</button>
                             <button type="reset" class="btn bg-light" id="cancelar">Cancelar</button>
 
-                            <br><br><br><br><br><br><br><br>
+                            <br><br><br>
                         </form>
                     </div>
 

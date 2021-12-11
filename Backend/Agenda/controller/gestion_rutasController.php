@@ -21,7 +21,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
             if ((filter_input(INPUT_POST, 'PK_IdRutas') != null) && (filter_input(INPUT_POST, 'FechaSalida') != null) 
                     && (filter_input(INPUT_POST, 'FechaEntrada') != null) && (filter_input(INPUT_POST, 'ruta') != null) 
                     && (filter_input(INPUT_POST, 'duracion') != null) && (filter_input(INPUT_POST, 'Precio') != null) 
-                    && (filter_input(INPUT_POST, 'FK_tipoAvion') != null)) {
+                    && (filter_input(INPUT_POST, 'Promocion') != null) && (filter_input(INPUT_POST, 'FK_tipoAvion') != null)) {
 
                 $mygestion_rutas->setPK_IdRutas(filter_input(INPUT_POST, 'PK_IdRutas'));
                 $mygestion_rutas->setruta(filter_input(INPUT_POST, 'ruta'));
@@ -29,6 +29,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 $mygestion_rutas->setFechaSalida(filter_input(INPUT_POST, 'FechaSalida'));
                 $mygestion_rutas->setFechaEntrada(filter_input(INPUT_POST, 'FechaEntrada'));
                 $mygestion_rutas->setPrecio(filter_input(INPUT_POST, 'Precio'));
+                $mygestion_rutas->setPromocion(filter_input(INPUT_POST, 'Promocion'));
                 $mygestion_rutas->setFK_tipoAvion(filter_input(INPUT_POST, 'FK_tipoAvion'));
                 $mygestion_rutas->setlastUser('Cama');
                 

@@ -44,7 +44,7 @@ class PersonasBo {
             throw $e;
         }
     }
-    
+
     //eliminar a una persona a la base de datos
     //----------------------------------------------------------------------------------
 
@@ -70,12 +70,42 @@ class PersonasBo {
     //consultar todas las personas de la base de datos
     //----------------------------------------------------------------------------------
 
+    public function IniciarSesion(Personas $personas) {
+        try {
+            return $this->personasDao->IniciarSesion($personas);
+        } catch (Exception $e) {
+
+            throw $e;
+        }
+    }
+
+    public function CrearSesion(Personas $personas) {
+        try {
+            return $this->personasDao->CrearSesion($personas);
+        } catch (Exception $e) {
+
+            throw $e;
+        }
+    }
+
     public function getAll() {
         try {
             return $this->personasDao->getAll();
         } catch (Exception $e) {
             throw $e;
         }
+    }
+
+    public function Verificar() {
+        return $this->personasDao->Verificar();
+    }
+
+    public function Destruir() {
+        return $this->personasDao->Destruir();
+    }
+    
+    public function InfoUsuario() {
+        return $this->personasDao->InfoUsuario();
     }
 
 }

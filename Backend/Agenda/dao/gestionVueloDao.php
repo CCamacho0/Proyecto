@@ -37,10 +37,9 @@ class gestionVueloDao {
             $valores = array();
 
             $valores["idgestionVuelo"] = $gestionVuelo->getidgestionVuelo();
-            $valores["LASTUSER"] = $gestionVuelo->getLastUser();
             $valores["FK_tipoAvion"] = $gestionVuelo->getFK_tipoAvion();
             $valores["FK_IdRutas"] = $gestionVuelo->getFK_IdRutas();
-
+            $valores["LASTUSER"] = $gestionVuelo->getLastUser();
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
             throw new Exception('No se pudo insertar el registro (Error generado en el metodo add de la clase gestionVueloDao), error:' . $e->getMessage());

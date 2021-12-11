@@ -21,8 +21,6 @@ class PersonasDao {
     //----------------------------------------------------------------------------------
 
     public function add(Personas $personas) {
-
-
         try {
             $sql = sprintf("insert into Personas (PK_cedula, nombre, apellido1, apellido2, fecNacimiento, sexo, 
                 celular, correo, direccion, nombreUsuario, contrasena, tipoUsuario, LASTUSER, LASTMODIFICATION) 
@@ -91,7 +89,6 @@ class PersonasDao {
     //----------------------------------------------------------------------------------
 
     public function update(Personas $personas) {
-
 
         try {
             $sql = sprintf("update Personas set nombre = %s, 
@@ -214,6 +211,85 @@ class PersonasDao {
             return $resultSql;
         } catch (Exception $e) {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase PersonasDao), error:' . $e->getMessage());
+        }
+    }
+
+    public function IniciarSesion(Personas $personas) {
+
+        $returnPersonas = null;
+        try {
+            $sql = sprintf("SELECT P.PK_cedula, P.nombreUsuario, P.tipoUsuario
+                            FROM mydb.personas P 
+                            WHERE  P.correo = %s 
+                            AND P.contrasena = %s",
+                    $this->labAdodb->Param("correo"),
+                    $this->labAdodb->Param("contrasena"));
+            $sqlParam = $this->labAdodb->Prepare($sql);
+
+            $valores = array();
+            $valores["correo"] = $personas->getCorreo();
+            $valores["contrasena"] = $personas->getcontrasena();
+
+            $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
+
+            if ($resultSql->RecordCount() > 0) {
+                $returnPersonas = Personas::createNullPersonas();
+                $returnPersonas->setnombreUsuario($resultSql->Fields("nombreUsuario"));
+                $returnPersonas->setPK_cedula($resultSql->Fields("PK_cedula"));
+                $returnPersonas->settipoUsuario($resultSql->Fields("tipoUsuario"));
+            }
+        } catch (Exception $e) {
+            throw new Exception('No se pudo consultar el registro (Error generado en el metodo IniciarSesion de la clase PersonasDao), error:' . $e->getMessage());
+        }
+        return $returnPersonas;
+    }
+
+    public function CrearSesion(Personas $personas) {
+
+        session_name('Aerolinea');
+        session_start();
+
+        if (!(isset($_SESSION['ArregloVal']))) {
+            $arreglo = array();
+            $arreglo[] = $personas->getnombreUsuario();
+            $arreglo[] = $personas->getPK_cedula();
+            $arreglo[] = $personas->gettipoUsuario();
+
+            $_SESSION['ArregloVal'] = $arreglo;
+        } else {
+            echo("E~Ya se ha iniciado sesion");
+        }
+    }
+
+    public function Verificar() {
+
+        session_name('Aerolinea');
+        session_start();
+
+        if (isset($_SESSION['ArregloVal'])) {
+            echo ("E~Ya se ha iniciado sesion");
+        }
+    }
+
+    public function Destruir() {
+
+        session_name('Aerolinea');
+        session_start();
+
+        session_destroy();
+        echo("M~La sesión fue destruida correctamente");
+    }
+
+    public function InfoUsuario() {
+
+        session_name('Aerolinea');
+        session_start();
+
+        if (!(isset($_SESSION['ArregloVal']))) {
+            echo ("   ");
+        } else {
+            $arreglo = $_SESSION['ArregloVal']; // obtiene el dato de la sesión
+            echo ($arreglo[0]);
         }
     }
 

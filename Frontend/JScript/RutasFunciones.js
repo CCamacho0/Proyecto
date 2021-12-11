@@ -41,15 +41,15 @@ function Fecha() {
 function calFecha() {
     var FechaS = new Date(Fecha());
     var duracion = $("#duracion").val();
-    duracion =duracion.split(":");
-    duracion[0] = duracion[0]-6;
-    FechaS.setHours(FechaS.getHours()+duracion[0]);
-    FechaS.setMinutes(FechaS.getMinutes()+parseInt(duracion[1]));
-    
+    duracion = duracion.split(":");
+    duracion[0] = duracion[0] - 6;
+    FechaS.setHours(FechaS.getHours() + duracion[0]);
+    FechaS.setMinutes(FechaS.getMinutes() + parseInt(duracion[1]));
+
     FechaS = FechaS.toJSON();
     FechaS = FechaS.split("T");
     var Horas = FechaS[1].split(":");
-    var FechaE = FechaS[0]+" "+Horas[0]+":"+Horas[1];
+    var FechaE = FechaS[0] + " " + Horas[0] + ":" + Horas[1];
     $("#fechaEntrada").val(FechaE);
 }
 
@@ -59,21 +59,59 @@ function addOrUpdateRutas() {
     if (validar()) {
         var ruta = $("#origin-input").val() + "-" + $("#destination-input").val();
 
+        var IdRuta = Math.round(Math.random() * (99999999 - 10000000) + 10000000);
+        var IdVuelo = Math.round(Math.random() * (99999999 - 10000000) + 10000000);
+        var descuento;
+        if ($("#Descuento").val() === "") {
+            descuento = 0;
+        } else {
+            descuento = $("#Descuento").val();
+        }
         $.ajax({
             url: '../../Backend/Agenda/controller/gestion_rutasController.php',
             data: {
                 action: $("#typeAction").val(),
-                PK_IdRutas: aleatorio(10000000, 99999999),
+                PK_IdRutas: IdRuta,
                 ruta: ruta,
                 duracion: $("#duracion").val() + ":00",
                 FechaSalida: Fecha(),
                 FechaEntrada: $("#fechaEntrada").val(),
                 Precio: $("#precio").val(),
+                Promocion: descuento,
                 FK_tipoAvion: $("#Avion").val()
-            },
+            }, 
+            
             error: function () { //si existe un error en la respuesta del ajax
                 swal("Error", "Se presento un error al enviar la informacion", "error");
             },
+
+            success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
+                var messageComplete = data.trim();
+                var responseText = messageComplete.substring(2);
+                var typeOfMessage = messageComplete.substring(0, 2);
+                if (typeOfMessage === "M~") { //si todo esta corecto
+                    swal("Confirmacion", responseText, "success");
+                    clearFormRutas();
+                    $("#dt_GestionRutas").DataTable().ajax.reload();
+                } else {//existe un error
+                    swal("Error", responseText, "error");
+                }
+            },
+            type: 'POST'
+        });
+        
+        $.ajax({
+            url: '../../Backend/Agenda/controller/gestionVueloController.php',
+            data: {
+                action: "add_gestionVuelo",
+                idgestionVuelo: IdVuelo,
+                FK_IdRutas: IdRuta,
+                FK_tipoAvion: $("#Avion").val()
+            },          
+            error: function () { //si existe un error en la respuesta del ajax
+                swal("Error", "Se presento un error al enviar la informacion", "error");
+            },
+
             success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
                 var messageComplete = data.trim();
                 var responseText = messageComplete.substring(2);
@@ -115,10 +153,11 @@ function validar() {
     if ($("#Avion").val() === "") {
         validacion = false;
     }
-    
+
     if ($("#fechaEntrada").val() === "") {
         validacion = false;
     }
+
     return validacion;
 }
 
