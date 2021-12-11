@@ -101,31 +101,10 @@
             <div id="boton_buscarvuelo" style="display:none;">
                 <button type="submit" class="btn btn-primary">Buscar vuelos</button>
             </div>
-        </form>
 
 
-        <div class="card-body">
-            <div class="col-md-12">
-                <h5 class="card-title">Lista de Vuelos Disponibles</h5>
-                <table id="dt_GestionRutas"  class="table  table-hover dt-responsive nowrap" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Ruta</th>
-                            <th>Duracion</th>
-                            <th>Opcion</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
 
-            <p>Aca se puede poner unas unos input de onlyRead, que se llenen cuando dan click en un boton de en la tabla, 
-                simplemente algo visual para el usuario que escogio la ruta</p>
-        </div>
-        <hr class="my-4">
-        <h5>Seleccione un método de pago</h5>                    
-
-
+<<<<<<< Updated upstream
 
 
         <div class="row gy-3">
@@ -171,10 +150,32 @@
                     <p class="form-label"><b>CVV</b></p>
                     <input type="text" class="form-control" id="id_cvv" required>
                 </div>
+=======
+            <div class="card-body">
+                <div class="col-md-12">
+                    <h5 class="card-title">Lista de Vuelos Disponibles</h5>
+                    <table id="dt_GestionRutas"  class="table  table-hover dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ruta</th>
+                                <th>Duracion</th>
+                                <th>Opcion</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <p>Aca se puede poner unas unos input de onlyRead, que se llenen cuando dan click en un boton de en la tabla, 
+                    simplemente algo visual para el usuario que escogio la ruta</p>
+>>>>>>> Stashed changes
             </div>
+            <hr class="my-4">
+            <h5>Seleccione un método de pago</h5>                    
 
 
 
+<<<<<<< Updated upstream
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Dirección de facturación</h4>
                 <form class="needs-validation" novalidate>
@@ -211,8 +212,13 @@
                                 Por favor, ingrese su dirección exacta.
                             </div>
                         </div>
+=======
+>>>>>>> Stashed changes
 
+            <div class="row gy-3">
+                <hr class="my-4">
 
+<<<<<<< Updated upstream
                         <div class="col-md-5">
                             <label for="country" class="form-label">País</label>
                             <input type="text" class="form-control" id="country" placeholder="" required>
@@ -238,12 +244,59 @@
                         </div>
                     </div>
 
+=======
+                <h4 class="mb-3">Payment</h4>
 
-                    <hr class="my-4">
+                <div class="my-3">
 
-                    <button class="w-100 btn btn-primary bg-black btn-lg" type="submit">Realizar el pago</button>
+                    <div class="form-check">
+                        <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                        <label class="form-check-label" for="credit">Credit card</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="debit">Debit card</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="paypal">PayPal</label>
+                    </div>
+                </div>
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label for="cc-name" class="form-label">Name on card</label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                        <small class="text-muted">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="cc-number" class="form-label">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+>>>>>>> Stashed changes
 
 
-                </form>
-                </body>
-                </html>
+                    <div class="col-md-6">
+                        <p class="form-label">Credit card number</p>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <p class="form-label"><b>Fecha de Vencimiento</b></p>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <p class="form-label"><b>CVV</b></p>
+                        <input type="text" class="form-control" id="id_cvv" required>
+                    </div>
+                </div>
+        </form>
+    </body>
+</html>
