@@ -3,7 +3,7 @@
 require_once("../domain/gestion_rutas.php");
 require_once("../dao/gestion_rutasDao.php");
 
-class gestion_rutasBo{
+class gestion_rutasBo {
 
     private $gestion_rutasDao;
 
@@ -11,7 +11,7 @@ class gestion_rutasBo{
         $this->gestion_rutasDao = new gestion_rutasDao();
     }
 
-    public function getgestion_rutasDao(){
+    public function getgestion_rutasDao() {
         return $this->gestion_rutasDao;
     }
 
@@ -78,9 +78,24 @@ class gestion_rutasBo{
         }
     }
 
+    public function getPromo() {
+        try {
+            return $this->gestion_rutasDao->getPromo();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function RutasPop() {
+        try {
+            return $this->gestion_rutasDao->RutasPop();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 //end of the class gestion_rutasBo
 ?>
 
- 
+

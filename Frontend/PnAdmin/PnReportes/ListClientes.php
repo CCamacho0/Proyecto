@@ -44,7 +44,7 @@
 
         <!-- Scripts propios -->
         <script src="../../JScript/utils.js" type="text/javascript"></script>
-        <script src="../../JScript/ListaClientesFunciones.js" type="text/javascript"></script>
+        <script src="../../JScript/ListaClientes.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="card-body">

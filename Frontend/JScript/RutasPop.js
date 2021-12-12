@@ -1,4 +1,3 @@
-
 //cuando el documento esta cargado se procede a cargar la información
 $(document).ready(function () {
     cargarTablas();
@@ -9,8 +8,8 @@ $(document).ready(function () {
 function cargarTablas() {
 
     var dataTableClientes_const = function () {
-        if ($("#dt_ListaClientes").length) {
-            $("#dt_ListaClientes").DataTable({
+        if ($("#dt_Rutaspop").length) {
+            $("#dt_Rutaspop").DataTable({
                 dom: "Bfrtip",
                 bFilter: false,
                 ordering: false,
@@ -34,23 +33,23 @@ function cargarTablas() {
                 ],
                 "columnDefs": [
                     {
-                        targets: 4,
+                        targets: 2,
                         className: "dt-center",
                     }
                 ],
                 pageLength: 10,
                 language: dt_lenguaje_espanol,
                 ajax: {
-                    url: '../../../Backend/Agenda/controller/gestionVueloController.php',
+                    url: '../../../Backend/Agenda/controller/gestion_rutasController.php',
                     type: "POST",
                     data: function (d) {
                         return $.extend({}, d, {
-                            action: "ShowLista"
+                            action: "ShowRutasPop"
                         });
                     }
                 },
                 drawCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                    $('#dt_ListaClientes').DataTable().columns.adjust().responsive.recalc();
+                    $('#dt_Rutaspop').DataTable().columns.adjust().responsive.recalc();
                 }
             });
         }
@@ -71,6 +70,6 @@ function cargarTablas() {
 
 //Evento que reajusta la tabla en el tamaño de la pantalla
 window.onresize = function () {
-    $('#dt_ListaClientes').DataTable().columns.adjust().responsive.recalc();
+    $('#dt_Rutaspop').DataTable().columns.adjust().responsive.recalc();
 };
 

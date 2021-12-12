@@ -86,6 +86,29 @@ class FacturaBo {
         }
     }
 
+    public function Reservaciones() {
+        try {
+            return $this->facturaDao->Reservaciones();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function ListaClientes() {
+        try {
+            return $this->facturaDao->ListaClientes();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function Historico() {
+        try {
+            return $this->facturaDao->Historico();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 //end of the class FacturaBo

@@ -18,9 +18,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "add_Factura" or $action === "update_Factura") {
             //se valida que los parametros hayan sido enviados por post
-            if ((filter_input(INPUT_POST, 'idFactura') != null) && (filter_input(INPUT_POST, 'Detalle') != null) 
-                    && (filter_input(INPUT_POST, 'asiento') != null) && (filter_input(INPUT_POST, 'FK_cedula') != null) 
-                    && (filter_input(INPUT_POST, 'FK_idgesionVuelo') != null) && (filter_input(INPUT_POST, 'FechaCompra') != null)) {
+            if ((filter_input(INPUT_POST, 'idFactura') != null) && (filter_input(INPUT_POST, 'Detalle') != null) && (filter_input(INPUT_POST, 'asiento') != null) && (filter_input(INPUT_POST, 'FK_cedula') != null) && (filter_input(INPUT_POST, 'FK_idgesionVuelo') != null) && (filter_input(INPUT_POST, 'FechaCompra') != null)) {
 
                 $myFactura->setidFactura(filter_input(INPUT_POST, 'idFactura'));
                 $myFactura->setDetalle(filter_input(INPUT_POST, 'Detalle'));
@@ -79,7 +77,7 @@ if (filter_input(INPUT_POST, 'action') != null) {
                 echo('M~Registro Fue Eliminado Correctamente');
             }
         }
-        
+
         if ($action === "showFacturaMes") {//accion de consultar todos los registros
             $resultDB = $myFacturaBo->FacturadoMes();
             $json = json_encode($resultDB->GetArray());
@@ -90,6 +88,35 @@ if (filter_input(INPUT_POST, 'action') != null) {
             echo $resultado;
         }
 
+        if ($action === "showReservaciones") {//accion de consultar todos los registros
+            $resultDB = $myFacturaBo->Reservaciones();
+            $json = json_encode($resultDB->GetArray());
+            $resultado = '{"data": ' . $json . '}';
+            if ($resultDB->RecordCount() === 0) {
+                $resultado = '{"data": []}';
+            }
+            echo $resultado;
+        }
+
+        if ($action === "ShowLista") {
+            $resultDB = $myFacturaBo->ListaClientes();
+            $json = json_encode($resultDB->GetArray());
+            $resultado = '{"data": ' . $json . '}';
+            if ($resultDB->RecordCount() === 0) {
+                $resultado = '{"data": []}';
+            }
+            echo $resultado;
+        }
+
+        if ($action === "showHistorico") {//accion de consultar todos los registros
+            $resultDB = $myFacturaBo->Historico();
+            $json = json_encode($resultDB->GetArray());
+            $resultado = '{"data": ' . $json . '}';
+            if ($resultDB->RecordCount() === 0) {
+                $resultado = '{"data": []}';
+            }
+            echo $resultado;
+        }
         //se captura cualquier error generado
         //----------------------------------------------------------------------------------
     } catch (Exception $e) { //exception generated in the business object..

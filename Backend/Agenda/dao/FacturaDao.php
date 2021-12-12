@@ -13,7 +13,7 @@ class FacturaDao {
         //$this->labAdodb->setCharset('utf8');
         //$this->labAdodb->setConnectionParameter('CharacterSet', 'WE8ISO8859P15');
         $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
-        $this->labAdodb->debug = true;
+        $this->labAdodb->debug = false;
     }
 
     //agrega a una Factura a la base de datos
@@ -175,32 +175,86 @@ class FacturaDao {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase FacturaDao), error:' . $e->getMessage());
         }
     }
-    
+
     public function FacturadoMes() {
 
         try {
             $sql = sprintf("SELECT F.FechaCompra, gR.Precio
                             FROM mydb.Factura F
-                            JOIN mydb.gestionVuelo gV ON F.FK_idgestionVuelo = gV.idgestionVuelo
-                            JOIN mydb.gestion_rutas gR ON gV.PK_IdRutas = gR.PK_IdRutas ");
+                            JOIN mydb.gestion_rutas gR ON F.FK_IdRutas = gR.PK_IdRutas ");
             $resultSql = $this->labAdodb->Execute($sql);
             return $resultSql;
         } catch (Exception $e) {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase FacturaDao), error:' . $e->getMessage());
         }
     }
-    public function Historico() {
+
+    public function Reservaciones() {
 
         try {
-            $sql = sprintf("SELECT F.FechaCompra, gR.Precio
+            $sql = sprintf("SELECT F.idFactura, F.CantidadAsientos, F.FechaCompra, F.FK_IdRutas, gR.FechaSalida, gR.ruta, gR.Precio
                             FROM mydb.Factura F
-                            JOIN mydb.gestionVuelo gV ON F.FK_idgestionVuelo = gV.idgestionVuelo
-                            JOIN mydb.gestion_rutas gR ON gV.PK_IdRutas = gR.PK_IdRutas ");
+                            JOIN mydb.gestion_rutas gR ON F.FK_IdRutas = gR.PK_IdRutas
+                            WHERE F.FK_cedula = %s",
+                    $this->labAdodb->Param("PK_cedula"));
+            $sqlParam = $this->labAdodb->Prepare($sql);
+
+            $valores = array();
+            session_name('Aerolinea');
+            session_start();
+            if (!(isset($_SESSION['ArregloVal']))) {
+                echo ("El atributo arregloValores no existe en sesion, por favor ejecutar el archivo php que la crea");
+            } else {
+                $arreglo = $_SESSION['ArregloVal']; // obtiene el dato de la sesión
+                $valores["PK_cedula"] = $arreglo[1];
+            }
+
+            $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
+            return $resultSql;
+        } catch (Exception $e) {
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo Reservaciones de la clase FacturaDao), error:' . $e->getMessage());
+        }
+    }
+
+    public function ListaClientes() {//Facturas
+        try {
+            $sql = sprintf("SELECT P.PK_cedula, P.nombre, P.apellido1, P.apellido2, gR.FK_tipoAvion
+                            FROM Factura F
+                            JOIN Personas P ON F.FK_cedula = P.PK_cedula
+                            JOIN gestion_rutas gR ON F.FK_IdRutas = gR.PK_IdRutas");
+
             $resultSql = $this->labAdodb->Execute($sql);
             return $resultSql;
         } catch (Exception $e) {
-            throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase FacturaDao), error:' . $e->getMessage());
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo ListaClientes de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
-    
+
+    public function Historico() {//Facturas
+        try {
+            $sql = sprintf("SELECT F.idFactura, gR.ruta, F.FechaCompra, gR.Precio
+                            FROM Factura F
+                            JOIN Personas P ON F.FK_cedula = P.PK_cedula
+                            JOIN gestion_rutas gR ON F.FK_IdRutas = gR.PK_IdRutas
+                            WHERE F.FK_cedula = %s",
+                    $this->labAdodb->Param("PK_cedula"));
+            $sqlParam = $this->labAdodb->Prepare($sql);
+
+            $valores = array();
+            session_name('Aerolinea');
+            session_start();
+            if (!(isset($_SESSION['ArregloVal']))) {
+                echo ("El atributo arregloValores no existe en sesion, por favor ejecutar el archivo php que la crea");
+            } else {
+                $arreglo = $_SESSION['ArregloVal']; // obtiene el dato de la sesión
+                $valores["PK_cedula"] = $arreglo[1];
+            }
+
+            $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
+            return $resultSql;
+        } catch (Exception $e) {
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo Historico de la clase FacturaDao), error:' . $e->getMessage());
+        }
+    }
+
 }

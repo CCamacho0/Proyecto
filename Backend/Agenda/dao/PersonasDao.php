@@ -293,4 +293,23 @@ class PersonasDao {
         }
     }
 
+    public function Historico(Personas $personas) {
+        try {
+            $sql = sprintf("SELECT gR.PK_IdRutas, gR.ruta F.FechaCompra, gR.Precio
+                            FROM mydb.Factura F
+                            JOIN mydb.gestion_rutas gR ON F.PK_IdRutas = gR.PK_IdRutas 
+                            WHERE F.FK_cedula = %s",
+                    $this->labAdodb->Param("PK_cedula"));
+            $sqlParam = $this->labAdodb->Prepare($sql);
+
+            $valores = array();
+            $valores["PK_cedula"] = $personas->getPK_cedula();
+
+            $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
+            return $resultSql;
+        } catch (Exception $e) {
+            throw new Exception('No se pudo consultar el historico el registro (Error generado en el metodo Historico de la clase PersonasDao), error:' . $e->getMessage());
+        }
+    }
+
 }

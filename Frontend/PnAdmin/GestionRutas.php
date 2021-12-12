@@ -73,9 +73,9 @@
                             <p>Precio: <input type="text" id="precio" readonly="readonly"></p>
                             <br>
                             <p>Descuento: <input type="text" id="Descuento" style="width: 15%"> %<br>
-                            <small class="text-muted">Si no hay un valor no aplica</small></p>
-                            
-                            
+                                <small class="text-muted">Si no hay un valor no aplica</small></p>
+
+
                             <br>
                             <p>Avion: <select name="Avion" id="Avion" style="width: 80%">;
 
@@ -89,8 +89,8 @@
                                         <option value="<?php echo $opciones['PK_tipoAvion'] ?>"><?php echo $opciones['PK_tipoAvion'] ?></option>
                                     <?php endforeach ?>
                                 </select></p>
-                                <br>
-
+                            <br>
+                            <input type="hidden" id="IdRuta" value="0" />
                             <input type="hidden" id="typeAction" value="add_gestion_rutas" />
                             <button type="submit" class="btn btn-primary bg-dark" id="guardar">Guardar</button>
                             <button type="reset" class="btn bg-light" id="cancelar">Cancelar</button>
@@ -107,7 +107,7 @@
 
                         </div>
 
-                        <div id="map"></div>
+                        <div id="map" style=" height: 80%; width: 80%;"></div>
 
                         <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
                         <script

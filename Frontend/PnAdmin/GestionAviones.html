@@ -71,7 +71,7 @@
                         <p>Asientos por filas: </p>
                         <input type="text" id="Asientos_fila">
                         <br><br>
-                        
+                        <input type="hidden" id="IdAvion" value="0" />
                         <input type="hidden" id="typeAction" value="add_gestion_tipoavion" />
                         <button type="submit" class="btn btn-primary bg-dark btn-lg" id="guardar">Guardar</button>
                         <button type="reset" class="btn btn-lg bg-light" id="cancelar">Cancelar</button>           
@@ -80,7 +80,7 @@
                     <div class="card-body">
                         <div class="col-md-12">
                             <h5 class="card-title">Lista de Aviones</h5>
-                            <table id="dt_GestionAviones"  class="table  table-hover dt-responsive nowrap"  width="100%">
+                            <table id="dt_GestionAviones"  class="table  table-hover dt-responsive nowrap"  width="99%">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>

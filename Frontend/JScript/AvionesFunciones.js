@@ -19,12 +19,14 @@ $(function () { //Creación de los controles
 //cuando el documento esta cargado se procede a cargar la información
 $(document).ready(function () {
     cargarTablas();
+    GenerarID();
 
 });
 
 //Numero Random para el ID
-function aleatorio(minimo,maximo){
-    return Math.round(Math.random() * (maximo - minimo) + minimo);
+function GenerarID() {
+    var IdRuta = Math.round(Math.random() * (99999999 - 10000000) + 10000000);
+    $("#IdAvion").val(IdRuta);
 }
 
 //Agregar o modificar la información
@@ -35,7 +37,7 @@ function addOrUpdateAviones() {
             url: '../../Backend/Agenda/controller/gestion_tipoAvionController.php',
             data: {
                 action: $("#typeAction").val(),
-                PK_tipoAvion: aleatorio(10000000, 99999999),
+                PK_tipoAvion: $("#IdAvion").val(),
                 anno: $("#txtAnno").val(),
                 modelo: $("#txtModelo").val(),
                 marca: $("#txtMarca").val(),
@@ -118,6 +120,7 @@ function showAvionesByID(PK_tipoAvion) {
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
             var objAvionesJSon = JSON.parse(data);
             
+            $("#IdAvion").val(objAvionesJSon.PK_tipoAvion);
             $("#txtAnno").val(objAvionesJSon.anno);
             $("#txtModelo").val(objAvionesJSon.modelo);
             $("#txtMarca").val(objAvionesJSon.marca);

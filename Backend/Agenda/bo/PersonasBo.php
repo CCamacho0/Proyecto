@@ -108,6 +108,13 @@ class PersonasBo {
         return $this->personasDao->InfoUsuario();
     }
 
+        public function Historico(Personas $personas) {
+        try {
+            return $this->personasDao->Historico($personas);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 //end of the class PersonasBo
