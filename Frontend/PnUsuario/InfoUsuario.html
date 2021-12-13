@@ -2,56 +2,118 @@
 
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="../CSS/styles_userprofile.css"/>      
         <title>Editar perfil de usuario</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="../../bootstrap 5/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../bootstrap 5/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../bootstrap 5/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Bootstrap Jscript -->
+        <script src="../../bootstrap 5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="../../bootstrap 5/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <script src="../lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <link href="../lib/animate.css/animate.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Mensaje de alerta -->
+        <script src="../lib/sweetAlert2/dist/sweetalert2.all.min.js" type="text/javascript"></script>
+        <link href="../lib/sweetAlert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Script propios del proyecto -->
+        <script src="../JScript/utils.js" type="text/javascript"></script>
+        <script src="../JScript/InfoUsuarioFunciones.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="container rounded bg-white mt-10 mb-10">
             <div class="row">
                 <div class="col-md-6 border-right">
-                    <div class="p-5 py-6">
+                    <form class="p-5 py-6" role="form" onsubmit="return false;" action="../../Backend/Agenda/controller/PersonasController.php">
                         <div class="d-flex justify-content-between align-items-center mb-5">
-                            <h4 class="text-right">Editar perfil de Usuario</h4>
+                            <h4 class="text-right">Información de usuario</h4>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6"><label class="labels">Nombre Completo</label><input type="text" class="form-control" value="" placeholder="Ingrese su nombre completo"></div>
-                            <div class="col-md-6"><label class="labels">Primer Apellido</label><input type="text" class="form-control" value="" placeholder="Ingrese su primer apellido"></div>
+                            <div class="col-md-6">
+                                <label class="labels">Nombre Completo</label>
+                                <input type="text" class="form-control" id="nombre" disabled="" >
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Primer Apellido</label>
+                                <input type="text" class="form-control" id="apellido" disabled="">
+                            </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6"><label class="labels">Segundo Apellido</label><input type="text" class="form-control" placeholder="Ingrese su segundo apellido" value=""></div>
-                            <div class="col-md-6"><label class="labels">Correo Electrónico</label><input type="text" class="form-control" placeholder="Ingrese su correo electrónico" value=""></div>
+                            <div class="col-md-6">
+                                <label class="labels">Segundo Apellido</label>
+                                <input type="text" id="apellido2" class="form-control"disabled="" >
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Correo Electrónico</label>
+                                <input type="text" id="correo" class="form-control" disabled="">
+                            </div>
                         </div>
                         <div class="row mt-6">    
-                            <div class="col-md-6"><label class="labels">Fecha de Nacimiento</label><input type="date" id="start" name="trip-start"
-                                                                                                          value="1999-01-01"
-                                                                                                          min="1999-01-01" 
-                                                                                                          max="2021-12-12"></div>
-                            <div class="col-md-6"><label class="labels">Dirección Exacta</label><input type="text" class="form-control" placeholder="Ingrese su dirección exacta" value=""></div>
+                            <div class="col-md-6">
+                                <label class="labels">Fecha de Nacimiento</label>
+                                <input type="date" id="fecha" disabled=""></div>
+                            <div class="col-md-6">
+                                <label class="labels">Dirección Exacta</label>
+                                <input type="text" class="form-control" id="direccion"disabled="">
+                            </div>
                         </div>
                         <div class="row mt-6">    
-                            <div class="col-md-6"><label class="labels">Teléfono de Trabajo</label><input type="text" class="form-control" placeholder="Ingrese su teléfono de trabajo" value=""></div>
-                            <div class="col-md-6"><label class="labels">Celular</label><input type="text" class="form-control" placeholder="Ingrese su teléfono celular" value=""></div>
+                            <div class="col-md-6">
+                                <label class="labels">Nombre de Usuario</label>
+                                <input type="text" class="form-control" id="NombreUsuario" disabled="" >
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Cedula</label>
+                                <input type="text" class="form-control" id="Cedula" disabled="">
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="row mt-6">    
+                            <div class="col-md-6">
+                                <label class="labels">Celular</label>
+                                <input type="text" class="form-control" id="celular" disabled="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Sexo</label>
+                                <select class="form-control" id="Sexo" style=" size: 80%" disabled="">
+                                    <option selected disabled hidden value=''></option>
+                                    <option value="1">Masculino</option>
+                                    <option value="0">Femenino</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-6">    
+                            <div class="col-md-6">
+                                <label class="labels">Contraseña</label>
+                                <input type="password" class="form-control" id="contra" disabled="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels"></label>
+                                <input type="hidden" class="form-control" id="Usuariotipo" value="0" >
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
                 <div class="col-md-6">
                     <div class="col-md-6 border-right">
                         <div class="d-flex flex-column align-items-center text-center p-6 py-6">
                             <img class="rounded-circle mt-5" width="140px" src="https://www.seekpng.com/png/detail/41-410093_circled-user-icon-user-profile-icon-png.png">
-                            
-                            
-                        <div class="mt-5 text-center"><button class="btn btn-primary  btn-dark" type="button">Guardar</button></div>
-                        <br>
-                        <button class="btn btn-primary btn-dark" type="button"><a href="HistoricoCompras.html">Historial de Compras</a></button>
-                        
-                    </div>                 
+
+
+                            <div class="mt-2 text-center"><button class="btn btn-primary  btn-dark" type="button" id="editar">Editar</button></div>
+                            <div class="mt-2 text-center"><button class="btn btn-primary  btn-danger" type="button" id="cancelar" disabled="">Cancelar</button></div>
+                            <div class="mt-2 text-center"><button class="btn btn-primary  btn-dark" type="submit" id="guardar" disabled="">Guardar</button></div>
+                            <button class=" mt-2 btn btn-primary btn-dark" type="button"><a class="text-white" href="HistoricoCompras.html">Historial de Compras</a></button>
+                        </div>                 
+                    </div>
                 </div>
             </div>
-        </div>
     </body>
 </html>

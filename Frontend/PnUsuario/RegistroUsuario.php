@@ -49,7 +49,7 @@
                             <br>
                             <p class="card-title">Segundo Apellido: <input type="text" id="txtapellido2" /></p>
                             <br>
-                            <p>Fecha Nacimiento: <input type="date" id="txtfecNacimiento"></p>
+                            <p>Fecha Nacimiento: <input type="date" id="txtfecNacimiento" min="1900-01-01" max="2012-12-30"></p>
                             <br>
                             <p class="card-title">Sexo: 
                                 <select id="txtsexo" style=" size: 80%">
@@ -67,7 +67,7 @@
                             <br>
                             <p class="card-title">Celular: <input type="text" id="txtcelular" /></p>
                             <br>
-                            
+
                             <input type="hidden" id="txttipoUsuario" value="0" />
                             <input type="hidden" id="typeAction" value="add_personas" />
                             <button type="submit" class="btn btn-primary bg-dark" id="guardar">Guardar</button>

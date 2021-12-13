@@ -34,8 +34,8 @@ function cargarTablas() {
         if ($("#dt_Reservaciones").length) {
             $("#dt_Reservaciones").DataTable({
                 dom: "Bfrtip",
-                bFilter: false,
-                ordering: false,
+                bFilter: true,
+                ordering: true,
                 buttons: [
                     {
                         extend: "copy",

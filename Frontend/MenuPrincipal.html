@@ -41,26 +41,26 @@
                 <div align="right" class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav ms-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="PnUsuario/inicio_sesion.html" target="Ventanas">Iniciar Sesión</a>
+                            <a id="Iniciar" class="nav-link" href="PnUsuario/inicio_sesion.html">Iniciar Sesión</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="PnUsuario/RegistroUsuario.php">Registrarse</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="PnUsuario/InfoUsuario.html" target="Ventanas">Información de Usuario</a>
+                            <a class="nav-link" id="Informacion" href="PnUsuario/InfoUsuario.html" target="Ventanas" hidden="">Información de Usuario</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="PnAdmin/Administrador.html">Administrador</a><!-- Poner visible si es admin, sino ocultar -->
+                            <a class="nav-link" href="PnAdmin/Administrador.html" id="admin" hidden="">Administrador</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="CerrarSesion">Cerrar Sesión</a><!-- Poner visible cuando hay una secion activa, sino ocultar -->
+                            <a class="nav-link" id="CerrarSesion">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
         
-        <!-- Banner Slider editar -->
+        <!-- Banner Slider editar 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -86,10 +86,10 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+        </div>-->
         <!-- Pantallas -->
         <div class="card border-0 ">
-            <iframe name="Ventanas" src="PnUsuario/Reservar.html" style="height: 800px; width: 1200px;"></iframe>
+            <iframe name="Ventanas" src="PnUsuario/Reservar.html" style="height: 1600px; width: 1600px;"></iframe>
         </div>
     </body>
 </html>

@@ -23,25 +23,28 @@ class FacturaDao {
 
 
         try {
-            $sql = sprintf("insert into Factura (idFactura, Detalle, FechaCompra, asiento, FK_cedula, FK_idgestionVuelo) 
-                                          values (%s, %s, %s, %s, %s, %s)",
+            $sql = sprintf("insert into Factura (idFactura, FechaCompra, CantidadAsientos, FK_cedula, FK_IdRutas) 
+                                          values (%s, CURDATE(), %s, %s, %s)",
                     $this->labAdodb->Param("idFactura"),
-                    $this->labAdodb->Param("Detalle"),
-                    $this->labAdodb->Param("FechaCompra"),
-                    $this->labAdodb->Param("asiento"),
+                    $this->labAdodb->Param("CantidadAsientos"),
                     $this->labAdodb->Param("FK_cedula"),
-                    $this->labAdodb->Param("FK_idgestionVuelo"));
+                    $this->labAdodb->Param("FK_IdRutas"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["idFactura"] = $factura->getidFactura();
-            $valores["Detalle"] = $factura->getDetalle();
-            $valores["FechaCompra"] = $factura->getFechaCompra();
-            $valores["asiento"] = $factura->getAsiento();
-            $valores["FK_cedula"] = $factura->getFK_cedula();
-            $valores["FK_idgestionVuelo"] = $factura->getFK_idgestionVuelo();
+            session_name('Aerolinea');
+            session_start();
 
+            if (!(isset($_SESSION['ArregloVal']))) {
+                echo ("E~Para relalizar una compra debe inicar sesion");
+            } else {
+                $arreglo = $_SESSION['ArregloVal']; // obtiene el dato de la sesión
+                $valores["idFactura"] = $factura->getidFactura();
+                $valores["CantidadAsientos"] = $factura->getCantidadAsiento();
+                $valores["FK_cedula"] = $arreglo[1];
+                $valores["FK_IdRutas"] = $factura->getFK_IdRutas();
+            }
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
             throw new Exception('No se pudo insertar el registro (Error generado en el metodo add de la clase FacturaDao), error:' . $e->getMessage());
@@ -80,27 +83,27 @@ class FacturaDao {
 
 
         try {
-            $sql = sprintf("update Factura set Detalle = %s,
-                                                FechaCompra = %s,
+            $sql = sprintf("update Factura set CantidadAsientos = %s,
                                                 asiento = %s,
+                                                FechaCompra = %s,
                                                 FK_cedula = %s, 
-                                                FK_idgestionVuelo = %s,
+                                                FK_IdRutas = %s,
                             where idFactura = %s",
-                    $this->labAdodb->Param("Detalle"),
-                    $this->labAdodb->Param("FechaCompra"),
+                    $this->labAdodb->Param("CantidadAsientos"),
                     $this->labAdodb->Param("asiento"),
+                    $this->labAdodb->Param("FechaCompra"),
                     $this->labAdodb->Param("FK_cedula"),
-                    $this->labAdodb->Param("FK_idgestionVuelo"),
+                    $this->labAdodb->Param("FK_IdRutas"),
                     $this->labAdodb->Param("idFactura"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["Detalle"] = $factura->getDetalle();
-            $valores["FechaCompra"] = $factura->getFechaCompra();
+            $valores["CantidadAsientos"] = $factura->getCantidadAsiento();
             $valores["asiento"] = $factura->getAsiento();
+            $valores["FechaCompra"] = $factura->getFechaCompra();
             $valores["FK_cedula"] = $factura->getFK_cedula();
-            $valores["FK_idgestionVuelo"] = $factura->getFK_idgestionVuelo();
+            $valores["FK_IdRutas"] = $factura->getFK_IdRutas();
             $valores["idFactura"] = $factura->getidFactura();
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
@@ -150,11 +153,11 @@ class FacturaDao {
             if ($resultSql->RecordCount() > 0) {
                 $returnfactura = Factura::createNullFactura();
                 $returnfactura->setidFactura($resultSql->Fields("idFactura"));
-                $returnfactura->setDetalle($resultSql->Fields("Detalle"));
+                $returnfactura->setCantidadAsiento($resultSql->Fields("CantidadAsientos"));
                 $returnfactura->setFechaCompra($resultSql->Fields("FechaCompra"));
                 $returnfactura->setAsiento($resultSql->Fields("asiento"));
                 $returnfactura->setFK_cedula($resultSql->Fields("FK_cedula"));
-                $returnfactura->setFK_idgestionVuelo($resultSql->Fields("FK_idgestionVuelo"));
+                $returnfactura->setFK_IdRutas($resultSql->Fields("FK_IdRutas"));
             }
         } catch (Exception $e) {
             throw new Exception('No se pudo consultar el registro (Error generado en el metodo searchById de la clase FacturaDao), error:' . $e->getMessage());

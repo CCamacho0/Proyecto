@@ -6,11 +6,11 @@ class Factura extends BaseDomain implements \JsonSerializable {
 
     //atributos
     private $idFactura;
-    private $Detalle;
     private $FechaCompra;
     private $asiento;
+    private $CantidadAsiento;
     private $FK_cedula;
-    private $FK_idgestionVuelo;
+    private $FK_IdRutas;
 
     //constructores
     public function __construct() {
@@ -22,14 +22,14 @@ class Factura extends BaseDomain implements \JsonSerializable {
         return $instance;
     }
 
-    public static function createFactura($idFactura, $FK_cedula, $asiento, $FK_idgestionVuelo, $Detalle, $FechaCompra) {
+    public static function createFactura($idFactura, $FK_cedula, $asiento, $FK_IdRutas, $CantidadAsiento, $FechaCompra) {
         $instance = new self();
         $instance->idFactura = $idFactura;
-        $instance->Detalle = $Detalle;
+        $instance->CantidadAsiento = $$CantidadAsiento;
         $instance->FechaCompra = $FechaCompra;
         $instance->asiento = $asiento;
         $instance->FK_cedula = $FK_cedula;
-        $instance->FK_idgestionVuelo = $FK_idgestionVuelo;
+        $instance->FK_IdRutas = $FK_IdRutas;
         return $instance;
     }
 
@@ -54,22 +54,22 @@ class Factura extends BaseDomain implements \JsonSerializable {
 
     //----------------------------------------------------------------------------------
 
-    public function getFK_idgestionVuelo() {
-        return $this->FK_idgestionVuelo;
+    public function getFK_IdRutas() {
+        return $this->FK_IdRutas;
     }
 
-    public function setFK_idgestionVuelo($FK_idgestionVuelo) {
-        $this->FK_idgestionVuelo = $FK_idgestionVuelo;
+    public function setFK_IdRutas($FK_IdRutas) {
+        $this->FK_IdRutas = $FK_IdRutas;
     }
 
     //----------------------------------------------------------------------------------
 
-    public function getDetalle() {
-        return $this->Detalle;
+    public function getCantidadAsiento() {
+        return $this->CantidadAsiento;
     }
 
-    public function setDetalle($Detalle) {
-        $this->Detalle = $Detalle;
+    public function setCantidadAsiento($CantidadAsiento) {
+        $this->CantidadAsiento = $CantidadAsiento;
     }
     
     //----------------------------------------------------------------------------------

@@ -168,8 +168,8 @@ function cargarTablas() {
         if ($("#dt_GestionAviones").length) {
             $("#dt_GestionAviones").DataTable({
                 dom: "Bfrtip",
-                bFilter: false,
-                ordering: false,
+                bFilter: true,
+                ordering: true,
                 buttons: [
                     {
                         extend: "copy",

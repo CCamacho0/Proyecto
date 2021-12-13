@@ -15,6 +15,7 @@ class gestion_rutasDao {
         $this->labAdodb->Connect("localhost", "root2", "Camacho2", "mydb");
         $this->labAdodb->debug = false;
     }
+
     //agrega a una persona a la base de datos
     //----------------------------------------------------------------------------------
 
@@ -182,6 +183,7 @@ class gestion_rutasDao {
         }
         return $returngestion_rutas;
     }
+
     //obtiene la información de las gestiones de vuelo en la base de datos
     //***********************************************************
 
@@ -195,8 +197,8 @@ class gestion_rutasDao {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase gestion_rutasDao), error:' . $e->getMessage());
         }
     }
-    
-        public function getPromo() {
+
+    public function getPromo() {
 
         try {
             $sql = sprintf("SELECT * FROM gestion_rutas gR WHERE gR.Promocion > 0");
@@ -206,7 +208,7 @@ class gestion_rutasDao {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo getAll de la clase gestion_rutasDao), error:' . $e->getMessage());
         }
     }
-    
+
     public function RutasPop() {
         try {
             $sql = sprintf("SELECT gR.PK_IdRutas, gR.ruta, SUM(F.CantidadAsientos) Total
@@ -223,5 +225,20 @@ class gestion_rutasDao {
             throw new Exception('No se pudo obtener los registros (Error generado en el metodo RutasPop de la clase gestionVueloDao), error:' . $e->getMessage());
         }
     }
+
+    public function showVuelosIda() {
+
+        try {
+            $sql = sprintf("SELECT gR.PK_IdRutas, gR.ruta, gR.duracion, gR.FechaSalida, gR.FechaEntrada, gR.Precio
+                            FROM mydb.gestion_rutas gR");
+            
+            $resultSql = $this->labAdodb->Execute($sql);
+            return $resultSql;
+        } catch (Exception $e) {
+            throw new Exception('No se pudo obtener los registros (Error generado en el metodo showVuelosIda de la clase gestion_rutasDao), error:' . $e->getMessage());
+        }
+    }
+
 }
+
 //fin de la clase gestion_rutasDao

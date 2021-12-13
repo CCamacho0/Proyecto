@@ -47,10 +47,18 @@ function cargarInfoUser() {
             swal("Error", "Se presento un error al consultar la informacion", "error");
         },
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
-            var messageComplete = data.trim();
-            var responseText = messageComplete.substring(2);
-            $("#NombreUsuario").val(responseText);
-            swal("Error", responseText, "error");
+            
+            var InfoUsuario = data.trim();
+            InfoUsuario = InfoUsuario.split(",");
+            document.getElementById('NombreUsuario').textContent = InfoUsuario[0];
+
+            if (InfoUsuario[2] === "1") {
+                document.getElementById("admin").hidden = false;
+            }
+            if (InfoUsuario[2] >=0) {
+                document.getElementById("Informacion").hidden = false;
+                document.getElementById("Iniciar").hidden = true;
+            }
         },
         type: 'POST'
     });

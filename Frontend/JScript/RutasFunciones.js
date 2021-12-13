@@ -57,8 +57,8 @@ function calPrecio() {
     var Precio = $("#precio").val();
     var descuento = calDescuento();
     descuento = descuento / 100;
-    Precio = Precio * descuento;
-    return Precio;
+    descuento = Precio * descuento;
+    return Precio-descuento;
 }
 
 function calDescuento() {
@@ -171,7 +171,7 @@ function showRutasByID(PK_IdRutas) {
         success: function (data) { //si todo esta correcto en la respuesta del ajax, la respuesta queda en el data
             var objRutasJSon = JSON.parse(data);
 
-            $("#IdRuta").val(objRutasJSon.PK_);
+            $("#IdRuta").val(objRutasJSon.PK_IdRutas);
 
             var Cadena = objRutasJSon.ruta;
             var CadenaDiv = Cadena.split("-");
@@ -229,8 +229,8 @@ function cargarTablas() {
         if ($("#dt_GestionRutas").length) {
             $("#dt_GestionRutas").DataTable({
                 dom: "Bfrtip",
-                bFilter: false,
-                ordering: false,
+                bFilter: true,
+                ordering: true,
                 buttons: [
                     {
                         extend: "copy",

@@ -144,17 +144,25 @@ class PersonasDao {
     //elimina una persona en la base de datos
     //----------------------------------------------------------------------------------
 
-    public function delete(Personas $personas) {
+    public function delete() {
 
 
         try {
-            $sql = sprintf("delete from Personas where  PK_cedula = %s",
+            $sql = sprintf("DELETE FROM Personas WHERE  PK_cedula = %s",
                     $this->labAdodb->Param("PK_cedula"));
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
 
-            $valores["PK_cedula"] = $personas->getPK_cedula();
+            session_name('Aerolinea');
+            session_start();
+
+            if (!(isset($_SESSION['ArregloVal']))) {
+                echo ("El atributo arregloValores no existe en sesion, por favor ejecutar el archivo php que la crea");
+            } else {
+                $arreglo = $_SESSION['ArregloVal']; // obtiene el dato de la sesión
+                $valores["PK_cedula"] = $arreglo[1];
+            }
 
             $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
         } catch (Exception $e) {
@@ -165,7 +173,7 @@ class PersonasDao {
     //busca a una persona en la base de datos
     //----------------------------------------------------------------------------------
 
-    public function searchById(Personas $personas) {
+    public function searchById() {
 
         $returnPersonas = null;
         try {
@@ -175,7 +183,15 @@ class PersonasDao {
 
             $valores = array();
 
-            $valores["PK_cedula"] = $personas->getPK_cedula();
+            session_name('Aerolinea');
+            session_start();
+
+            if (!(isset($_SESSION['ArregloVal']))) {
+                echo ("El atributo arregloValores no existe en sesion, por favor ejecutar el archivo php que la crea");
+            } else {
+                $arreglo = $_SESSION['ArregloVal']; // obtiene el dato de la sesión
+                $valores["PK_cedula"] = $arreglo[1];
+            }
 
             $resultSql = $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
 
@@ -289,7 +305,7 @@ class PersonasDao {
             echo ("   ");
         } else {
             $arreglo = $_SESSION['ArregloVal']; // obtiene el dato de la sesión
-            echo ($arreglo[0]);
+            echo ($arreglo[0].",".$arreglo[2].",".$arreglo[2]);
         }
     }
 

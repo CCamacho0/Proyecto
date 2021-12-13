@@ -14,8 +14,8 @@ function cargarTablas() {
         if ($("#dt_Promos").length) {
             $("#dt_Promos").DataTable({
                 dom: "Bfrtip",
-                bFilter: false,
-                ordering: false,
+                bFilter: true,
+                ordering: true,
                 buttons: [
                 ],
                 "columnDefs": [

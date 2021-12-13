@@ -11,8 +11,8 @@ function cargarTablas() {
         if ($("#dt_Rutaspop").length) {
             $("#dt_Rutaspop").DataTable({
                 dom: "Bfrtip",
-                bFilter: false,
-                ordering: false,
+                bFilter: true,
+                ordering: true,
                 buttons: [
                     {
                         extend: "copy",

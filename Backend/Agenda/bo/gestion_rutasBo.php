@@ -93,6 +93,14 @@ class gestion_rutasBo {
             throw $e;
         }
     }
+
+    public function showVuelosIda() {
+        try {
+            return $this->gestion_rutasDao->showVuelosIda();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 //end of the class gestion_rutasBo

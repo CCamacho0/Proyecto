@@ -18,14 +18,12 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "add_Factura" or $action === "update_Factura") {
             //se valida que los parametros hayan sido enviados por post
-            if ((filter_input(INPUT_POST, 'idFactura') != null) && (filter_input(INPUT_POST, 'Detalle') != null) && (filter_input(INPUT_POST, 'asiento') != null) && (filter_input(INPUT_POST, 'FK_cedula') != null) && (filter_input(INPUT_POST, 'FK_idgesionVuelo') != null) && (filter_input(INPUT_POST, 'FechaCompra') != null)) {
+            if ((filter_input(INPUT_POST, 'idFactura') != null) && (filter_input(INPUT_POST, 'FK_IdRutas') != null) && (filter_input(INPUT_POST, 'CantidadAsientos') != null)) {
 
                 $myFactura->setidFactura(filter_input(INPUT_POST, 'idFactura'));
-                $myFactura->setDetalle(filter_input(INPUT_POST, 'Detalle'));
-                $myFactura->setFechaCompra(filter_input(INPUT_POST, 'FechaCompra'));
-                $myFactura->setAsiento(filter_input(INPUT_POST, 'asiento'));
-                $myFactura->setFK_cedula(filter_input(INPUT_POST, 'FK_cedula'));
-                $myFactura->setFK_idgestionVuelo(filter_input(INPUT_POST, 'FK_idgesionVuelo'));
+                $myFactura->setCantidadAsiento(filter_input(INPUT_POST, 'CantidadAsientos'));
+                $myFactura->setFK_cedula(filter_input(INPUT_POST, 'FK_IdRutas'));
+                $myFactura->setFK_IdRutas(filter_input(INPUT_POST, 'FK_IdRutas'));
 
                 if ($action == "add_Factura") {
                     $myFacturaBo->add($myFactura);

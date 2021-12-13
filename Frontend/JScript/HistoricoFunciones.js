@@ -9,8 +9,8 @@ function cargarTablas() {
         if ($("#dt_historico").length) {
             $("#dt_historico").DataTable({
                 dom: "Bfrtip",
-                bFilter: false,
-                ordering: false,
+                bFilter: true,
+                ordering: true,
                 buttons: [
                     {
                         extend: "copy",

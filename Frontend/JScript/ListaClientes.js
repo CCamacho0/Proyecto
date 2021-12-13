@@ -12,8 +12,8 @@ function cargarTablas() {
         if ($("#dt_ListaClientes").length) {
             $("#dt_ListaClientes").DataTable({
                 dom: "Bfrtip",
-                bFilter: false,
-                ordering: false,
+                bFilter: true,
+                ordering: true,
                 buttons: [
                     {
                         extend: "copy",

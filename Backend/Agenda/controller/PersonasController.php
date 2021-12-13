@@ -67,26 +67,22 @@ if (filter_input(INPUT_POST, 'action') != null) {
 
         if ($action === "show_personas") {//accion de mostrar cliente por ID
             //se valida que los parametros hayan sido enviados por post
-            if (filter_input(INPUT_POST, 'PK_cedula') != null) {
                 $myPersonas->setPK_cedula(filter_input(INPUT_POST, 'PK_cedula'));
-                $myPersonas = $myPersonasBo->searchById($myPersonas);
+                $myPersonas = $myPersonasBo->searchById();
                 if ($myPersonas != null) {
                     echo json_encode(($myPersonas));
                 } else {
                     echo('E~NO Existe un cliente con el ID especificado');
                 }
-            }
         }
 
         //----------------------------------------------------------------------------------
 
         if ($action === "delete_personas") {//accion de eliminar cliente por ID
             //se valida que los parametros hayan sido enviados por post
-            if (filter_input(INPUT_POST, 'PK_cedula') != null) {
                 $myPersonas->setPK_cedula(filter_input(INPUT_POST, 'PK_cedula'));
                 $myPersonasBo->delete($myPersonas);
-                echo('M~Registro Fue Eliminado Correctamente');
-            }
+                echo('M~Cuenta de usuario eliminada ');
         }
 
         if ($action === "IniciarSesion") {//accion de mostrar cliente por ID

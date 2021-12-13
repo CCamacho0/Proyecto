@@ -101,6 +101,18 @@ if (filter_input(INPUT_POST, 'action') != null) {
             echo $resultado;
         }
 
+        
+        if ($action === "showVuelos") {//accion de mostrar cliente por ID
+            $resultDB = $mygestion_rutasBo->showVuelosIda();
+            $json = json_encode($resultDB->GetArray());
+            $resultado = '{"data": ' . $json . '}';
+            if ($resultDB->RecordCount() === 0) {
+                $resultado = '{"data": []}';
+            }
+            echo $resultado;
+            
+        }
+
         //se captura cualquier error generado
         //----------------------------------------------------------------------------------
     } catch (Exception $e) { //exception generated in the business object..

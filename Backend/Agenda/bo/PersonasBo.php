@@ -48,9 +48,9 @@ class PersonasBo {
     //eliminar a una persona a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function delete(Personas $personas) {
+    public function delete() {
         try {
-            $this->personasDao->delete($personas);
+            $this->personasDao->delete();
         } catch (Exception $e) {
             throw $e;
         }
@@ -59,9 +59,9 @@ class PersonasBo {
     //consulta a una persona a la base de datos
     //----------------------------------------------------------------------------------
 
-    public function searchById(Personas $personas) {
+    public function searchById() {
         try {
-            return $this->personasDao->searchById($personas);
+            return $this->personasDao->searchById();
         } catch (Exception $e) {
             throw $e;
         }
