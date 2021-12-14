@@ -93,7 +93,7 @@ class gestion_rutasDao {
                                                     Promocion = %s,
                                                     FK_tipoAvion = %s,
                                                     LASTUSER = %s, 
-                                                    LASTMODIFICATION = CURDATE(),
+                                                    LASTMODIFICATION = CURDATE()
                                                     
                             where PK_IdRutas = %s",
                     $this->labAdodb->Param("ruta"),
@@ -109,11 +109,10 @@ class gestion_rutasDao {
             $sqlParam = $this->labAdodb->Prepare($sql);
 
             $valores = array();
-
-            $valores["FechaSalida"] = $gestion_rutas->getFechaSalida();
-            $valores["FechaEntrada"] = $gestion_rutas->getFechaEntrada();
             $valores["ruta"] = $gestion_rutas->getruta();
             $valores["duracion"] = $gestion_rutas->getduracion();
+            $valores["FechaSalida"] = $gestion_rutas->getFechaSalida();
+            $valores["FechaEntrada"] = $gestion_rutas->getFechaEntrada();
             $valores["Precio"] = $gestion_rutas->getPrecio();
             $valores["Promocion"] = $gestion_rutas->getPromocion();
             $valores["FK_tipoAvion"] = $gestion_rutas->getFK_tipoAvion();
@@ -231,7 +230,7 @@ class gestion_rutasDao {
         try {
             $sql = sprintf("SELECT gR.PK_IdRutas, gR.ruta, gR.duracion, gR.FechaSalida, gR.FechaEntrada, gR.Precio
                             FROM mydb.gestion_rutas gR");
-            
+
             $resultSql = $this->labAdodb->Execute($sql);
             return $resultSql;
         } catch (Exception $e) {
