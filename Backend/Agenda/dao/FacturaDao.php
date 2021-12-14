@@ -21,7 +21,6 @@ class FacturaDao {
 
     public function add(Factura $factura) {
 
-
         try {
             $sql = sprintf("insert into Factura (idFactura, FechaCompra, CantidadAsientos, FK_cedula, FK_IdRutas) 
                                           values (%s, CURDATE(), %s, %s, %s)",
@@ -81,7 +80,6 @@ class FacturaDao {
 
     public function update(Factura $factura) {
 
-
         try {
             $sql = sprintf("update Factura set CantidadAsientos = %s,
                                                 asiento = %s,
@@ -116,7 +114,6 @@ class FacturaDao {
 
     public function delete(Factura $factura) {
 
-
         try {
             $sql = sprintf("delete from Factura where  idFactura = %s",
                     $this->labAdodb->Param("idFactura"));
@@ -136,7 +133,6 @@ class FacturaDao {
     //----------------------------------------------------------------------------------
 
     public function searchById(Factura $factura) {
-
 
         $returnfactura = null;
         try {
@@ -260,4 +256,24 @@ class FacturaDao {
         }
     }
 
+    public function update_Asiento(Factura $factura) {
+
+        try {
+            $sql = sprintf("UPDATE Factura SET asiento = %s
+                            WHERE idFactura = %s",
+                    $this->labAdodb->Param("asiento"),
+                    $this->labAdodb->Param("idFactura"));
+
+            $sqlParam = $this->labAdodb->Prepare($sql);
+
+            $valores = array();
+
+            $valores["asiento"] = $factura->getAsiento();
+            $valores["idFactura"] = $factura->getidFactura();
+
+            $this->labAdodb->Execute($sqlParam, $valores) or die($this->labAdodb->ErrorMsg());
+        } catch (Exception $e) {
+            throw new Exception('No se pudo actualizar el registro (Error generado en el metodo update de la clase update_Asiento), error:' . $e->getMessage());
+        }
+    }
 }

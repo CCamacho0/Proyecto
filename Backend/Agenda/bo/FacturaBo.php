@@ -109,6 +109,14 @@ class FacturaBo {
             throw $e;
         }
     }
+
+    public function update_Asiento(Factura $factura) {
+        try {
+            return $this->facturaDao->update_Asiento($factura);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 //end of the class FacturaBo

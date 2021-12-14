@@ -115,6 +115,19 @@ if (filter_input(INPUT_POST, 'action') != null) {
             }
             echo $resultado;
         }
+        if ($action === "update_Asiento") {
+            //se valida que los parametros hayan sido enviados por post
+            if ((filter_input(INPUT_POST, 'idFactura') != null) && (filter_input(INPUT_POST, 'asiento') != null)) {
+
+                $myFactura->setidFactura(filter_input(INPUT_POST, 'idFactura'));
+                $myFactura->setAsiento(filter_input(INPUT_POST, 'asiento'));
+                $myFacturaBo->update_Asiento($myFactura);
+                echo('M~Registro Modificado Correctamente');
+            } else {
+                echo('E~Los valores no fueron enviados');
+            }
+        }
+
         //se captura cualquier error generado
         //----------------------------------------------------------------------------------
     } catch (Exception $e) { //exception generated in the business object..
